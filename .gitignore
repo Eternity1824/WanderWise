@@ -1,0 +1,23 @@
+# Node.js related
+node_modules/
+dist/
+build/
+
+# Dependency management
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment variables
+.env
+.env.local
+
+# IDE Configuration
+.vscode/
+.idea/
+.DS_Store
+
+# 日志
+logs/
+*.log
+.cache/
