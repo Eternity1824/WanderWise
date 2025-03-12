@@ -25,6 +25,6 @@ logs/
 *.jpeg
 *.JPG
 *.JPEG
-
+*.mp4
 backend/fastApiProject/app/images/*
 !backend/fastApiProject/app/images/.gitkeep
