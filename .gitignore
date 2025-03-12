@@ -20,9 +20,11 @@ pnpm-lock.yaml
 logs/
 *.log
 .cache/
+
 *.jpg
 *.jpeg
 *.JPG
 *.JPEG
 
+backend/fastApiProject/app/images/*
 !backend/fastApiProject/app/images/.gitkeep
