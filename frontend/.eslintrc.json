@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "rules": {
+    "prettier/prettier": "warn",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
