@@ -17,7 +17,6 @@ pnpm-lock.yaml
 .idea/
 .DS_Store
 
-# 日志
 logs/
 *.log
 .cache/
