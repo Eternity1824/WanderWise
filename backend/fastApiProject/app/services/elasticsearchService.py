@@ -3,7 +3,7 @@ from elasticsearch.helpers import bulk
 import json
 import logging
 from typing import List, Dict, Any, Optional, Union
-from ..config import get_settings
+from config import get_settings
 import datetime
 
 settings = get_settings()
