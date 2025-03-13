@@ -2,11 +2,13 @@ from fastapi import APIRouter, Query
 from external.deepseek import deepseekapi
 from external.googlemap import geocode_finder
 from services.elasticsearchService import es_service
+from core.RoutePlanner import RoutePlanner
 router = APIRouter()
 
 
-@router.get("/search/content", tags=["search"])
-async def search(content: str = Query(None, description="search content")):
+@router.get("/search", tags=["search"])
+async def search(content: str = Query(None, description="search content"),
+                 mode: str = Query("driving", description="交通方式", enum=["driving", "walking", "bicycling", "transit"])):
     # 传递内容到LLM获取地理点列表
     print("正在请求deepseek接口")
     locations, keywords = deepseekapi.process_user_query(content)
@@ -36,27 +38,32 @@ async def search(content: str = Query(None, description="search content")):
                         'place_id': result.get('place_id', '')
                     }
                     location_coordinates.append(location_info)
+    planner = RoutePlanner(location_coordinates)
+    southwest_route = planner.plan_route('southwest')
+
+    points = geocode_finder.get_route_details(southwest_route, mode)
+
 
     # 根据经纬度搜索附近的地点
     search_results = []
 
-    for coordinates in location_coordinates:
+    for coordinates in southwest_route:
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
-        res = es_service.search_by_location(latitude, longitude, "1km")
+        search_result = es_service.search_by_location(latitude, longitude, "1km")
 
         # 为每个位置添加搜索结果
         location_result = {
             'location_info': coordinates,
-            'nearby_results': res
+            'nearby_results': search_result
         }
         search_results.append(location_result)
 
     # 返回包含经纬度和搜索结果的数据
     return {
-        "keywords": keywords,
-        "locations": location_coordinates,
-        "search_results": search_results
+        "route":southwest_route,
+        "points":points,
+        "mode":mode
     }
 
 @router.get("/data/clean", tags=["data clean"])
