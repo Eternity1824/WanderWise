@@ -177,7 +177,8 @@ class ElasticsearchService:
             self.logger.error(f"添加帖子时出错: {e}")
             raise
 
-    def search_by_keyword(self, keyword: str, size: int = 10, from_: int = 0) -> Dict[str, Any]:
+    def search_by_keyword(self, keyword: str, size: int = 10, from_: int = 0,
+                          score_weight: float = 0.5) -> Dict[str, Any]:
         """
         根据关键词搜索帖子
 
@@ -185,31 +186,59 @@ class ElasticsearchService:
             keyword: 搜索关键词
             size: 返回结果数量
             from_: 分页起始位置
+            score_weight: 自定义分数权重
 
         Returns:
             搜索结果
         """
         try:
-            query = {
-                "query": {
-                    "multi_match": {
-                        "query": keyword,
-                        "fields": ["title^3", "desc^2", "tag_list", "source_keyword"]
-                    }
-                },
-                "size": size,
-                "from": from_
+            # 构建关键词查询
+            base_query = {
+                "multi_match": {
+                    "query": keyword,
+                    "fields": ["title^3", "desc^2", "tag_list", "source_keyword"]
+                }
             }
+
+            # 是否需要考虑score字段
+            if score_weight <= 0:
+                query = {
+                    "query": base_query,
+                    "size": size,
+                    "from": from_
+                }
+            else:
+                # 使用function_score来结合自定义分数
+                query = {
+                    "query": {
+                        "function_score": {
+                            "query": base_query,
+                            "functions": [
+                                {
+                                    "field_value_factor": {
+                                        "field": "score",
+                                        "factor": score_weight,
+                                        "modifier": "log1p",
+                                        "missing": 0
+                                    }
+                                }
+                            ],
+                            "boost_mode": "multiply"
+                        }
+                    },
+                    "size": size,
+                    "from": from_
+                }
 
             response = self.es.search(index=self.index_name, body=query)
             return self._format_search_results(response)
-
         except Exception as e:
             self.logger.error(f"关键词搜索时出错: {e}")
             raise
 
-    def search_by_location(self, lat: float, lng: float, distance: str = "10km",
-                           size: int = 10, from_: int = 0) -> Dict[str, Any]:
+    def search_by_location(self, lat: float, lng: float, distance: str = "1km",
+                           size: int = 10, from_: int = 0,
+                           score_weight: float = 0.5) -> Dict[str, Any]:
         """
         根据地理位置搜索帖子
 
@@ -219,42 +248,70 @@ class ElasticsearchService:
             distance: 搜索半径
             size: 返回结果数量
             from_: 分页起始位置
+            score_weight: 自定义分数权重
 
         Returns:
             搜索结果
         """
         try:
-            query = {
-                "query": {
-                    "nested": {
-                        "path": "locations",
-                        "query": {
-                            "geo_distance": {
-                                "distance": distance,
-                                "locations.location": {
-                                    "lat": lat,
-                                    "lon": lng
-                                }
+            # 构建地理位置查询
+            geo_query = {
+                "nested": {
+                    "path": "locations",
+                    "query": {
+                        "geo_distance": {
+                            "distance": distance,
+                            "locations.location": {
+                                "lat": lat,
+                                "lon": lng
                             }
                         }
                     }
-                },
-                "size": size,
-                "from": from_
+                }
             }
+
+            # 是否需要考虑score字段
+            if score_weight <= 0:
+                query = {
+                    "query": geo_query,
+                    "size": size,
+                    "from": from_
+                }
+            else:
+                # 使用function_score来结合自定义分数
+                query = {
+                    "query": {
+                        "function_score": {
+                            "query": geo_query,
+                            "functions": [
+                                {
+                                    "field_value_factor": {
+                                        "field": "score",
+                                        "factor": score_weight,
+                                        "modifier": "log1p",
+                                        "missing": 0
+                                    }
+                                }
+                            ],
+                            "boost_mode": "multiply"
+                        }
+                    },
+                    "size": size,
+                    "from": from_
+                }
 
             response = self.es.search(index=self.index_name, body=query)
             return self._format_search_results(response)
-
         except Exception as e:
             self.logger.error(f"地理位置搜索时出错: {e}")
             raise
 
     def combined_search(self, keyword: Optional[str] = None,
                         lat: Optional[float] = None, lng: Optional[float] = None,
-                        distance: str = "10km", size: int = 10, from_: int = 0) -> Dict[str, Any]:
+                        distance: str = "1km", size: int = 10, from_: int = 0,
+                        score_weight: float = 0.5) -> Dict[str, Any]:
         """
-        组合搜索：关键词 + 地理位置
+        组合搜索：关键词 + 地理位置 + 自定义分数权重
 
         Args:
             keyword: 搜索关键词
@@ -263,11 +320,13 @@ class ElasticsearchService:
             distance: 搜索半径
             size: 返回结果数量
             from_: 分页起始位置
+            score_weight: 自定义分数权重
 
         Returns:
             搜索结果
         """
         try:
+            # 基本查询条件
             must_queries = []
 
             # 添加关键词搜索
@@ -296,18 +355,37 @@ class ElasticsearchService:
                     }
                 })
 
-            # 如果没有搜索条件，返回所有结果
-            if not must_queries:
+            # 基本查询
+            base_query = {
+                "bool": {
+                    "must": must_queries if must_queries else [{"match_all": {}}]
+                }
+            }
+
+            # 如果不需要考虑score字段，使用基本查询
+            if score_weight <= 0:
                 query = {
-                    "query": {"match_all": {}},
+                    "query": base_query,
                     "size": size,
                     "from": from_
                 }
             else:
+                # 使用function_score来结合自定义分数
                 query = {
                     "query": {
-                        "bool": {
-                            "must": must_queries
+                        "function_score": {
+                            "query": base_query,
+                            "functions": [
+                                {
+                                    "field_value_factor": {
+                                        "field": "score",
+                                        "factor": score_weight,
+                                        "modifier": "log1p",  # 使用log(1+x)来避免0分的问题
+                                        "missing": 0  # 如果字段不存在，默认值为0
+                                    }
+                                }
+                            ],
+                            "boost_mode": "multiply"  # 将函数得分与查询得分相乘
                         }
                     },
                     "size": size,

@@ -12,7 +12,6 @@ async def search(content: str = Query(None, description="search content"),
     # 传递内容到LLM获取地理点列表
     print("正在请求deepseek接口")
     locations, keywords = deepseekapi.process_user_query(content)
-    print(locations, keywords)
 
     # 存储所有地点的经纬度信息
     location_coordinates = []
@@ -20,7 +19,6 @@ async def search(content: str = Query(None, description="search content"),
     # 遍历locations列表，获取每个地点的地理编码信息
     for location in locations:
         geocode_result = geocode_finder.get_locations(location)
-        print(geocode_result)
 
         # 检查结果是否有效
         if geocode_result.get('status') == 'OK' and geocode_result.get('results'):
@@ -41,28 +39,30 @@ async def search(content: str = Query(None, description="search content"),
     planner = RoutePlanner(location_coordinates)
     southwest_route = planner.plan_route('southwest')
 
-    points = geocode_finder.get_route_details(southwest_route, mode)
+    route_detail = geocode_finder.get_route_details(southwest_route, mode)
 
 
     # 根据经纬度搜索附近的地点
     search_results = []
-
-    for coordinates in southwest_route:
+    seen_note_ids = set()
+    print(route_detail)
+    for coordinates in route_detail['sampled_points']:
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
-        search_result = es_service.search_by_location(latitude, longitude, "1km")
-
-        # 为每个位置添加搜索结果
-        location_result = {
-            'location_info': coordinates,
-            'nearby_results': search_result
-        }
-        search_results.append(location_result)
+        search_result = es_service.search_by_location(latitude, longitude)
+        print(search_result)
+        for post in search_result['results']:
+            note_id = post['note_id']
+            if note_id not in seen_note_ids:
+                search_results.append(post)
+                seen_note_ids.add(note_id)
 
     # 返回包含经纬度和搜索结果的数据
     return {
         "route":southwest_route,
-        "points":points,
+        "points":route_detail["all_points"],
+        "posts":search_results,
+        "posts_length":len(search_results),
         "mode":mode
     }
 
