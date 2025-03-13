@@ -84,34 +84,3 @@ src/
 ├── App.tsx           # 主应用组件
 └── main.tsx          # 应用入口
 ```
-
-## 使用指南
-
-1. 在地图上查看地点标记
-2. 点击标记查看地点详情
-3. 双击标记选择地点
-4. 在导航面板中选择排序方向（如从北到南）
-5. 点击"排序地点"按钮对选定地点进行排序
-6. 点击"创建路线"按钮生成路线
-7. 使用搜索栏搜索特定地点
-
-## 后端API
-
-应用需要连接到提供以下API端点的后端服务：
-
-- `GET /api/locations` - 获取所有地点
-- `GET /api/locations/:id` - 获取单个地点
-- `GET /api/locations/search?query=xxx` - 搜索地点
-- `POST /api/routes` - 创建路线
-
-## 贡献指南
-
-1. Fork仓库
-2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
-3. 提交更改 (`git commit -m 'Add some amazing feature'`)
-4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 创建Pull Request
-
-## 许可证
-
-MIT
