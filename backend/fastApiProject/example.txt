@@ -1,0 +1,1663 @@
+{
+    route [
+        {
+            name 奇胡利玻璃艺术园, 西雅图,
+            latitude 47.6205599,
+            longitude -122.3504476,
+            formatted_address 305 Harrison St, Seattle, WA 98109, USA,
+            place_id ChIJVTtr1kUVkFQRh-YAfijbQXs
+        },
+        {
+            name 太空针塔, 西雅图,
+            latitude 47.6205063,
+            longitude -122.3492774,
+            formatted_address 400 Broad St, Seattle, WA 98109, USA,
+            place_id ChIJ-bfVTh8VkFQRDZLQnmioK9s
+        },
+        {
+            name 派克市场, 西雅图,
+            latitude 47.6096659,
+            longitude -122.3421671,
+            formatted_address Pike Place Market, Seattle, WA, USA,
+            place_id ChIJy9ZRwbJqkFQRHJ8-Y18dRGA
+        }
+    ],
+    points [
+        {
+            latitude 47.620090000000005,
+            longitude -122.34944000000002
+        },
+        {
+            latitude 47.62003000000001,
+            longitude -122.34942000000001
+        },
+        {
+            latitude 47.61999,
+            longitude -122.34934000000001
+        },
+        {
+            latitude 47.620000000000005,
+            longitude -122.34925000000001
+        },
+        {
+            latitude 47.62003000000001,
+            longitude -122.34919000000001
+        },
+        {
+            latitude 47.620090000000005,
+            longitude -122.34917000000002
+        },
+        {
+            latitude 47.62015,
+            longitude -122.34920000000001
+        },
+        {
+            latitude 47.62017,
+            longitude -122.34928000000001
+        },
+        {
+            latitude 47.620160000000006,
+            longitude -122.34937000000001
+        },
+        {
+            latitude 47.62012000000001,
+            longitude -122.34943000000001
+        },
+        {
+            latitude 47.62006,
+            longitude -122.34944000000002
+        },
+        {
+            latitude 47.62001,
+            longitude -122.34939000000001
+        },
+        {
+            latitude 47.61999,
+            longitude -122.34930000000001
+        },
+        {
+            latitude 47.620000000000005,
+            longitude -122.34925000000001
+        },
+        {
+            latitude 47.620000000000005,
+            longitude -122.34923
+        },
+        {
+            latitude 47.61994000000001,
+            longitude -122.34907000000001
+        },
+        {
+            latitude 47.619820000000004,
+            longitude -122.34885000000001
+        },
+        {
+            latitude 47.619710000000005,
+            longitude -122.34889000000001
+        },
+        {
+            latitude 47.619580000000006,
+            longitude -122.34906000000001
+        },
+        {
+            latitude 47.61900000000001,
+            longitude -122.34982000000001
+        },
+        {
+            latitude 47.617700000000006,
+            longitude -122.35153000000001
+        },
+        {
+            latitude 47.617580000000004,
+            longitude -122.35167000000001
+        },
+        {
+            latitude 47.61708,
+            longitude -122.35081000000001
+        },
+        {
+            latitude 47.61656000000001,
+            longitude -122.34994
+        },
+        {
+            latitude 47.61585,
+            longitude -122.34874
+        },
+        {
+            latitude 47.614020000000004,
+            longitude -122.34565
+        },
+        {
+            latitude 47.6126,
+            longitude -122.34327
+        },
+        {
+            latitude 47.61182,
+            longitude -122.34197
+        },
+        {
+            latitude 47.61146,
+            longitude -122.34135
+        },
+        {
+            latitude 47.61094000000001,
+            longitude -122.3405
+        },
+        {
+            latitude 47.610150000000004,
+            longitude -122.34153
+        },
+        {
+            latitude 47.60989000000001,
+            longitude -122.34187000000001
+        },
+        {
+            latitude 47.609660000000005,
+            longitude -122.34216
+        }
+    ],
+    posts [
+        {
+            note_id 675d2b0100000000040295c7,
+            type normal,
+            title 西雅图探店‖这家神户风味日料吃在心叭上啦,
+            desc 周五和两位朋友一起去打卡了一家隐藏在西雅图主打神户风味的日料店‖SHIKI‖无论是从菜品的细腻程度，还是味道的层次感，都吃在我心叭上啦！！而且这家每天的限定食物不一样，今天我们吃到了关东煮🍢超级暖和！！这是我们几个小伙伴点的菜[吧唧R]nOden（关东煮）n一上桌就能闻到扑鼻而来的鲜甜萝卜香气，汤底简直鲜得让人一口接一口，无法停下。特别是牛筋，炖得软烂却不失弹性，入口即化。真的可以称为让西雅图人民尸体温暖的好方法哈哈哈哈。nTori Karaage（日式炸鸡）n这道菜相对来说中规中矩，经典的日式油炸手法，外酥内嫩。虽然没有特别惊艳，但胜在稳定发挥，绝对不会踩雷。搭配一点柠檬汁，还是相当开胃的呢！nSoft Shell Crab（软壳蟹）n作为我的首次尝试，这道菜完全超出预期！软壳蟹处理得非常干净，没有一点腥味，外层炸得香脆，内里却保留了鲜嫩的口感。推荐第一次尝试这道菜的朋友大胆点单！nCroquette（可乐饼）n这可能是整场的隐藏王者！土豆的绵密与炸衣的酥脆完美结合，每一口都充满幸福感，主要我超爱可乐饼的好嘛！n海胆寿司n不得不提，这家的海胆真的物超所值！海胆新鲜到入口即化，带着淡淡的海洋甜味，口感细腻如雪糕，完全没有一丝腥味。价格也非常良心，让我对它好感倍增。nPork Belly Donburi（日式烧肉丼）n最后是我们大家一起分享的烧肉丼，简直是完美收尾。五花肉肥瘦相间，酱汁浓郁却不腻，浸透了米饭，每一口都能吃到肉香与米香的融合，主要米饭也煮的很棒[赞R][赞R]n总结‖n整体来说，这家日料店用心在细节，每一道菜都能感受到食材的新鲜与料理的匠心。如果你喜欢日料，特别是想要感受正宗神户风味的朋友，这家店绝对值得一试。关东煮和可乐饼必点，而海胆寿司也让人无法忽视。n地址‖4 W Roy St, Seattle, WA 98119n营业时间‖下午5点～晚上9点（周一周二休息[扯脸H]）n#西雅图美食[话题]# #西雅图[话题]# #探店[话题]# #西雅图周末[话题]# #关东煮[话题]# #日料[话题]# #日常分享[话题]#,
+            video_url ,
+            time 1734159105000,
+            last_update_time 1734159106000,
+            user_id 56471ccfa40e1854572ca3bb,
+            nickname 阿兔是你玩不起的🐰,
+            avatar httpssns-avatar-qc.xhscdn.comavatar1040g2jo31c65fmfdgc6042e4feecv8trr3oo568,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 10+,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com20250312041851ef630dda841b6dd04086c8ccbecfe01040g2sg31bclnkf27id042e4feecv8trm2s33d0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418b871139c7e1e1b3a16facd5ae7af6fbd1040g2sg31bclnkf27icg42e4feecv8tr1u1a628!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418df8df5b85f2e51a8a5f91818ebc7c49f1040g2sg31bclnkf27ic042e4feecv8tr3d3gbvg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418e4d488eae3b63785c3a563cb480c76ad1040g2sg31bclnkf27ibg42e4feecv8trq2notv8!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com20250312041806921f7e77ebb8131f5c22732660eb531040g2sg31bclnkf27ib042e4feecv8tr26lgfu8!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418f5ca16b409ffda63d50795c348b532091040g2sg31bclnkf27iag42e4feecv8tr9f6d8do!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418c122e94e2e1784383dee5ce8e52191fd1040g2sg31bclnkf27i9g42e4feecv8tr03r1s2g!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418c219a756f923610c584ac94c217148c91040g2sg31bclnkf27i9042e4feecv8trmrk7028!nd_dft_wgth_jpg_3,
+            tag_list 西雅图美食,西雅图,探店,西雅图周末,关东煮,日料,日常分享,
+            last_modify_ts 1741724499530,
+            note_url httpswww.xiaohongshu.comexplore675d2b0100000000040295c7xsec_token=ABrm0RxA4pPQ0Hgf2X0rmbd3qj0VDgcLCztN4FIGB015A=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABrm0RxA4pPQ0Hgf2X0rmbd3qj0VDgcLCztN4FIGB015A=,
+            locations [
+                {
+                    formatted_address 4 W Roy St, Seattle, WA 98119, USA,
+                    lat 47.625857,
+                    lng -122.3572355,
+                    place_id ChIJ83vnL0IVkFQRAI20xtnp6do,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.625857,
+                        lon -122.3572355
+                    }
+                }
+            ],
+            score 90,
+            _score 1.6627579
+        },
+        {
+            note_id 670c37d9000000002100b78a,
+            type normal,
+            title 决战西雅图美食之巅！9️⃣天1️⃣6️⃣顿红黑榜,
+            desc 📍Kin Len Thai Night Bitesn推荐指数：4.5🌟n推荐牛肉火锅，牛肉牛杂牛丸捞到手软，黄油咖喱炸鸡，油炸鸡+黄油+cocount+奶油+咖喱，好吃到头顶冒泡，虾仁粉丝，虾肉很Q弹。其他菜都在平均分以上。n📍Lolan推荐指数：3.5🌟n巨人国食物份量，Benedict的水波蛋堪称完美，很喜欢这家的香肠，甜甜的咬一口会爆汁。n📍Ba Bar Capitol Hilln推荐指数：3.5🌟n三颗星给牛脊髓pho，0.5颗给油条。n📍Di Fioran推荐指数：3.5🌟n融合菜，炸物都不行，虾、扇贝、烤猪肉饭好吃。居然还有炒包菜，好吃。n📍The Harvest Vinen推荐指数：3.5🌟n量好少啊！点了个海鲜饭给我上来两口，有一个鱼做的很不错，总体偏咸。n📍how to cook a wolfn推荐指数：3🌟n美式融合菜，啥也没吃三个人花600刀😤咸咸咸。n📍Portage Bay Cafen推荐指数：3.5🌟n量大管饱！食物达到平均分，主要是可以自助加水果奶油坚果，一人只能一次，可以玩叠叠乐。n📍JOEY University Villagen推荐指数：4🌟n很美式，香喷喷的汉堡+芝士炸薯条，浇满酱汁的烤鱼，大块多汁的烤牛排，总之就是没品位的美国人做的高热量炸弹们，但就是好吃，没辙。n📍Six Seven Restaurantn推荐指数：5🌟n西雅图特色的海鲜餐厅，在海边可以看落日，吃的6颗星，1颗星扣给服务。请务必点蛤蜊汤、鳕鱼、烤鸡、龙虾奶油焗通心粉，不好吃你来打我。n📍Taste of Xi'ann推荐指数：4.5🌟n家的味道他知道…连吃两天这家的大盘鸡和面，治好了30%的乡愁😢而且巨便宜，便宜到点七八个菜从不超过150刀，我爱中国我爱中国菜我爱中国人。n📍Water Grill - Bellevuen推荐指数：5🌟n必点龙虾，都是活的现杀，刷黄油香料烤一烤，虾肉极具弹性，感觉自己牙齿被殴打了。烤章鱼、炸鱿鱼、蛤蜊浓汤、焦糖面包布丁都很好吃！n📍Rusty Pelican Cafe Woodinvillen推荐指数：4🌟n坐外面环境很好，是好吃的brunch，量大管饱。ntn#西雅图[话题]# #西雅图生活[话题]# #西雅图美食[话题]# #西雅图探店[话题]# #本地人才知道的好地方[话题]# #巷弄美食家[话题]# #美国[话题]#,
+            video_url ,
+            time 1728853977000,
+            last_update_time 1728855265000,
+            user_id 566bf247cb35fb6e001fe442,
+            nickname 我在水星修飞船,
+            avatar httpssns-avatar-qc.xhscdn.comavatar1040g2jo31et71sd2mo004431jap4fp22bf3h610,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 10+,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com202503120349ee28d99a104cacfef46fa4db1c0baae41040g2sg318tklcrb46704431jap4fp22al8dq9o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203496e1c921341b9875cf5552e8c46562f461040g2sg318tklcrb467g4431jap4fp22cshp0cg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349dc3d83c36f4bd49e564be975679dc0891040g2sg318tjvjlhkc104431jap4fp222kjmm38!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312034928b765045032d9489c56ddd5ad4d3bfa1040g2sg318tjvjlhkc1g4431jap4fp22rqsspf0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312034978f03d00450201759cf6317063577c761040g2sg318tjvjlhkc204431jap4fp22amdjfd0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349327b38cf80b0f7d0192283e8ad98ca921040g2sg318tjvjlhkc2g4431jap4fp22humhbng!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203499e7ed8b1bc613a16b8e15f435594cde61040g2sg318tjvjlhkc304431jap4fp224grpei8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349ae79499efb7220b83a6f98a39517f33b1040g2sg318tjvjlhkc3g4431jap4fp22g3j4aqo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203498c7a3b7d236c62801fabc55bcc7b3e731040g2sg318tjvjlhkc404431jap4fp22ev7sn78!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312034929164f4cf4a707ade59d11fccd671ddc1040g2sg318tjvjlhkc4g4431jap4fp22jsfgqn0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349cc5af50431346ba6baa5f9e678ef60ad1040g2sg318tjvjlhkc504431jap4fp228um46f0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312034969d135aae797b19980e64934e6fcf8e51040g2sg318tjvjlhkc5g4431jap4fp22as714so!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349693775649a4156ed642f8dbed64153751040g2sg318tjvjlhkc604431jap4fp22joo7u7o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312034903a837b85839b42bba03b9f69d3d32781040g2sg318tjvjlhkc6g4431jap4fp22fmjhhbg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203496e1b25d0bcd6812b6ee3397d138db2281040g008318tjvk5gkc004431jap4fp22kn9lkr8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349c336f88bcbc569c6557d5a2285f5f7c21040g008318tjvk5gkc0g4431jap4fp22h4i12b0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349565605b7259971e5f91c215c1e9d8f201040g008318tjvk5gkc104431jap4fp22i33fao0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312034969f82ae028e7a6d33d078dcf13e373211040g008318tjvk5gkc1g4431jap4fp22emo6iug!nd_dft_wlteh_jpg_3,
+            tag_list 西雅图,西雅图生活,西雅图美食,西雅图探店,本地人才知道的好地方,巷弄美食家,美国,
+            last_modify_ts 1741722823421,
+            note_url httpswww.xiaohongshu.comexplore670c37d9000000002100b78axsec_token=ABUbnJB_5TFvQv6VpvSZag8VMzxhnIXJqvYAnma82LhTc=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABUbnJB_5TFvQv6VpvSZag8VMzxhnIXJqvYAnma82LhTc=,
+            locations [
+                {
+                    formatted_address 3517 Fremont Ave N, Seattle, WA 98103, USA,
+                    lat 47.6512737,
+                    lng -122.3501248,
+                    place_id ChIJAcrA3ZMVkFQRS16FQgt6wqs,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6512737,
+                        lon -122.3501248
+                    }
+                },
+                {
+                    formatted_address 2000 B 4th Ave, Seattle, WA 98121, USA,
+                    lat 47.6133704,
+                    lng -122.3401365,
+                    place_id ChIJF1wFnkwVkFQRTgUNrzxCBtQ,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6133704,
+                        lon -122.3401365
+                    }
+                },
+                {
+                    formatted_address 550 12th Ave, Seattle, WA 98122, USA,
+                    lat 47.607007,
+                    lng -122.316498,
+                    place_id ChIJnWShMMZqkFQRNz0WW0Mea9E,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.607007,
+                        lon -122.316498
+                    }
+                },
+                {
+                    formatted_address 1320 University St suite 1, Seattle, WA 98101, USA,
+                    lat 47.6128683,
+                    lng -122.3242173,
+                    place_id ChIJLUfoDStrkFQR4036u4yjPys,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6128683,
+                        lon -122.3242173
+                    }
+                },
+                {
+                    formatted_address 2701 E Madison St, Seattle, WA 98112, USA,
+                    lat 47.6225857,
+                    lng -122.2972959,
+                    place_id ChIJeSiRdCtrkFQRJ3TrP453MpE,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6225857,
+                        lon -122.2972959
+                    }
+                },
+                {
+                    formatted_address 2208 Queen Anne Ave N, Seattle, WA 98109, USA,
+                    lat 47.6387234,
+                    lng -122.3566423,
+                    place_id ChIJa-hJdxIVkFQRZ7LNdZtTpv4,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6387234,
+                        lon -122.3566423
+                    }
+                },
+                {
+                    formatted_address 2603 NE 46th St, Seattle, WA 98105, USA,
+                    lat 47.6615228,
+                    lng -122.2998125,
+                    place_id ChIJD5DyOI8UkFQR7zCbOa_IwIg,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6615228,
+                        lon -122.2998125
+                    }
+                },
+                {
+                    formatted_address 2411 Alaskan Wy Pier 67, Seattle, WA 98121, USA,
+                    lat 47.612361,
+                    lng -122.3522391,
+                    place_id ChIJhdZMaVIVkFQRi8VtUoNN7Qo,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.612361,
+                        lon -122.3522391
+                    }
+                },
+                {
+                    formatted_address 4523 University Wy NE, Seattle, WA 98105, USA,
+                    lat 47.66196859999999,
+                    lng -122.3133513,
+                    place_id ChIJVVWF7ooUkFQRtdshBrxhPUQ,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.66196859999999,
+                        lon -122.3133513
+                    }
+                },
+                {
+                    formatted_address 700 Bellevue Way NE, Bellevue, WA 98004, USA,
+                    lat 47.6169681,
+                    lng -122.2013955,
+                    place_id ChIJ5SL7To9skFQR5e_7hGw77D0,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6169681,
+                        lon -122.2013955
+                    }
+                },
+                {
+                    formatted_address 13590 NE Village Square Dr Suite 1060, Woodinville, WA 98072, USA,
+                    lat 47.75183699999999,
+                    lng -122.1584385,
+                    place_id ChIJLWXkMrMNkFQR_v0b6VAm4Uw,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.75183699999999,
+                        lon -122.1584385
+                    }
+                }
+            ],
+            score 85,
+            _score 1.6384892
+        },
+        {
+            note_id 66664315000000001303f1ef,
+            type normal,
+            title 西雅图SLU闭眼冲泰餐厅‼️,
+            desc 餐厅名称：Bangrak Marketn📍地址：2319 2nd Ave, Seattle, WA 98121n好久不见各位宝子们！这个暑假本小博主将为大家带来西雅图美食测评～（由于平时实习些许疲乏 尽量每周末更新一到两篇[doge]）第一期给大家安利的是一家公司附近的泰国street food 餐厅Bangrak Market! 测评到他家纯属意外 原本那天的计划是逛完 Museum of Pop Culture后测一下附近的日料店 结果发现小🍠上褒贬不一 就沿着街道往下走了走发现了一家街上也坐满人且飘着香味的thai餐厅！实话讲 突然发现对比之前在伯克利测过的餐厅 真的好吃太多（可能我在井底[笑哭R][笑哭R] 强烈推荐爱吃辣的小伙伴立马冲！ 他家餐品0踩雷 但室内通风不太好 中午有点闷热（如果喝汤的话就更加热了）建议坐外面或者晚上来ntn[鼓掌R]菜品推荐：（分数都很高！不是广 是真好吃！）nKANA MOO GROB KAO KAPRAO[星R][星R][星R][星R][星R][星R] 检验一家thai餐厅一定要尝一下泰式打抛猪肉饭 罗勒小米辣青豆猪肉碎 真的香晕我了 他家辣椒🌶️真的辣 我选45吃完斯哈斯哈 不能吃辣的小伙伴慎重选辣度 （ps点这道主食请一定加个溏心煎蛋🍳）ntnCRYING TIGER [星R][星R][星R][星R][星R][星R] 这个炭烤牛排🥩真的超出了我对thai餐的认知了 真实炭火烤制 超级tender 搭配一款甜辣雨露酱汁 上来之后两分钟光盘ntnTOM YUM NAM SAI[星R][星R][星R][星R] 第一次喝到不是红色的海鲜冬阴功汤 上菜的时候还问了一下服务员是不是上错哈哈 别看它这个颜色 味道一点不逊色 而且是我喝过最酸且辣的最暖和的！ 夏天点有点热 但值得一试！ntnPAD KEE MAO[星R][星R][星R] 可能我不太喜欢炒粉吧[笑哭R] 所以给分有点bias toward 米饭区 香味挺浓的 粉糯糯的ntnKAO NEAW MA MUANG[星R][星R][星R][星R][星R] 芒果糯米饭真滴一绝 之前吃过的都是搭配牛奶炼乳 他家使用的椰子炼乳 甜味相当有层次 芒果也很新鲜🥭赞赞ntn反正都很好吃 冲就完事了[星R][火R]ntn#西雅图[话题]# #西雅图美食[话题]# #西雅图slu[话题]# #西雅图slu美食[话题]# #uw[话题]# #uw美食[话题]# #uw附近美食[话题]# #西雅图周末[话题]# #西雅图探店[话题]# #西雅图餐厅推荐[话题]#,
+            video_url ,
+            time 1717977877000,
+            last_update_time 1717978142000,
+            user_id 56d3319184edcd151a308b07,
+            nickname 留学E人食,
+            avatar httpssns-avatar-qc.xhscdn.comavatar1040g2jo30q4e303r7k004679crop32o7fvdfoho,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 10+,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com2025031204022d79de9b282efb73ccf6c39eec6ccc5e1040g2sg313rhtle9ho704679crop32o7t5qp160!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120402f6f96c6ae8871c316bfc0fd4fb85d3f51040g2sg313rhtle9ho7g4679crop32o71becc98!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120402aa377f8374946b215852c6219fde62cd1040g2sg313rhtle9ho804679crop32o764gqk4o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204028fddd5b11e484217288829d453e6e8101040g2sg313rhtle9ho8g4679crop32o77ku39bg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120402a879c7c87c554932df4bf85589c228641040g2sg313rhtle9ho904679crop32o77vokpi0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204029978e9c6cca38c5440ba5775b23d92dc1040g2sg313rhtle9ho9g4679crop32o7h8s0ic8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204028295af49eaa2d5f2484fbac38aefc7881040g2sg313rhtle9hoa04679crop32o7dtrbh10!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120402c843d930b64fb595ed1d18e3f69c506e1040g2sg313rhtle9hoag4679crop32o79ago1e8!nd_dft_wlteh_jpg_3,
+            tag_list 西雅图,西雅图美食,西雅图slu,西雅图slu美食,uw,uw美食,uw附近美食,西雅图周末,西雅图探店,西雅图餐厅推荐,
+            last_modify_ts 1741723536226,
+            note_url httpswww.xiaohongshu.comexplore66664315000000001303f1efxsec_token=ABP5efxFjxKKGIZ2BomELa7VK5GqUp14oaYA0x_UYFBrw=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABP5efxFjxKKGIZ2BomELa7VK5GqUp14oaYA0x_UYFBrw=,
+            locations [
+                {
+                    formatted_address 2319 2nd Ave, Seattle, WA 98121, USA,
+                    lat 47.6143105,
+                    lng -122.3464699,
+                    place_id ChIJI-BoPiQVkFQR4oyXmWwhGbI,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6143105,
+                        lon -122.3464699
+                    }
+                }
+            ],
+            score 85,
+            _score 1.6384892
+        },
+        {
+            note_id 66a423af000000002701fd39,
+            type normal,
+            title 西雅图｜港式茶餐厅的黑椒牛排 DNA动了,
+            desc 来这家店吃饭算是童年回忆之旅了，虽然偏咸但就是内味儿n📍Imperial kitchen and barn2400 1st Ave, Seattle, WA 98121n-n🥩Sizzling Rib Eye Steak 铁板肉眼牛排nHongkong Style Special Brined Sizzling Rib Eye Steak Come with sunny side up egg and mixed veggies. Flavorful and Satisfying.n意面牛排加浓稠黑椒酱，真的是记忆中学校门口的味道，但朋友说缺少了灵魂的铁板滋啦滋啦n-n🐮Lomo Saltado (Beef Steak) 跳舞牛肉nTender pieces of beef sauteed on fire with onions, tomatoes, soy sauce, vinegar, and cilantro, served with rice and fires.n小哥说是秘鲁菜不是中餐(因为这个店面前一任是秘鲁餐厅)，吃起来和炒牛肉没有区别n-n🦀Garlic Pepper Soft Shell Crab 椒盐软壳蟹nStir fried crispy soft shell crab with garlic and pepper. Flavorful and unique.n这是吃过最软的炸软壳蟹，一点壳的口感都吃不到，蛮油的n-n🍱 Meat Lover CombonBeef Steak, Pork Chop, Chicken Thigh, and Sausagen牛排猪排鸡腿和香肠，爱吃肉可以点n-n🍹朋友点了一杯 北京女郎，哪怕被稀释变甜了，依旧有很浓很辣的红星二锅头白酒味ntn#北美生活[话题]# #西雅图探店[话题]# #西雅图美食[话题]# #铁板牛排[话题]# #中餐馆[话题]# #港式茶餐厅[话题]#,
+            video_url ,
+            time 1722033071000,
+            last_update_time 1722033071000,
+            user_id 5fc1de2f00000000010048c3,
+            nickname 秋秋的日记,
+            avatar httpssns-avatar-qc.xhscdn.comavatar62005b60258d80782f27c7e0.jpg,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 5,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com2025031204063fb1710c0bfbbd21786bf25829a4b1761040g2sg315nvj1lkio705nu1rong8i63l251etg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204063fdfbd10f2dc7ae710d8988f21adbb1f1040g2sg315nvj1lkio7g5nu1rong8i63hk3jreo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406a8b4741dbe95a4fed40a3b92f325b2411040g2sg315nvj1lkio805nu1rong8i63a1ongh0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406e22996966e3cb6ec5450a8aa6f4daac81040g2sg315nvj1lkio8g5nu1rong8i63etbf308!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406a037bc064326651f24884d57195d34e91040g2sg315nvj1lkio905nu1rong8i634p83l80!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040630a5fc8d81f100a6e4dd0819d7a789841040g2sg315nvj1lkio9g5nu1rong8i63vct4nfg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406b0adcd478e1746815a27c309d6fc7b3c1040g2sg315nvj1lkioa05nu1rong8i63jvtbek0!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406e8b0b50af2ada46150a188486ed534841040g2sg315nvj1lkioag5nu1rong8i63ia39vug!nd_dft_wgth_jpg_3,
+            tag_list 北美生活,西雅图探店,西雅图美食,铁板牛排,中餐馆,港式茶餐厅,
+            last_modify_ts 1741723729593,
+            note_url httpswww.xiaohongshu.comexplore66a423af000000002701fd39xsec_token=ABShmWU7CPQx00rUmalWQ9z1mmjy_ecwXEmHLSzSoruD4=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABShmWU7CPQx00rUmalWQ9z1mmjy_ecwXEmHLSzSoruD4=,
+            locations [
+                {
+                    formatted_address 2400 1st Ave, Seattle, WA 98121, USA,
+                    lat 47.6143211,
+                    lng -122.3478279,
+                    place_id ChIJrwaaUuoVkFQRkQIBZ4Er8po,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6143211,
+                        lon -122.3478279
+                    }
+                }
+            ],
+            score 85,
+            _score 1.6384892
+        },
+        {
+            note_id 676eb32d0000000013018a23,
+            type normal,
+            title 人生建议｜吃过这15种美食再离开西雅图,
+            desc #大声安利本地美食[话题]#n#西雅图美食[话题]# 千千万，整理了一些值得去吃[色色R]的美食店铺，离开#西雅图[话题]# 前一定要去尝一下才没白来一趟喔！n🥩吃一次美式风味n[打卡R]The Georgiann[打卡R]Canlisn[打卡R]Tilthn[打卡R]Metropolitan Grilln-n🦪吃一顿海鲜n[打卡R]Elliott's Oyster Housen[打卡R]THE CRAB POT SEATTLEn[打卡R]Pike Place Chowdern[打卡R]SHUCKERSn-n🍲吃一顿中餐n[打卡R]绿岛餐厅n[打卡R]鼎泰丰n[打卡R]翠苑n[打卡R]丹桂轩n-n☕️喝一杯咖啡n[打卡R]星巴克第➊店n[打卡R]星巴克典藏咖啡烘培店n[打卡R]Piroshky Piroshkyn[打卡R]Tilikum Place Cafen-n🍣吃一次日料n[打卡R]Manekin[打卡R]Issian Stone Grilln[打卡R]Fremont Bowln[打卡R]Kobuta & Ookamin-n🍜吃一次意餐n[打卡R]Cascina Spinassen[打卡R]Alturan[打卡R]Cafe Juanitan[打卡R]Il Nidon-n🍽吃一次法餐n[打卡R]Nell'sn[打卡R]Le Coinn[打卡R]Cafe Campagnen[打卡R]Le Paniern-n🥗吃一回泰餐n[打卡R]Pestle Rock Isan Thai Cuisinen[打卡R]Di Fioran[打卡R]Bangrak Marketn-n🦀️吃一个珍宝蟹n[打卡R]Cutter's Crabhousen[打卡R]duke's Chowder Housen[打卡R]Place Pigallen-n🍲喝一碗奶油蛤蜊浓汤n[打卡R]Ivar's Fish Barn[打卡R]Pike Place Chowdern[打卡R]Elliott's Oyster Housen-n🐟吃一次鲑鱼料理n[打卡R]Muse at Benaroya Halln[打卡R]Pike Place Chowdern-n🥘吃一回川菜n[打卡R]丹桂轩n[打卡R]蜀府宴语n-n🌶️吃一家湘菜n[打卡R]一品川湘n[打卡R]洞庭春n-n🥟吃一次早茶n[打卡R]翠苑n[打卡R]川粤n-n🍮吃一家下午茶n[打卡R]Fairmont Olympic Hoteln[打卡R]Queen Mary Tea Roomn-n👉更多有关#西雅图旅游攻略[话题]# ，🉑️在@Premier上禾旅行 主页查看喔n#西雅图必吃[话题]# #西雅图美食探店分享[话题]# #西雅图美食荒漠[话题]# #西雅图生活[话题]# #西雅图旅游[话题]# #西雅图旅行[话题]#,
+            video_url ,
+            time 1735308077000,
+            last_update_time 1735308077000,
+            user_id 6318193f000000001501f633,
+            nickname Premier上禾旅行,
+            avatar httpssns-avatar-qc.xhscdn.comavatar64d351ce9437420001602473.jpg,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 10+,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com202503120406ddd8b012eb1aafe2c76a10ab826eb32b1040g2sg31btpjent0m7g5ooo34vlbthjl2imha0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040648868aeec4884f593110eeea119a694d1040g2sg31btpjent0m805ooo34vlbthjtiv428g!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040681702badb2241a9e9e50e395dd9e14031040g2sg31btpjent0m8g5ooo34vlbthj4i299m0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204068d78631009ee5d97a47577026c2d06c81040g2sg31btpjent0m905ooo34vlbthjuc4dg88!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406b04545e7761bcfee5f44bacf0a9c3e131040g2sg31btpjent0m9g5ooo34vlbthjuqf0tlo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406e7921c61a62a95bda06798ad3cd893d91040g2sg31btpjent0ma05ooo34vlbthjtuue1ko!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040618dc0de6b56b78b989826f0a19e25b751040g2sg31btpjent0mag5ooo34vlbthjm6pkrgo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204068dd075fc50f3f777d073f97441f7c2331040g2sg31btpjent0mb05ooo34vlbthjiha2cng!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406a29f6b1c2f63b4a82d37b98f65e6c5da1040g2sg31btpjent0mbg5ooo34vlbthjqoorvv0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406de34b13ab4fb24a089b7c050326d651a1040g2sg31btpjent0mc05ooo34vlbthjj2h47e8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040638d84360900be73fe0124c79f93b5f7d1040g2sg31btpjent0mcg5ooo34vlbthju2fvf28!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204062d5642dac1ab961ec7fdff1d2f59ffa11040g2sg31btpjent0md05ooo34vlbthj6knp000!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040624b089dd40dc5f10eb1120d2a63beb231040g2sg31btpjent0mdg5ooo34vlbthjbt9t180!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406aa6ddb590a38171a7a8378abaee060a51040g2sg31btpjent0me05ooo34vlbthjsr5gpco!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406884ca7dc9f5fd6cfa0ce7a7fdb8882821040g00831btpjepags005ooo34vlbthj6qikl50!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204062361698a24b780cba2feb33b5a9e3dc01040g00831btpjepags0g5ooo34vlbthjmb1elbg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406a56032a68fd2af633761b8e3fd6794141040g00831btpjepags105ooo34vlbthjn5lah5g!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120406dd9be12886e6ec0c290123d89f362f931040g00831btpjepags1g5ooo34vlbthjmq0033o!nd_dft_wlteh_jpg_3,
+            tag_list 大声安利本地美食,西雅图美食,西雅图,西雅图旅游攻略,西雅图必吃,西雅图美食探店分享,西雅图美食荒漠,西雅图生活,西雅图旅游,西雅图旅行,
+            last_modify_ts 1741723821003,
+            note_url httpswww.xiaohongshu.comexplore676eb32d0000000013018a23xsec_token=ABZLvofwR1znXjfWf-2hJvW8Aga9XLoNO7I9iB35_yAus=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABZLvofwR1znXjfWf-2hJvW8Aga9XLoNO7I9iB35_yAus=,
+            locations [
+                {
+                    formatted_address 2576 Aurora Ave N, Seattle, WA 98109, USA,
+                    lat 47.6430933,
+                    lng -122.3467535,
+                    place_id ChIJRXCfNwUVkFQRxraD8U-dANE,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6430933,
+                        lon -122.3467535
+                    }
+                },
+                {
+                    formatted_address 1411 N 45th St, Seattle, WA 98103, USA,
+                    lat 47.6612147,
+                    lng -122.3401062,
+                    place_id ChIJiYibLlEUkFQR7lYDTYBJ3QY,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6612147,
+                        lon -122.3401062
+                    }
+                },
+                {
+                    formatted_address 820 2nd Ave, Seattle, WA 98104, USA,
+                    lat 47.6044334,
+                    lng -122.3341284,
+                    place_id ChIJPf-9ULBqkFQRSBVLYMR_ONQ,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6044334,
+                        lon -122.3341284
+                    }
+                },
+                {
+                    formatted_address 1201 Alaskan Wy Ste 100, Seattle, WA 98101, USA,
+                    lat 47.605376,
+                    lng -122.3405651,
+                    place_id ChIJfToLAa5qkFQRRKwO4L3kGUU,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.605376,
+                        lon -122.3405651
+                    }
+                },
+                {
+                    formatted_address 1301 Alaskan Way Pier 57, 1305 Alaskan Wy, Seattle, WA 98101, USA,
+                    lat 47.606075,
+                    lng -122.3414167,
+                    place_id ChIJs-Di-61qkFQRca-vbJs-L2o,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.606075,
+                        lon -122.3414167
+                    }
+                },
+                {
+                    formatted_address 600 Pine St, Seattle, WA 98101, USA,
+                    lat 47.6126392,
+                    lng -122.3353844,
+                    place_id ChIJLSDL0bRqkFQRuNacMrcI15A,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6126392,
+                        lon -122.3353844
+                    }
+                },
+                {
+                    formatted_address 1530 Post Alley Walk Wy, Seattle, WA 98101, USA,
+                    lat 47.6094243,
+                    lng -122.3412192,
+                    place_id ChIJldHS8bJqkFQRJ3mW7Hb1pQ0,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6094243,
+                        lon -122.3412192
+                    }
+                },
+                {
+                    formatted_address 411 University St, Seattle, WA 98101, USA,
+                    lat 47.6079956,
+                    lng -122.3338074,
+                    place_id ChIJk63I_rNqkFQR3EtxoHQwzBM,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6079956,
+                        lon -122.3338074
+                    }
+                },
+                {
+                    formatted_address 515 Maynard Ave S, Seattle, WA 98104, USA,
+                    lat 47.59786,
+                    lng -122.3252032,
+                    place_id ChIJR-ucWLxqkFQR5zOrWA21hww,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.59786,
+                        lon -122.3252032
+                    }
+                },
+                {
+                    formatted_address 424 7th Ave S, Seattle, WA 98104, USA,
+                    lat 47.5985466,
+                    lng -122.3235379,
+                    place_id ChIJnb9JP7xqkFQR1r8VvSZ-zsY,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.5985466,
+                        lon -122.3235379
+                    }
+                },
+                {
+                    formatted_address 407 Cedar St, Seattle, WA 98121, USA,
+                    lat 47.6179313,
+                    lng -122.3476593,
+                    place_id ChIJ6TtIO08VkFQRRNn6uHOo27g,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6179313,
+                        lon -122.3476593
+                    }
+                },
+                {
+                    formatted_address 304 6th Ave S, Seattle, WA 98104, USA,
+                    lat 47.5996596,
+                    lng -122.3261688,
+                    place_id ChIJiycRj7tqkFQRA0eEzZouZWc,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.5996596,
+                        lon -122.3261688
+                    }
+                },
+                {
+                    formatted_address 1618 N 45th St, Seattle, WA 98103, USA,
+                    lat 47.6615163,
+                    lng -122.3383192,
+                    place_id ChIJRU0bzVAUkFQROPiPwuOpPkU,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6615163,
+                        lon -122.3383192
+                    }
+                },
+                {
+                    formatted_address 4258 Fremont Ave N Ste #4262, Seattle, WA 98103, USA,
+                    lat 47.65903609999999,
+                    lng -122.3498285,
+                    place_id ChIJgV02SFMUkFQR5t7rmPBc6gI,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.65903609999999,
+                        lon -122.3498285
+                    }
+                },
+                {
+                    formatted_address 121 15th Ave E, Seattle, WA 98112, USA,
+                    lat 47.619271,
+                    lng -122.3128558,
+                    place_id ChIJ559YzkZrkFQR6wQBHqjKo94,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.619271,
+                        lon -122.3128558
+                    }
+                },
+                {
+                    formatted_address 1531 14th Ave, Seattle, WA 98122, USA,
+                    lat 47.61508,
+                    lng -122.314478,
+                    place_id ChIJy73n9s1qkFQRRslGmCZxvv8,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.61508,
+                        lon -122.314478
+                    }
+                },
+                {
+                    formatted_address 617 Broadway E, Seattle, WA 98102, USA,
+                    lat 47.6248111,
+                    lng -122.3212611,
+                    place_id ChIJ3_rU9i4VkFQRrHhRHqVXjWg,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6248111,
+                        lon -122.3212611
+                    }
+                },
+                {
+                    formatted_address 9702 NE 120th Pl, Kirkland, WA 98034, USA,
+                    lat 47.7076424,
+                    lng -122.2124105,
+                    place_id ChIJ1UomSm8SkFQRUa0i87J0XU0,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.7076424,
+                        lon -122.2124105
+                    }
+                },
+                {
+                    formatted_address 2717 61st Ave SW, Seattle, WA 98116, USA,
+                    lat 47.5785383,
+                    lng -122.4110891,
+                    place_id ChIJP5RfPuJBkFQRxXB_39jXjig,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.5785383,
+                        lon -122.4110891
+                    }
+                },
+                {
+                    formatted_address 6804 East Green Lake Way N, Seattle, WA 98115, USA,
+                    lat 47.6781759,
+                    lng -122.3277067,
+                    place_id ChIJU10fgGsUkFQRsaX7reFm3mA,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6781759,
+                        lon -122.3277067
+                    }
+                },
+                {
+                    formatted_address 4201 Fremont Ave N, Seattle, WA 98103, USA,
+                    lat 47.6578361,
+                    lng -122.3502361,
+                    place_id ChIJ-9QHml4VkFQRlEmUeSj0ysg,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6578361,
+                        lon -122.3502361
+                    }
+                },
+                {
+                    formatted_address 1600 Post Alley Walk Wy, Seattle, WA 98101, USA,
+                    lat 47.6097561,
+                    lng -122.3415071,
+                    place_id ChIJWfoS3bJqkFQRe8w36H6VslI,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6097561,
+                        lon -122.3415071
+                    }
+                },
+                {
+                    formatted_address 1902 Pike Pl, Seattle, WA 98101, USA,
+                    lat 47.6098446,
+                    lng -122.3421937,
+                    place_id ChIJSZYmxLJqkFQRw_JlbdtkVBE,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6098446,
+                        lon -122.3421937
+                    }
+                },
+                {
+                    formatted_address 1320 University St suite 1, Seattle, WA 98101, USA,
+                    lat 47.6128683,
+                    lng -122.3242173,
+                    place_id ChIJLUfoDStrkFQR4036u4yjPys,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6128683,
+                        lon -122.3242173
+                    }
+                },
+                {
+                    formatted_address 2319 2nd Ave, Seattle, WA 98121, USA,
+                    lat 47.6143105,
+                    lng -122.3464699,
+                    place_id ChIJI-BoPiQVkFQR4oyXmWwhGbI,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6143105,
+                        lon -122.3464699
+                    }
+                },
+                {
+                    formatted_address 2001 Western Ave, Seattle, WA 98121, USA,
+                    lat 47.6105802,
+                    lng -122.3442192,
+                    place_id ChIJ-yhc6gkUkFQRTFqpRaFdjxc,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6105802,
+                        lon -122.3442192
+                    }
+                },
+                {
+                    formatted_address 81 Pike St, Seattle, WA 98101, USA,
+                    lat 47.6083301,
+                    lng -122.3408338,
+                    place_id ChIJIeFF9rJqkFQRTqf19QZYftY,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6083301,
+                        lon -122.3408338
+                    }
+                },
+                {
+                    formatted_address 200 University St, Seattle, WA 98101, USA,
+                    lat 47.6080354,
+                    lng -122.3370312,
+                    place_id ChIJ4bePy7NqkFQRmh4vukNhnzY,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6080354,
+                        lon -122.3370312
+                    }
+                },
+                {
+                    formatted_address 707 148th Ave NE, Bellevue, WA 98007, USA,
+                    lat 47.6162684,
+                    lng -122.143667,
+                    place_id ChIJD0hdWDVtkFQRe9_Szi0YSeA,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6162684,
+                        lon -122.143667
+                    }
+                },
+                {
+                    formatted_address 14725 Aurora Ave N, Shoreline, WA 98133, USA,
+                    lat 47.7358647,
+                    lng -122.3456009,
+                    place_id ChIJDQbW7CcRkFQRe3BoDhPklWk,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.7358647,
+                        lon -122.3456009
+                    }
+                },
+                {
+                    formatted_address 411 University St, Seattle, WA 98101, USA,
+                    lat 47.6080126,
+                    lng -122.3338701,
+                    place_id ChIJf3uV-rNqkFQRmkmlotz3KN0,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6080126,
+                        lon -122.3338701
+                    }
+                },
+                {
+                    formatted_address 2912 NE 55th St, Seattle, WA 98105, USA,
+                    lat 47.668675,
+                    lng -122.295603,
+                    place_id ChIJrSCXsYAUkFQRz6CAeOdb5Ik,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.668675,
+                        lon -122.295603
+                    }
+                }
+            ],
+            score 85,
+            _score 1.6384892
+        },
+        {
+            note_id 63dd6b42000000001a02717d,
+            type normal,
+            title 西雅图美食｜终于实现了三文鱼自由！,
+            desc 西雅图性价比最高的日料为什么没人推荐啊？人均才24💰就实现了三文鱼自由！🍣这家叫Sushi Blossom，门店小小的，但开放式厨房特别干净！三文鱼切的超厚，细腻又新鲜❤️我们点了Salmon Lover三文鱼拼盘，Salmon Donburi三文鱼刺身饭，Inari Trio手握三拼，很好吃😋我俩吃的超满足[哇R]三文鱼吃到爽 记得收藏🌟ntn想去的姐妹要注意⚠️这家的缺点是有pick up不能堂食，但是包装还挺好的哈👌n·nSushi Blossom：n📍：2720 3rd Ave, Seattle, WA 98121n⏰：周一-周六430pm-830pmntn➕关注我❤️一起吃吃喝喝～快快乐乐～n#西雅图美食[话题]# #西雅图生活[话题]# #西雅图周边[话题]# #三文鱼自由[话题]# #三文鱼刺身[话题]# #西雅图探店[话题]# #西雅图旅游[话题]#,
+            video_url ,
+            time 1675455298000,
+            last_update_time 1675455299000,
+            user_id 5afe4842f7e8b90d1345d9fd,
+            nickname 小小小妮妮,
+            avatar httpssns-avatar-qc.xhscdn.comavatar5fb7ec3ca928170001e0a2de.jpg,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 10+,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com202503120418305ffe585b5af67501a26f6946f1ce941000g008207madq6fg0004a5e8c445mft35i8kk0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204181ef5ac7b33654c8341abfe0970a21da01000g008207madq6fg00g4a5e8c445mftbel1t98!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418a88390b40965c72ce6491dd43e0e79dc1000g008207madq6fg0104a5e8c445mftlc1s2oo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204186cf2cd8ad9ef60220ce2ec0e6aa09f2b1000g008207madq6fg01g4a5e8c445mft7a1lv6o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204184b5c0f55816ece7475ef625919bdead01000g008207madq6fg0204a5e8c445mftqq3taq0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418129d45044e361c719aa9d1cfc9bb97301000g008207madq6fg02g4a5e8c445mftbpds7fg!nd_dft_wlteh_jpg_3,
+            tag_list 西雅图美食,西雅图生活,西雅图周边,三文鱼自由,三文鱼刺身,西雅图探店,西雅图旅游,
+            last_modify_ts 1741724382498,
+            note_url httpswww.xiaohongshu.comexplore63dd6b42000000001a02717dxsec_token=ABkMJGniL6ANSvARB-gjcb8T__ovFrEzKqKnr1mvqG9xk=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABkMJGniL6ANSvARB-gjcb8T__ovFrEzKqKnr1mvqG9xk=,
+            locations [
+                {
+                    formatted_address 2720 3rd Ave, Seattle, WA 98121, USA,
+                    lat 47.6176129,
+                    lng -122.3490479,
+                    place_id ChIJt7OYoFBrkFQRNnREW4oMMs4,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6176129,
+                        lon -122.3490479
+                    }
+                }
+            ],
+            score 85,
+            _score 1.6384892
+        },
+        {
+            note_id 676cc7f00000000014027aed,
+            type normal,
+            title 西雅图｜2024自测西雅图漂亮饭合集🍱,
+            desc 🎄不知不觉又到了12月，以下是本人2024一年根据餐厅颜值+口味体验后的漂亮饭合集，排名不分先后，口味因人而异：n👉Rondo：capitol hill知名小酒屋，海鲜don颜值在线拉满n👉Wataru：性价比超高，外卖堂食都能吃到质量好的寿司n👉Taneda：日料虾图天花板级别，位置难抢n👉Azuki：同capitol hill大碗正宗udonn👉Hae-nam：土豆脊骨汤、部队锅都是不错的选择n👉Baekjeong：虽然不如LA，但姜虎东也算质量不差的韩国烤肉n👉Kedai Makan：几道招牌经典马来菜都值得反复尝试n👉Nibanna：贝勒府的工作情侣小聚都适合的小泰餐n👉Happy Lamb：冬天为了火锅自助 反复报到n👉Dollar Shop：精致火锅第一名n👉Din Tai Fung：喜欢台式牛肉面+红油抄手组合n👉Baron’s Sino Kitchen：最划算的烤鸭套餐n👉Isarn：夏天最爱的店，可以在湖边看风景n👉Deru：人气brunch 基本道道可以点n👉WaterGrill：生蚝品种多样，海鲜塔适合朋友聚会n👉Farine：周末就会想到吃一下的breakfast basketn👉The Alley：lynnwood新奶茶n👉Aroom：为了黑芝麻拿铁可以跑很远n👉Yomie：健康系酸奶n👉Yi Fang：超方便的奶茶（总有一家在你附近）n🎄以上哪些是你的最爱？或者还有其他你想分享给朋友的餐厅？年终上饭团外卖首页上参与投票Seattle2024年必吃榜单，选出你最爱的餐厅，为餐厅打call，让更多亲朋好友看到值得反复尝试的漂亮饭~！n#西雅图生活[话题]# #美国生活[话题]# #宝藏餐厅分享[话题]# #饭团外卖[话题]# #西雅图美食分享[话题]##团仔带你吃喝玩乐﻿[话题]#,
+            video_url ,
+            time 1735183015000,
+            last_update_time 1735182321000,
+            user_id 54668b88d6e4a91f326c4413,
+            nickname 食老兔嘞兔嘞兔,
+            avatar httpssns-avatar-qc.xhscdn.comavatar5f9e348d7f8dd9000153ddd7.jpg,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 4,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com202503120418a536e59e5fd596571849ac76229c10071040g00831brtk9q10800400js15ogh0joflo9go!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418c837f73c1cf3ebb4def10eaa43ebd1571040g00831brtk9q1080g400js15ogh0jr9cuc40!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204182a3ce56ffc3a0583590e892a29b279721040g00831brtk9q10810400js15ogh0jocnhbgo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418b7d3146768f7bdb4da3a6d09613adb9b1040g00831brtk9q1081g400js15ogh0j22d2o18!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312041833cbc3ea07c409e610cc852f443712411040g00831brtk9q10820400js15ogh0je1ofpc8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418a79a0e751b5915c7e43a630b86708ffd1040g00831brtk9q1082g400js15ogh0j4naitg0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204184cdb824677fe2a5986fcead74afa0f9f1040g00831brtk9q10830400js15ogh0jhe5tcu8!nd_dft_wlteh_jpg_3,
+            tag_list 西雅图生活,美国生活,宝藏餐厅分享,饭团外卖,西雅图美食分享,团仔带你吃喝玩乐﻿,
+            last_modify_ts 1741724447127,
+            note_url httpswww.xiaohongshu.comexplore676cc7f00000000014027aedxsec_token=ABag5k1IqGV5CX7QcoaKc_6796HJ2uTQjr_pfOGMS9vnA=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABag5k1IqGV5CX7QcoaKc_6796HJ2uTQjr_pfOGMS9vnA=,
+            locations [
+                {
+                    formatted_address 224 Broadway E, Seattle, WA 98102, USA,
+                    lat 47.6207211,
+                    lng -122.3205147,
+                    place_id ChIJGdAxATMVkFQR6yvhh0A7Dgw,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6207211,
+                        lon -122.3205147
+                    }
+                },
+                {
+                    formatted_address 2400 NE 65th St, Seattle, WA 98115, USA,
+                    lat 47.6759437,
+                    lng -122.3015287,
+                    place_id ChIJ679-rHkUkFQREVsDVFnTmLo,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6759437,
+                        lon -122.3015287
+                    }
+                },
+                {
+                    formatted_address 219 Broadway E Unit# 14, Seattle, WA 98102, USA,
+                    lat 47.6205778,
+                    lng -122.3212986,
+                    place_id ChIJXcM6TZwVkFQR_DSKVibXe2c,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6205778,
+                        lon -122.3212986
+                    }
+                },
+                {
+                    formatted_address 2711 E Madison St, Seattle, WA 98112, USA,
+                    lat 47.6227507,
+                    lng -122.2969042,
+                    place_id ChIJIaD86eJrkFQR0uAPkcrWZrY,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6227507,
+                        lon -122.2969042
+                    }
+                },
+                {
+                    formatted_address 15001 Aurora Ave N, Shoreline, WA 98133, USA,
+                    lat 47.7379143,
+                    lng -122.3456158,
+                    place_id ChIJF9TELiERkFQRTnJH3GM1Lt0,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.7379143,
+                        lon -122.3456158
+                    }
+                },
+                {
+                    formatted_address 3000 184th St SW #922, Lynnwood, WA 98037, USA,
+                    lat 47.8308098,
+                    lng -122.2709803,
+                    place_id ChIJJ_EiqcMFkFQR-4NlJw3Y5n4,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.8308098,
+                        lon -122.2709803
+                    }
+                },
+                {
+                    formatted_address 920 N 10th St, Renton, WA 98057, USA,
+                    lat 47.49813400000001,
+                    lng -122.2028622,
+                    place_id ChIJDQ0pehdokFQRNhL7_uWXT4U,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.49813400000001,
+                        lon -122.2028622
+                    }
+                },
+                {
+                    formatted_address 609 S Weller St STE A, Seattle, WA 98104, USA,
+                    lat 47.5973474,
+                    lng -122.3260092,
+                    place_id ChIJczXMCBFrkFQRY20ulIWd8o8,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.5973474,
+                        lon -122.3260092
+                    }
+                },
+                {
+                    formatted_address 11020 NE 6th St #90, Bellevue, WA 98004, USA,
+                    lat 47.6158864,
+                    lng -122.193257,
+                    place_id ChIJj8eFgs9tkFQRfy1RpqzHFEY,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6158864,
+                        lon -122.193257
+                    }
+                },
+                {
+                    formatted_address 2621 NE 46th St, Seattle, WA 98105, USA,
+                    lat 47.6614929,
+                    lng -122.2996132,
+                    place_id ChIJKbLpOI8UkFQRC30sDr56TAs,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6614929,
+                        lon -122.2996132
+                    }
+                },
+                {
+                    formatted_address 600 Pine St #403, Seattle, WA 98101, USA,
+                    lat 47.6125343,
+                    lng -122.3353015,
+                    place_id ChIJPemT0bRqkFQREiTAzMgdB0M,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6125343,
+                        lon -122.3353015
+                    }
+                },
+                {
+                    formatted_address 500 Bellevue Way NE Suite 210, Bellevue, WA 98004, USA,
+                    lat 47.6149789,
+                    lng -122.2010331,
+                    place_id ChIJ072dDIZskFQRQ0OV8iIYlI4,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6149789,
+                        lon -122.2010331
+                    }
+                },
+                {
+                    formatted_address 2316 NE 65th St Suite 101, Seattle, WA 98115, USA,
+                    lat 47.6758919,
+                    lng -122.3019003,
+                    place_id ChIJPX3CgsYVkFQRxaw9TEMCkKg,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6758919,
+                        lon -122.3019003
+                    }
+                },
+                {
+                    formatted_address 2125 Queen Anne Ave N, Seattle, WA 98109, USA,
+                    lat 47.6380011,
+                    lng -122.3572265,
+                    place_id ChIJ_dtthykVkFQR3dHt5X25EE0,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6380011,
+                        lon -122.3572265
+                    }
+                },
+                {
+                    formatted_address 723 9th Ave, Kirkland, WA 98033, USA,
+                    lat 47.68201999999999,
+                    lng -122.19416,
+                    place_id ChIJ9SkOAusSkFQRH1ho03tioGs,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.68201999999999,
+                        lon -122.19416
+                    }
+                },
+                {
+                    formatted_address 515 Queen Anne Ave N, Seattle, WA 98109, USA,
+                    lat 47.62379430000001,
+                    lng -122.356913,
+                    place_id ChIJbz74lkMVkFQRaACiiCRf58U,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.62379430000001,
+                        lon -122.356913
+                    }
+                },
+                {
+                    formatted_address 913 S Jackson St Suite B, Seattle, WA 98104, USA,
+                    lat 47.5990018,
+                    lng -122.3199172,
+                    place_id ChIJfQx6mq1rkFQRa1dANkRv0AM,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.5990018,
+                        lon -122.3199172
+                    }
+                },
+                {
+                    formatted_address 3801 Stone Way N Suite C, Seattle, WA 98103, USA,
+                    lat 47.65320879999999,
+                    lng -122.3428298,
+                    place_id ChIJXdf_zd0VkFQRCZssDEesjrA,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.65320879999999,
+                        lon -122.3428298
+                    }
+                },
+                {
+                    formatted_address 5000 University Wy NE Suite C, Seattle, WA 98105, USA,
+                    lat 47.6653627,
+                    lng -122.3128861,
+                    place_id ChIJETaw3IQVkFQRMzSdEBEwYJs,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6653627,
+                        lon -122.3128861
+                    }
+                },
+                {
+                    formatted_address 619 S King St, Seattle, WA 98104, USA,
+                    lat 47.5982327,
+                    lng -122.3254515,
+                    place_id ChIJf4rW859rkFQR1InzUbtWaDk,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.5982327,
+                        lon -122.3254515
+                    }
+                }
+            ],
+            score 85,
+            _score 1.6384892
+        },
+        {
+            note_id 65ff5426000000001203fe18,
+            type normal,
+            title 西雅图全攻略 （上） 市区&美食篇,
+            desc 靠山临海的翡翠之城，科技大厂的创新腹地n户外运动的人间天堂，开发包容的西北门户nSeattle市区篇n西雅图市区很小 可以分为三个部分（图2）n1-2天就能逛完ntn1️⃣University of Washington（具体见图4-6）n⛲️Drumheller Fountainn📖 Suzzallo and Allen Librariesn🌸the Quadn👔 UW bookstorentn☕️Starbucks Reserve Rosteryn星巴克高端店 能看到制作咖啡的小工厂n主要卖咖啡甜品面包披萨 和一些纪念品咖啡杯咖啡豆n📍1124 Pike St, Seattle, WA 98101, United StatesnStarbucks Reserve全球有六家n美国的两家在纽约和西雅图 国内的在上海ntn2️⃣Space Needlen🏺Chihuly Garden and Glass 39🔪n玻璃展品很精美n展馆不大 30min可以逛完n从展馆出来还有一个烧制玻璃的现场表演n🎸Museum of Pop Culture 26.5🔪n展出现代电影、音乐、游戏等n个人比较喜欢乐器的展厅 可以打鼓、弹吉他n有一个莱卡定格动画的特展 5🔪n（此莱卡 Laika非做照相机的📷 徕卡 Leica）n有很多精美的模型以及定格动画介绍n大概一个半小时逛完n🚶两个博物馆走路5minn🚇交通：从Starbucks Reserve去Space needle那边的话可以坐monorail一站到Seattle Center 3🔪n像观光小火车 在空中穿梭于高楼林立之间n单轨和地铁站在一个入口 跟着指示牌上三层就能看到n附近其他：nSpace Needle 可以上去 有Chihuly和Space Needle的联票 67.5🔪nKerry park 太空针及西雅图天际线观赏点ntn3️⃣Pike Market 图11n🎡The Seattle Great Wheel 图12n美食篇 图14-16n周边国家公园见（下）篇n#西雅图[话题]# #西雅图旅行[话题]# #西雅图旅行攻略[话题]# #西雅图美食[话题]# #西雅图探店[话题]# #西雅图市区[话题]# #美西[话题]# #美西旅游[话题]# #我的留学生活[话题]#,
+            video_url ,
+            time 1711232038000,
+            last_update_time 1713212737000,
+            user_id 63890912000000001f01ff53,
+            nickname 不要慌张女士,
+            avatar httpssns-avatar-qc.xhscdn.comavatar1040g2jo30qi3ojsm06005os91497rvqjsep2or0,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 5,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com202503120418cad328597461cbceb387e2c29878c0c81040g008310n180pame005os91497rvqjgojpmj0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418e7bf07a1eb357a2e1b21b8f26119d3cc1040g008310n180pame0g5os91497rvqjqn8mho0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312041861bd63e9bd45519cc310b539da9912231040g008311khni1i72005os91497rvqj1jk5o0o!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com20250312041839e1b007e982a962c196ceb62e35b1e31040g008310n180pame1g5os91497rvqju72h3v8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204184275aecbce1af9f8f8b4be122f8618561040g008310n180pame205os91497rvqjki9l6h8!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418f832455f767c9fc2a3228d952a20846e1040g008310n180pame2g5os91497rvqji8nih8o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204188c61692469f0c7be3dbc580f97177a4e1040g008310n180pame305os91497rvqjpp698t0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204181a914137484a080e571e01f17311359e1040g008310n180pame3g5os91497rvqjn1fo63o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418c0140bea761ecd70d900215e00389af01040g008310n180pame405os91497rvqjhcmiamo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418e47ba0c84d10c4221a2aa4a43b04bc511040g008310n180pame4g5os91497rvqj3uhool8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418a44f65cc267b6f37342b1cc7c66b898d1040g008310n180pame505os91497rvqj1qea778!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418fc82979e767a992e0b1d874c0271835b1040g008310n180pame5g5os91497rvqj1e584i0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418dccbd2591f299981b5d3eb82b091c05a1040g2sg310n181056m0g5os91497rvqjb3hgvs8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418a600a36a15d96e626a96d8486ecc80b51040g008310n180pame605os91497rvqjsl4mp40!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120418ffc656baed7b478dd6beb2b2e115b2bd1040g008310n180pame6g5os91497rvqjud1dts8!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204184dac1d63d90ff2960770055f405b709d1040g2sg310n181056m005os91497rvqjvv3bqpg!nd_dft_wlteh_jpg_3,
+            tag_list 西雅图,西雅图旅行,西雅图旅行攻略,西雅图美食,西雅图探店,西雅图市区,美西,美西旅游,我的留学生活,
+            last_modify_ts 1741724457622,
+            note_url httpswww.xiaohongshu.comexplore65ff5426000000001203fe18xsec_token=ABvS8PEx_azZvKGifOdFewd5Z_TmuB7JZbJyPUkQovzmQ=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABvS8PEx_azZvKGifOdFewd5Z_TmuB7JZbJyPUkQovzmQ=,
+            locations [
+                {
+                    formatted_address 1124 Pike St, Seattle, WA 98101, USA,
+                    lat 47.61404,
+                    lng -122.3281,
+                    place_id ChIJsU30zM1qkFQRbnOm1_LBoG0,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.61404,
+                        lon -122.3281
+                    }
+                },
+                {
+                    formatted_address 400 Broad St, Seattle, WA 98109, USA,
+                    lat 47.6205063,
+                    lng -122.3492774,
+                    place_id ChIJ-bfVTh8VkFQRDZLQnmioK9s,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6205063,
+                        lon -122.3492774
+                    }
+                },
+                {
+                    formatted_address 305 Harrison St, Seattle, WA 98109, USA,
+                    lat 47.6205599,
+                    lng -122.3504476,
+                    place_id ChIJVTtr1kUVkFQRh-YAfijbQXs,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6205599,
+                        lon -122.3504476
+                    }
+                },
+                {
+                    formatted_address 325 5th Ave N, Seattle, WA 98109, USA,
+                    lat 47.6214824,
+                    lng -122.3481245,
+                    place_id ChIJY8p6-EYVkFQREthJEc0p6dE,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6214824,
+                        lon -122.3481245
+                    }
+                },
+                {
+                    formatted_address Kerry Park, 211 W Highland Dr, Seattle, WA 98119, USA,
+                    lat 47.6294692,
+                    lng -122.3599224,
+                    place_id ChIJUS2ELmoVkFQRjrUkJB5o9zM,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6294692,
+                        lon -122.3599224
+                    }
+                },
+                {
+                    formatted_address 1301 Alaskan Wy, Seattle, WA 98101, USA,
+                    lat 47.6061342,
+                    lng -122.3425246,
+                    place_id ChIJUX-M-a1qkFQRxtrx3nOQIKU,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6061342,
+                        lon -122.3425246
+                    }
+                }
+            ],
+            score 85,
+            _score 1.6384892
+        },
+        {
+            note_id 65c5310100000000020235a4,
+            type normal,
+            title UW无车选手🚗学校附近一周不重样能吃啥？,
+            desc 这个学期下午都没课，决意要开拓新的战场😠最近发现坐Link20分钟内也有很多好吃的餐厅⬇️!!!ntn周一🍣Rondon Japanese Kitchenn📍Link两站到Capital Hill（13min）n推荐他家的刺身和p3的芒果鳗鱼饭，食材新鲜，平价日料店。Happy hour性价比高，20刀左右就能吃不错的一餐。ntn周二🍛 Kobuta & Ookami Katsu and sake housen📍Link两站到Capital Hill（20min）n慕名而来！咖喱我觉得一般，但炸猪排真的很酥脆！我点了Rosu，个人觉得炸猪排带点肥肉会更有层次感！份量很大，吃撑没问题。下次来试试其他口味✌🏻ntn周三🍜Korean Tofu Housen📍UW Ave（步行4分钟）n周三比较忙，在学校附近吃了韩餐。看旁边女生点的才知道还有炒拉面，加了一份年糕。腻腻的好香啊！ntn周四🍲Haidilao海底捞n📍Link直达Westlake（15min）n中午19.9穷鬼套餐，懂得都懂😅调料台有豆花和小料，实现豆花自由。ntn周五🍝 Cinque Terre Ristoranten📍70公交车到stewart st（23min）n在dt的意大利菜🇮🇹和意大利朋友做的味道如出一辙。Pizza和Meatball Spaghetti很好吃。但Clams和Mussel 都有股腥味，感觉这边不太会处理海鲜。ntn周六🥘🥟全记&诸葛烤鱼n📍Link到Chinatown（15min）n两家店都在中国城。全记的面条很劲道是广式风味😭面汤应该用鲜虾熬制过很鲜美，云吞里有大颗的虾和肉很饱满🍤ntn诸葛烤鱼味道无限接近国内，小龙虾味道很好，但是有些虾肉都黑了..😟ntn周日🥗Tem Sib Eatery&Barn📍251公交车直达bellevue（33min）n周末白天是泰式brunch，晚上是泰餐和bar。推荐Ube Toast、Pad Thai、Kai Ka Ta（据说是必点！是面包蘸鸡蛋&香肠&香菇，好吃😋）n-n以前没车不想跑太远，但发现去link直达的餐厅还是很方便的！欢迎各位给我推荐UW附近美食🥰ntn#西雅图[话题]# #uw[话题]# #uw附近美食[话题]# #西雅图美食[话题]# #华盛顿大学[话题]# #UW[话题]# #西雅图生活[话题]# #留学[话题]#,
+            video_url ,
+            time 1707421953000,
+            last_update_time 1727320133000,
+            user_id 5bc95cb46f19730001262876,
+            nickname 705号夏芋仙,
+            avatar httpssns-avatar-qc.xhscdn.comavatar1040g2jo313pi1nkaie0g4bh3eneb8a3mska28gg,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 10+,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com2025031203499c7886011ca2c9e4ea553d1dfe5b33f81040g2sg30uu8f1a6l8004bh3eneb8a3mhalla08!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349d7ae6c48a83915fad9c509ab494200851040g2sg30uu8f1a6l80g4bh3eneb8a3mvjr5t6o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312034908f4dd8ec49d9ff56324715f8aa7bd761040g2sg30uu8f1a6l8104bh3eneb8a3mq19uaqo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203496229521d444773bd1848312ec443fb301040g2sg30uu8f1a6l81g4bh3eneb8a3mgt11c2o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203493678ece9649b347086cfb6b141b612181040g2sg30uu8f1a6l8204bh3eneb8a3mvpo1t1o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349b9b3a1b9e48337286df57fd4ad924c4e1040g2sg30uu8f1a6l82g4bh3eneb8a3m9r0ch08!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349673ed0793ff2ff05fd6a77ea0fc5b0b41040g2sg30uu8f1a6l8304bh3eneb8a3mi7akgl8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349c6b4437c7e5a4a53148323eec04916221040g2sg30uu8f1a6l83g4bh3eneb8a3mtv5sf30!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349feeca7b3dbf78281955e210ee73191f01040g2sg30uu8f1a6l8404bh3eneb8a3m0rhaf70!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349267b22abde2845cc424a45be7e06183f1040g2sg30uu8f1a6l84g4bh3eneb8a3msq196pg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349dd8767777923bdc4000939ccfc3ec2851040g2sg30uu8f1a6l8504bh3eneb8a3mrsja4to!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312034969e6f64800441cb4a0a611f9948d6ece1040g2sg3186olbp13q704bh3eneb8a3muo69ou8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349870a24722e5efa9dbf47fc664132b0ed1040g2sg3186olbp13q7g4bh3eneb8a3mvtdja4o!nd_dft_wlteh_jpg_3,
+            tag_list 西雅图,uw,uw附近美食,西雅图美食,华盛顿大学,UW,西雅图生活,留学,
+            last_modify_ts 1741722656028,
+            note_url httpswww.xiaohongshu.comexplore65c5310100000000020235a4xsec_token=ABo0_Ua5J1ZFVApEPC7bqTGwkSQwMwnoT7lOYZ226TxI8=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABo0_Ua5J1ZFVApEPC7bqTGwkSQwMwnoT7lOYZ226TxI8=,
+            locations [
+                {
+                    formatted_address 224 Broadway E, Seattle, WA 98102, USA,
+                    lat 47.6207211,
+                    lng -122.3205147,
+                    place_id ChIJGdAxATMVkFQR6yvhh0A7Dgw,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6207211,
+                        lon -122.3205147
+                    }
+                },
+                {
+                    formatted_address 121 15th Ave E, Seattle, WA 98112, USA,
+                    lat 47.619271,
+                    lng -122.3128558,
+                    place_id ChIJ559YzkZrkFQR6wQBHqjKo94,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.619271,
+                        lon -122.3128558
+                    }
+                },
+                {
+                    formatted_address 4142 Brooklyn Ave NE, Seattle, WA 98105, USA,
+                    lat 47.65821520000001,
+                    lng -122.314067,
+                    place_id ChIJkQqon_QUkFQR6IATEnUfuK0,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.65821520000001,
+                        lon -122.314067
+                    }
+                },
+                {
+                    formatted_address 600 Pine St Suite 355, Seattle, WA 98101, USA,
+                    lat 47.612587,
+                    lng -122.3353584,
+                    place_id ChIJb-fHC-9rkFQR6GgwSRE8f2Y,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.612587,
+                        lon -122.3353584
+                    }
+                },
+                {
+                    formatted_address 2001 Westlake Ave, Seattle, WA 98121, USA,
+                    lat 47.6150536,
+                    lng -122.3380046,
+                    place_id ChIJ1SMKqUsVkFQRLqd5ovPxvuE,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6150536,
+                        lon -122.3380046
+                    }
+                },
+                {
+                    formatted_address 418 Maynard Ave S, Seattle, WA 98104, USA,
+                    lat 47.5985971,
+                    lng -122.3249226,
+                    place_id ChIJTVaFaLxqkFQR42Oyj9kuuqg,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.5985971,
+                        lon -122.3249226
+                    }
+                },
+                {
+                    formatted_address 522 S King St, Seattle, WA 98104, USA,
+                    lat 47.5984597,
+                    lng -122.3266917,
+                    place_id ChIJATkF3ehrkFQRe4OuNPrKY9s,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.5984597,
+                        lon -122.3266917
+                    }
+                },
+                {
+                    formatted_address 1020 108th Ave NE #100, Bellevue, WA 98004, USA,
+                    lat 47.6197528,
+                    lng -122.1960283,
+                    place_id ChIJDwE0oExtkFQRcgcEz__snjs,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6197528,
+                        lon -122.1960283
+                    }
+                }
+            ],
+            score 90,
+            _score 1.6627579
+        },
+        {
+            note_id 6647b4f30000000016012481,
+            type normal,
+            title UW无🚗选手挑战一周不吃重复饭（2）,
+            desc UW无🚗选手吃一周不重复香饭，挑战2️⃣！ntn周一🍜BiangBiang noodlen📍Link两站到Capital Hill（19min）n我点的香辣牛肉面好好吃🤤牛肉很入味而且特别辣呜呜！面条劲道有嚼劲！ntn周二🌶️天府春秋n📍Link两站到Northgate（20min）n我的快乐老家天府春秋。在uw附近还算是正宗的湘菜。想吃小炒和碳水时直冲！一道菜可以干一碗米饭。ntn周三🇰🇷Made in Housen📍 31路到Fremont（12min）n西雅图难得装修比较精致，小韩现代风vibe的餐厅。特色的Bento还蛮出片，garlic鸡翅也很好吃！推荐小姐妹穿韩一点来拍照打卡。店铺周一周二关门哦～ntn周四🇯🇵Rondonn📍Link两站到Capital Hill（19min）n依旧发挥稳定～我们在西雅图美食周去的，尝试了黑松露和牛饭，黑松露清香和和牛肉香相得益彰！我还发现了盲盒Bento Box，可以一次性尝试不同菜品，且每次都不一样！ntn周五🇹🇭Kin len Thain📍31公交车到Fremont（20min）n平价泰餐之神，盲点都好吃！强烈推荐蟹煲粉丝、鸡翅、牛肉pot，还有各类虾蟹和thai ice tea都好棒🧊ntn周六🥟Jade Garden翠苑n📍Link到Chinatown（15min）n广东人小女孩坠爱早茶。和朋友们聚餐就喜欢喝早茶，品种多样性价比高，p8已经是撤掉好几个空盘，人均25刀。记得预约。ntn周日💗Pink Doorn📍Link到Westlake（18min）n老网红店了，环境不错味道确实没get。n-n大一的时候总嫌麻烦不愿意离开ave，现在发现还是很方便的～多十几分钟能好好享受饱餐一顿，大家快explore一下学校周边吧🥰n#西雅图[话题]# #uw[话题]# #uw附近美食[话题]# #西雅图美食[话题]# #华盛顿大学[话题]# #UW[话题]# #西雅图生活[话题]# #留学[话题]#,
+            video_url ,
+            time 1715975411000,
+            last_update_time 1715975411000,
+            user_id 61d8ebde000000001000d3d7,
+            nickname 我不吃白人饭我吃什么饭-,
+            avatar httpssns-avatar-qc.xhscdn.comavatar1040g2jo3144vk2anie0g5oeotff41kun2b48d80,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 10+,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com202503120356bca2cab02ea9310858e7ca9c8297eba51040g2sg312tn27cqlk705oeotff41kun6bh90k8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203566e34230275598fef3c51717a80c681801040g2sg312tn27cqlk7g5oeotff41kun5ba8fsg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203560cd70ed5e5f95d759008fa9d3440be611040g2sg312tn27cqlk805oeotff41kund68ehmg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312035677863c13f16b5d9922a560733c52899b1040g2sg312tn27cqlk8g5oeotff41kunoemd8mo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120356b139af1ff836420af35485eb3ae2bf251040g2sg312tn27cqlk905oeotff41kunll7dgi8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120356c59ed7c2cd3a655b58f3e5c04fa68c5f1040g2sg312tn27cqlk9g5oeotff41kuno3vb1pg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203563a246680f35cdcde6979e0c82dfc7ffc1040g2sg312tn27cqlka05oeotff41kunsut0h6g!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com202503120356ddec3ee133ac722c31e3a8bba54bb0e91040g2sg312tn27cqlkag5oeotff41kunkku5va0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203564feca5affb551a5f4396a0f00d3542c81040g2sg312tn27cqlkb05oeotff41kun5k2500g!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203562596213e40e48624507b4f65fb354a821040g2sg312tn27cqlkbg5oeotff41kuncr419ng!nd_dft_wlteh_jpg_3,
+            tag_list 西雅图,uw,uw附近美食,西雅图美食,华盛顿大学,UW,西雅图生活,留学,
+            last_modify_ts 1741723271614,
+            note_url httpswww.xiaohongshu.comexplore6647b4f30000000016012481xsec_token=ABrqFn_8OkIxWrHJIsbJ20zwCY4uiKMnHO6UoZdR6QAb4=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABrqFn_8OkIxWrHJIsbJ20zwCY4uiKMnHO6UoZdR6QAb4=,
+            locations [
+                {
+                    formatted_address 601 E Pike St Unit 100, Seattle, WA 98122, USA,
+                    lat 47.6139895,
+                    lng -122.3243442,
+                    place_id ChIJYYN0DHRrkFQRbz4HEE2Zxbk,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6139895,
+                        lon -122.3243442
+                    }
+                },
+                {
+                    formatted_address 3508 Fremont Pl N, Seattle, WA 98103, USA,
+                    lat 47.6508945,
+                    lng -122.3503388,
+                    place_id ChIJRcUHAokVkFQR9nlsfZp_AeI,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6508945,
+                        lon -122.3503388
+                    }
+                },
+                {
+                    formatted_address 3517 Fremont Ave N, Seattle, WA 98103, USA,
+                    lat 47.6512737,
+                    lng -122.3501248,
+                    place_id ChIJAcrA3ZMVkFQRS16FQgt6wqs,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6512737,
+                        lon -122.3501248
+                    }
+                },
+                {
+                    formatted_address 1919 Post Alley Walk Wy, Seattle, WA 98101, USA,
+                    lat 47.6103652,
+                    lng -122.3425604,
+                    place_id ChIJ91YOzrJqkFQRKmSW0B1qrbo,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6103652,
+                        lon -122.3425604
+                    }
+                }
+            ],
+            score 85,
+            _score 1.6384892
+        },
+        {
+            note_id 65d6c22d000000000b00fa98,
+            type normal,
+            title 这辈子只来西雅图一次吃什么！不踩雷个人向,
+            desc 来西雅图旅游必吃的美食每种提一个都有什么！！！n都是周围一致好评的宝藏餐馆[哇R][哇R][哇R][自拍R]n好吃到码字的时候回忆起来越码越饿[捂脸R][捂脸R][捂脸R]ntn✅泰国菜：Amazing Thai Cuisine [黄色心形R][黄色心形R][黄色心形R][黄色心形R][黄色心形R]n真的很amazing！！他家竟然用难见的猛火炉灶炒饭，炒饭粒粒分明滋味十足，是我四天之内去了两次最后还打包了一份飞回la的好物[笑哭R][笑哭R][笑哭R]n推荐蟹肉炒饭[点赞R]蟹肉被炒成一丝一丝的均匀包裹住每一粒米饭，配上酱汁鲜美无比，餐桌上第一个光盘的菜菜[色色R][色色R]咖喱炒饭更加浓郁一点，可以自选肉和咖喱的种类，也超级好吃[赞R][赞R]n📍 5210 Roosevelt Way NE, Seattle, WA 98105ntn✅龙虾卷：luke‘s lobster [黄色心形R][黄色心形R][黄色心形R][黄色心形R]n个人最喜欢的一家龙虾卷，在派克市场对面，不用像某家网红店一样排40min[再见R]逛的时候顺便整一个[暗中观察R]冷热都有，看着不大但是龙虾肉超级多也很新鲜，我超喜欢他家的黄油热龙虾卷（一定趁热吃[害羞R]），但朋友觉得有点腻更喜欢凉的，可以按需选择～n📍 110 Pike St, Seattle, WA 98101ntn✅ 中国菜： 蓉城老火锅 [黄色心形R][黄色心形R][黄色心形R][黄色心形R][黄色心形R]n本地司机师傅认证的好火锅店！位于中国城内，很适合中国胃瘾犯了的时候，回家的感觉[吧唧R][吧唧R][吧唧R]味道十分之正宗，服务态度比肩国内海底捞，有皮筋手机袋清口糖指甲油等一系列小东西，下雨的晚上吃一回能从头暖到脚[害羞R][害羞R][害羞R]n📍 520 S Jackson St, Seattle, WA 98104ntn✅ 意大利菜：Brunello Ristorante Italiano [黄色心形R][黄色心形R][黄色心形R][黄色心形R][黄色心形R]n便宜又足量，装修很温柔的老式餐馆，彻底让我感受到意面美味的地方，看着普通一口惊艳！！！本地白人含量极高，超推荐他家三文鱼意面和青酱意面，酱汁浓郁丝滑，是想到就会回味的地步[色色R][色色R][色色R]甜品推荐提拉米苏，甜度正好，上菜3min后被我跟朋友风卷残云般蚕食殆尽[笑哭R]n📍 7115 Roosevelt Way NE, Seattle, WA 98115ntn#想记录下此刻[话题]# #这个模板有点东西[话题]#n#宝藏餐厅分享[话题]##餐厅推荐[话题]##年胃不能停[话题]##美食打卡[话题]# #料理[话题]# #好吃[话题]# #全球吃喝小分队[话题]##意大利菜[话题]##越南菜[话题]##西雅图美食[话题]# #西雅图周末[话题]# #西雅图探店[话题]#,
+            video_url ,
+            time 1708573229000,
+            last_update_time 1708573229000,
+            user_id 5d305f1f0000000012013d4c,
+            nickname 日光鱼鱼,
+            avatar httpssns-avatar-qc.xhscdn.comavatar1040g2jo30t8r681q3q005n9gbsfkifacoe0ca60,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 10+,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com2025031203492cac2ea33f0efb9848299ca5857fc2181040g2sg30vfde299m6005n9gbsfkifac39i9uhg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349b6832ee2016a0b4b04153f6b7426987f1040g2sg30vfde299m60g5n9gbsfkifack5mbcq8!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349b09ee2882e1f3bce073e312ab68cd1141040g2sg30vfde299m6105n9gbsfkifac7fmv4cg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349c717b32ed746c47ee60d09554d36fa721040g2sg30vfde299m61g5n9gbsfkifacpbrove0!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com2025031203490b373d20ebb28779bdc50d221ad5ef001040g2sg30vfde299m6205n9gbsfkifacmt45610!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349c593cefdd9d099a45bfcd176077e31ed1040g2sg30vfde299m62g5n9gbsfkifacjdtic3o!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349aa0291ddf4a24b076436906c1eee87161040g2sg30vfde299m6305n9gbsfkiface9dce48!nd_dft_wgth_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349288ae9464e7b97a3dba531876e928d781040g2sg30vfde299m63g5n9gbsfkifac3dpg12o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312034962a5dfc76f5d97090cf94323e1537e6b1040g2sg30vfde299m6405n9gbsfkifack9taung!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312034952f878aba654ffdd622797d0d010cc201040g2sg30vfde299m64g5n9gbsfkifacdmpndeo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349eeb8153e43c5e4bf98d54ca8a41df9a21040g2sg30vfde299m6505n9gbsfkifacbpttqq8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120349d5df80dad2b6a7e9886de3a9a0f032591040g2sg30vfde299m65g5n9gbsfkifacd6911rg!nd_dft_wlteh_jpg_3,
+            tag_list 想记录下此刻,这个模板有点东西,宝藏餐厅分享,餐厅推荐,年胃不能停,美食打卡,料理,好吃,全球吃喝小分队,意大利菜,越南菜,西雅图美食,西雅图周末,西雅图探店,
+            last_modify_ts 1741722931177,
+            note_url httpswww.xiaohongshu.comexplore65d6c22d000000000b00fa98xsec_token=ABdBfv7bPBAg3-G2w0wLHB1aE7MHZ2Q3rfTgM5f2tO_ZA=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABdBfv7bPBAg3-G2w0wLHB1aE7MHZ2Q3rfTgM5f2tO_ZA=,
+            locations [
+                {
+                    formatted_address 5210 Roosevelt Way NE, Seattle, WA 98105, USA,
+                    lat 47.66679560000001,
+                    lng -122.317162,
+                    place_id ChIJM0HMI2EUkFQRJNneprez444,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.66679560000001,
+                        lon -122.317162
+                    }
+                },
+                {
+                    formatted_address 110 Pike St, Seattle, WA 98101, USA,
+                    lat 47.6091455,
+                    lng -122.3397082,
+                    place_id ChIJecexx2RrkFQRgFlf6ZuczmM,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6091455,
+                        lon -122.3397082
+                    }
+                },
+                {
+                    formatted_address 520 S Jackson St, Seattle, WA 98104, USA,
+                    lat 47.599362,
+                    lng -122.326641,
+                    place_id ChIJpcnQTZxrkFQRwcYwLkI8ItM,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.599362,
+                        lon -122.326641
+                    }
+                },
+                {
+                    formatted_address 7115 Roosevelt Way NE, Seattle, WA 98115, USA,
+                    lat 47.6806274,
+                    lng -122.3177436,
+                    place_id ChIJ25btRXIUkFQRUK_KcoSRWoo,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6806274,
+                        lon -122.3177436
+                    }
+                }
+            ],
+            score 92,
+            _score 1.6720978
+        },
+        {
+            note_id 672d77790000000019019ec3,
+            type normal,
+            title 西雅图派克市场绝不能错过的美食推荐‼️‼️,
+            desc 这几天重温了经典老电影《Sleepless In Seattle》，影片里的浪漫情节和西雅图的独特风情简直让人欲罢不能！于是我就带着我们一家人去打卡了派克市场，还吃了很多美食，给大家分享一下~n📍Pike Place Chowder 蛤蜊浓汤🍲n这家是西雅图评价最高的海鲜浓汤店之一，店面不大但人气超旺，排队半小时也值得！菜单上有8种口味可选，推荐尝尝最经典的Clam Chowder，奶油香味浓郁；还有加了青柠汁的Seared Scallop Chowder，意外地清爽哦！🥘记得点小份，因为喝多了可能会腻。n📍Piroshky Piroshky 俄式面包小屋🍞n就在派克市场全球第一家星巴克旁边，排队的人也是络绎不绝。招牌的Smoked Salmon Piroshky味道超赞，烟熏三文鱼泥馅儿略带一点甜味，完全不会腻！n📍Luke’s Lobster Pike Street 龙虾卷🦞n吃的是松露黄油龙虾卷，面包松软，配合松露和黄油，龙虾卷料足味美，龙虾肉质紧实，一口下去满满的满足感！n📍Elleno’s 希腊酸奶店🥛n质地浓稠，酸奶口感丝滑像冰淇淋，尤其是百香果味酸酸甜甜，吃腻了来一个酸奶真的很舒服！这个牌子在超市也有卖罐装的，但是口感跟店里现做的还是差蛮多，有机会一定来试试店里现做的！n📍 Mee Sum Pastry 美心饼家n咖喱牛肉包和叉烧包都是一绝！喜欢吃点心的小伙伴不要错过哦！还尝了他家的叉烧酥，个头不大，酥皮很脆，好吃！Ben说叉烧酥现在是他的最爱的食物了哈哈🥧n#西雅图[话题]# #西雅图美食[话题]# #西雅图生活[话题]# #派克市场[话题]# #美食家日常[话题]#  #生活杂记[话题]# #电影推荐[话题]#,
+            video_url ,
+            time 1731032953000,
+            last_update_time 1731058824000,
+            user_id 66a20a7a000000001d0306fd,
+            nickname Ben妈妈的小角落,
+            avatar httpssns-avatar-qc.xhscdn.comavatar1040g2jo315muahcegk005pl219t7e1ntt18cjsg,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 2,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com202503120356e0a1e2e16b48a195f3dd654efdd2b9581040g2sg319u324eumo705pl219t7e1nt2ov485o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120356663caf53e5fab2989f2c436a7acdd8b31040g2sg319u324eumo7g5pl219t7e1nt4hlt6j8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120356e6db8085db2ac364b37573157f1e02b11040g2sg319u324eumo805pl219t7e1nt3co3jsg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120356478f350064cea0d4549f6f81683a20e71040g2sg319u324eumo8g5pl219t7e1ntc2vjeoo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120356a4c5b83a5e3d5cabec700dbe574adef61040g2sg319u324eumo905pl219t7e1nt3l4da3g!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120356190195591e04cad4d6f5be6b39d369c11040g2sg319u324eumo9g5pl219t7e1ntiltiph0!nd_dft_wlteh_jpg_3,
+            tag_list 西雅图,西雅图美食,西雅图生活,派克市场,美食家日常,生活杂记,电影推荐,
+            last_modify_ts 1741723072852,
+            note_url httpswww.xiaohongshu.comexplore672d77790000000019019ec3xsec_token=AB4F-UuisXJXb2Kgrh9A8dWrh5zIiZUt1li2rN2RG9vsw=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token AB4F-UuisXJXb2Kgrh9A8dWrh5zIiZUt1li2rN2RG9vsw=,
+            locations [
+                {
+                    formatted_address 600 Pine St, Seattle, WA 98101, USA,
+                    lat 47.6126392,
+                    lng -122.3353844,
+                    place_id ChIJLSDL0bRqkFQRuNacMrcI15A,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6126392,
+                        lon -122.3353844
+                    }
+                },
+                {
+                    formatted_address 1530 Post Alley Walk Wy, Seattle, WA 98101, USA,
+                    lat 47.6094243,
+                    lng -122.3412192,
+                    place_id ChIJldHS8bJqkFQRJ3mW7Hb1pQ0,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6094243,
+                        lon -122.3412192
+                    }
+                },
+                {
+                    formatted_address 110 Pike St, Seattle, WA 98101, USA,
+                    lat 47.6091455,
+                    lng -122.3397082,
+                    place_id ChIJecexx2RrkFQRgFlf6ZuczmM,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6091455,
+                        lon -122.3397082
+                    }
+                },
+                {
+                    formatted_address 1526 Pike Pl, Seattle, WA 98101, USA,
+                    lat 47.6092754,
+                    lng -122.3413626,
+                    place_id ChIJjQjo9rJqkFQRrGSWuC3TVzk,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6092754,
+                        lon -122.3413626
+                    }
+                },
+                {
+                    formatted_address 4343 University Wy NE, Seattle, WA 98105, USA,
+                    lat 47.6610743,
+                    lng -122.3132751,
+                    place_id ChIJ9cQw1yIVkFQRdECEdCn-27Y,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6610743,
+                        lon -122.3132751
+                    }
+                }
+            ],
+            score 85,
+            _score 1.6384892
+        },
+        {
+            note_id 66602cd700000000150096dc,
+            type normal,
+            title 西雅图的人均几十刀的美食被我找到了？,
+            desc 西雅图到底有没有便宜好吃的啊❗n1⃣Thai Cuisine（泰国菜）n📍5210 Roosevelt Way NE, Seattle, WA 98105n喜欢次炒饭的宝子别错过了❗用炉灶炒饭，锅气十足！粒粒分明！墙裂推蟹肉炒饭和咖喱炒饭，这咖喱尊嘟好好次，很下饭！Pad Thai份量很大！🤩🤩🤩n喜欢喝甜的宝子试试Thai tea！还有脆皮五花肉、咖喱鸭、凉拌虾……店主很nice嘿嘿！n2⃣KIN LENThai（泰餐天花板-便宜到你都不信）n📍3517 Fremont Ave N, Seattle, WA 98103n前菜全部$10以下，居然还有鱿鱼和牛舌，老板不要命啦！n每天3-6pm&9pm-close是HappyHour，这个时段的menu很绝还很划算nGrilled Beef Tongue（牛舌必点）nKin Len wingsnEverything Boat Noodles ChickennCurry Vermicelli、Larb Pork、BBQ Seafood (Prawn)，没有踩雷的，烤牛舌摆盘满分，很嫩要趁热吃，鸡翅是蒜香味的，面条满满一大碗（每份不超$10）榴莲提拉米苏下午就卖光了，新出猪脚饭也很绝，周末晚到会排队。鸡尾酒和mocktail推n3⃣蓉城老火锅（火锅天花板）n📍520 S Jackson St, Seattle, WA 98104n是谁在🇺🇸还要吃Hot pot!成都人吃了都夸的汤底！小菜拍黄瓜、泡椒风爪、绿豆汤和红糖冰粉都吃个不停！丝袜奶茶还可以无限续杯！推荐芒果和草莓的冰激凌，料多还划算！周末晚上不订位基本要排队1-2hn4⃣Renton BistroI（越南菜）n📍Renton, WAn牛小排烤肉饭是甜的，很像韩国烤肉饭!spring rolls春卷很好吃n5⃣Brunello Ristorante ltalianon📍7115 Roosevelt Way NE, Seattle, WA 98115n餐厅旧旧的，物价也很感人❗n（$12.75）炸鱿鱼必须吃！真材实料，一大块鱿鱼，外面很酥脆，配塔塔酱绝了n（$17.99）青酱意面和松子很搭，不会腻，还有浓郁的味道！甜品推提拉米苏n6⃣luke'slobsten📍110 Pike St, Seattle, WA 98101n派克市场附近，比里面那个好吃！龙虾卷你会爱鼠，还很新鲜！但有点小贵了！打包不用额外给小费，市场有公共区域可以坐着吃n7⃣Sip House（越南咖）n📍5001 Brooklyn Ave NE, Seattlen招牌冰咸蛋黄奶盖拿铁，奶盖是用喷枪来融化的，一口下去太满足了，分不清在吃甜品还是喝咖啡☕n⚠️Tipsn[向右R]西雅图餐厅小费（中餐10~15%;晚餐15~20%）n[向右R]早上十点多开门，到晚上8点多就关门了（周末会延长1h）ntn@薯队长 #美国美食[话题]# #西雅图美食[话题]# #西雅图泰国菜[话题]# #西雅图火锅[话题]# #西雅图咖啡[话题]# #西雅图探店[话题]# #西雅图美食分享[话题]#,
+            video_url ,
+            time 1717578967000,
+            last_update_time 1717638469000,
+            user_id 5af9377ce8ac2b2229bf0735,
+            nickname Heather的旅游日记,
+            avatar httpssns-avatar-qc.xhscdn.comavatar1040g2jo3199iuu5n56004a5afqrno1plj8octeo,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 0,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com202503120402d6426ed84447f42a3ef1c99d827fa8d81040g2sg313ljmrgo1o604a5afqrno1pl8c4kpp8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040216dd6fefd54dc2a06108cc314b9c16f01040g2sg313ljmrgo1o3g4a5afqrno1pl1g9l89o!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120402089e488a9d892bdd0bdc1a5e8952d6ba1040g2sg313ljmrgo1o4g4a5afqrno1pl362721g!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040210be96e5d3b55be0a7dcf7c750cfb4b91040g2sg313ljmrgo1o304a5afqrno1pl98j9vn8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120402e67eb9418c37adb12327668ad085e7ab1040g2sg313ljmrgo1o2g4a5afqrno1plb1nbkvo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120402b47e13b841f48b41c844ff4f5f82d34f1040g2sg313ljmrgo1o6g4a5afqrno1plmqqm0kg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204025b82d52a97c5a6b76813ae9b0fb65be31040g2sg313ljmrgo1o5g4a5afqrno1pln1g3rc8!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040283d80b1fd07bf135e519427263e07c161040g2sg313ljmrgo1o504a5afqrno1plg8e6avo!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120402615cde6fcf876051d6922eca9a8b771e1040g2sg313ljmrgo1o204a5afqrno1plgbkmsg0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204020ac1ffaa812e972c11a1be8a7c2e7a131040g2sg313ljmrgo1o0g4a5afqrno1pl7utlnko!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040221ac14eb88cae5913400b5dab6e37bd01040g2sg313ljmrgo1o404a5afqrno1pl0cn1bno!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204020c40c626d36cb4d1e705cfadf4de1a321040g2sg313ljmrgo1o004a5afqrno1plrtn7i38!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040218f4185ca33a44a764d8e20aea204ab31040g2sg313ljmrgo1o1g4a5afqrno1ple9312po!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204021d89e706548d9f582ac2c0d77561929e1040g2sg313ljmrgo1o104a5afqrno1pl0hj75co!nd_dft_wlteh_jpg_3,
+            tag_list 美国美食,西雅图美食,西雅图泰国菜,西雅图火锅,西雅图咖啡,西雅图探店,西雅图美食分享,
+            last_modify_ts 1741723418632,
+            note_url httpswww.xiaohongshu.comexplore66602cd700000000150096dcxsec_token=AB-mXy1Y16vNlb8cE2RZJWKjD85wyPAsGD3A3zCu2Hy8Y=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token AB-mXy1Y16vNlb8cE2RZJWKjD85wyPAsGD3A3zCu2Hy8Y=,
+            locations [
+                {
+                    formatted_address 3517 Fremont Ave N, Seattle, WA 98103, USA,
+                    lat 47.6512737,
+                    lng -122.3501248,
+                    place_id ChIJAcrA3ZMVkFQRS16FQgt6wqs,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6512737,
+                        lon -122.3501248
+                    }
+                },
+                {
+                    formatted_address 520 S Jackson St, Seattle, WA 98104, USA,
+                    lat 47.599362,
+                    lng -122.326641,
+                    place_id ChIJpcnQTZxrkFQRwcYwLkI8ItM,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.599362,
+                        lon -122.326641
+                    }
+                },
+                {
+                    formatted_address 212 S 3rd St, Renton, WA 98057, USA,
+                    lat 47.4799947,
+                    lng -122.2135726,
+                    place_id ChIJHfXosq1CkFQRqjTlfJgDJDk,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.4799947,
+                        lon -122.2135726
+                    }
+                },
+                {
+                    formatted_address 7115 Roosevelt Way NE, Seattle, WA 98115, USA,
+                    lat 47.6806274,
+                    lng -122.3177436,
+                    place_id ChIJ25btRXIUkFQRUK_KcoSRWoo,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6806274,
+                        lon -122.3177436
+                    }
+                },
+                {
+                    formatted_address 110 Pike St, Seattle, WA 98101, USA,
+                    lat 47.6091455,
+                    lng -122.3397082,
+                    place_id ChIJecexx2RrkFQRgFlf6ZuczmM,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6091455,
+                        lon -122.3397082
+                    }
+                },
+                {
+                    formatted_address 5001 Brooklyn Ave NE, Seattle, WA 98105, USA,
+                    lat 47.6651032,
+                    lng -122.3144872,
+                    place_id ChIJCUNyPKEVkFQR94JP8mIGtbA,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6651032,
+                        lon -122.3144872
+                    }
+                }
+            ],
+            score 85,
+            _score 1.6384892
+        },
+        {
+            note_id 6477e6b500000000070390aa,
+            type normal,
+            title 西雅图｜真的没有人喜欢吃白人餐吗,
+            desc 我发现自己真的是美国胃，对各种西餐的容忍度特别高[汗颜R] 前段时间为了庆祝朋友Master上岸打卡了一家美式餐吧，味道和环境出乎我们意料的好，推荐给想要找地方庆祝occasion和小酌的朋友们👏ntn📍Von‘s 1000Spiritsntn-Damn Good Wings 前菜选择这道听名字就很不错的烤翅[害羞R] 配在旁边的酱汁是点睛之笔，推荐n-Wood Oven Roasted Wild Mushroom Pizza 薄底蘑菇披萨，芝士可以拉超长的丝[哇R] 菌菇的味道超级浓郁，份量也超级感人，点起来[害羞R]n-Seattle Sea Stew 海鲜大杂烩[偷笑R] 不爱吃海鲜的我没有偷吃，无法给出中肯意见哈哈n-Bobbee‘s ”All Day“ Bolognese 我点了招牌肉酱面，确实是不会出错，但同时也没有任何惊喜。份量超级大，后面打包回家当第二天的午饭了～n-Northwest King Salmon 朋友点的白酱意面，偷吃了一口还不错[哇R] 但朋友反映吃到最后有一点腻，但白酱也只有这一个缺点了，喜欢奶油的朋友们可以点哦～ntnVon‘s也有室外座位，整个店内的氛围都很好，适合下班下课后去聊天吃个便饭～ 最让我好奇的是菜单上面的death shot哈哈，我是没有勇气尝试[石化R] 有酒量好的朋友欢迎去尝试，顺便来跟我反馈一下体验哝[哇R][哇R]ntn#美食探店[话题]# #西雅图美食[话题]# #宝藏餐厅分享[话题]# #西餐[话题]# #披萨[话题]# #西雅图[话题]# #西雅图生活[话题]# #酒吧[话题]# #不吃白人菜[话题]# #宝宝辅食[话题]# #意面[话题]#,
+            video_url ,
+            time 1685579445000,
+            last_update_time 1685579445000,
+            user_id 59bb2ff144363b755e421dc1,
+            nickname YY111,
+            avatar httpssns-avatar-qc.xhscdn.comavatar1040g2jo31e43jc4r120049prp1nv27e1vc49jv0,
+            liked_count 10+,
+            collected_count 10+,
+            comment_count 10+,
+            share_count 10+,
+            ip_location ,
+            image_list httpsns-webpic-qc.xhscdn.com2025031204027c96b138d986a39ce59c9a5b4950f1d51000g0082j34j1bkio00049prp1nv27e1rlo1rsg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120402d3886236b02bc53d27e6a6e3a37c765c1000g0082j34j1bkio00g49prp1nv27e1u49sc6g!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com202503120402259d5ae56c1ae4fb8b73650a5bafaaa01000g0082j34j1bkio01049prp1nv27e1v03oktg!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040234b2a81d6b41920b0a8480a822660fce1000g0082j34j1bkio01g49prp1nv27e1k3looa0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com2025031204028e0f81c994bc6b87f1c1f9cf6431d88a1000g0082j34j1bkio02049prp1nv27e14je8sj0!nd_dft_wlteh_jpg_3,httpsns-webpic-qc.xhscdn.com20250312040253bb6df40ddbd8d473d5ebd7c02c7e3d1000g0082j34j1bkio02g49prp1nv27e17cb3848!nd_dft_wlteh_jpg_3,
+            tag_list 美食探店,西雅图美食,宝藏餐厅分享,西餐,披萨,西雅图,西雅图生活,酒吧,不吃白人菜,宝宝辅食,意面,
+            last_modify_ts 1741723466073,
+            note_url httpswww.xiaohongshu.comexplore6477e6b500000000070390aaxsec_token=ABBp65CKhYDKSPddnq3QfQYey9Q3uwdSmoSbp_SVAix4M=&xsec_source=pc_search,
+            source_keyword 西雅图美食,
+            xsec_token ABBp65CKhYDKSPddnq3QfQYey9Q3uwdSmoSbp_SVAix4M=,
+            locations [
+                {
+                    formatted_address 15029 Redmond - Woodinville Rd NE Suite 100, Woodinville, WA 98072, USA,
+                    lat 47.73721949999999,
+                    lng -122.1558976,
+                    place_id ChIJt243hskNkFQRqfl-JUKgKYc,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.73721949999999,
+                        lon -122.1558976
+                    }
+                },
+                {
+                    formatted_address 1225 1st Ave, Seattle, WA 98101, USA,
+                    lat 47.6066052,
+                    lng -122.3384085,
+                    place_id ChIJYSjPILJqkFQRE-m7s1g6K0Y,
+                    location_type ROOFTOP,
+                    location {
+                        lat 47.6066052,
+                        lon -122.3384085
+                    }
+                }
+            ],
+            score 85,
+            _score 1.6384892
+        }
+    ],
+    posts_length 14,
+    mode driving
+}

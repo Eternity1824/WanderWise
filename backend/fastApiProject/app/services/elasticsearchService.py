@@ -44,7 +44,6 @@ class ElasticsearchService:
                             "comment_count": {"type": "keyword"},
                             "share_count": {"type": "keyword"},
                             "ip_location": {"type": "keyword"},
-                            "image_list": {"type": "text"},
                             "tag_list": {"type": "text", "analyzer": "ik_max_word", "search_analyzer": "ik_smart"},
                             "last_modify_ts": {"type": "date"},
                             "note_url": {"type": "keyword"},
@@ -87,7 +86,7 @@ class ElasticsearchService:
 
     def import_posts_from_json(self, json_file_path: str) -> Dict[str, Any]:
         """
-        从JSON文件导入帖子数据
+        从JSON文件导入帖子数据，排除image_list字段
 
         Args:
             json_file_path: JSON文件路径
@@ -105,6 +104,10 @@ class ElasticsearchService:
             # 预处理数据并准备批量导入
             actions = []
             for post in posts:
+                # 移除image_list字段
+                if "image_list" in post:
+                    del post["image_list"]
+
                 # 处理位置信息，添加geo_point字段
                 if "locations" in post and post["locations"]:
                     for location in post["locations"]:
@@ -143,7 +146,7 @@ class ElasticsearchService:
 
     def add_post(self, post: Dict[str, Any]) -> Dict[str, Any]:
         """
-        添加单个帖子到Elasticsearch
+        添加单个帖子到Elasticsearch，排除image_list字段
 
         Args:
             post: 包含帖子数据的字典
@@ -152,9 +155,16 @@ class ElasticsearchService:
             Elasticsearch的响应
         """
         try:
+            # 创建数据副本，避免修改原始数据
+            post_data = post.copy()
+
+            # 移除image_list字段
+            if "image_list" in post_data:
+                del post_data["image_list"]
+
             # 处理位置信息
-            if "locations" in post and post["locations"]:
-                for location in post["locations"]:
+            if "locations" in post_data and post_data["locations"]:
+                for location in post_data["locations"]:
                     if "lat" in location and "lng" in location:
                         location["location"] = {
                             "lat": location["lat"],
@@ -162,14 +172,14 @@ class ElasticsearchService:
                         }
 
             # 确保note_id存在
-            if "note_id" not in post:
-                post["note_id"] = f"generated_{datetime.datetime.now().timestamp()}"
+            if "note_id" not in post_data:
+                post_data["note_id"] = f"generated_{datetime.datetime.now().timestamp()}"
 
             # 添加帖子
             response = self.es.index(
                 index=self.index_name,
-                id=post["note_id"],
-                body=post
+                id=post_data["note_id"],
+                body=post_data
             )
             return response
 
@@ -459,6 +469,42 @@ class ElasticsearchService:
             return response
         except Exception as e:
             self.logger.error(f"删除帖子时出错: {e}")
+            raise
+
+    def delete_all_posts(self) -> Dict[str, Any]:
+        """
+        删除索引中的所有帖子数据
+
+        Returns:
+            包含操作结果的字典
+        """
+        try:
+            # 使用delete_by_query删除所有文档
+            response = self.es.delete_by_query(
+                index=self.index_name,
+                body={
+                    "query": {
+                        "match_all": {}
+                    }
+                },
+                refresh=True  # 确保操作立即可见
+            )
+
+            self.logger.info(f"已删除索引 {self.index_name} 中的所有文档")
+            return {
+                "success": True,
+                "deleted": response.get("deleted", 0),
+                "total": response.get("total", 0),
+                "failures": response.get("failures", [])
+            }
+        except exceptions.TransportError as e:
+            self.logger.error(f"删除所有帖子时出错: {e}")
+            return {
+                "success": False,
+                "error": str(e)
+            }
+        except Exception as e:
+            self.logger.error(f"删除所有帖子时出错: {e}")
             raise
 
 # 创建单例实例

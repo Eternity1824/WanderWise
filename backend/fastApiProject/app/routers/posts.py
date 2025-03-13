@@ -69,3 +69,11 @@ async def search(content: str = Query(None, description="search content"),
 @router.get("/data/clean", tags=["data clean"])
 async def clean():
     return [{"content": "hello"}]
+
+@router.get("/data/init/es", tags=["es init"])
+async def esInit():
+    # 删除所有帖子数据
+    result = es_service.delete_all_posts()
+    print(f"删除了 {result['deleted']} 条数据")
+    es_service.import_posts_from_json("data/processed_search_contents_2025-03-11_final.json")
+    return [{"message": "ok"}]
