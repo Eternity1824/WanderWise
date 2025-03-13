@@ -19,7 +19,7 @@ class Settings(BaseSettings):
 
     # 外部API
     GOOGLE_MAPS_API_KEY: str = "AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
-    DEEP_SEEK_API_KEY: str = "sk-95981642162246b78a24497688378291"  # 修正变量名称的拼写错误
+    DEEP_SEEK_API_KEY: str = "sk-95981642162246b78a24497688378291"
 
 
 @lru_cache()
