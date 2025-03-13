@@ -1,35 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import './App.css';
+import MapContainer from './components/map/MapContainer';
+import NavigationPanel from './components/map/NavigationPanel';
+import SearchBar from './components/map/SearchBar';
+import { LocationProvider } from './context/LocationContext';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <LocationProvider>
+      <div className="app">
+        <div className="sidebar">
+          <h1 className="app-title">WanderWise</h1>
+          <SearchBar />
+          <NavigationPanel />
+        </div>
+        <div className="map-wrapper">
+          <MapContainer />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </LocationProvider>
+  );
 }
 
-export default App
+export default App;
