@@ -10,18 +10,16 @@ class Settings(BaseSettings):
     APP_NAME: str = "WanderWise"
     DEBUG: bool = False
 
-    # MongoDB设置
-    MONGODB_URL: str = "mongodb://localhost:27017"
-    MONGODB_DB_NAME: str = "wanderwise"
+    # Mysql
+    MYSQL_CONNECTION_STRING: str = "mysql+pymysql://user:123456@localhost:3306/wanderwise"
 
     # Elasticsearch设置
     ELASTICSEARCH_URL: str = "http://localhost:9200"
     ELASTICSEARCH_INDEX_PREFIX: str = "wanderwise_"
 
-
     # 外部API
     GOOGLE_MAPS_API_KEY: str = "AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
-    DEEP_SEEK_API_KEU: str = "sk-95981642162246b78a24497688378291"
+    DEEP_SEEK_API_KEY: str = "sk-95981642162246b78a24497688378291"  # 修正变量名称的拼写错误
 
 
 @lru_cache()
