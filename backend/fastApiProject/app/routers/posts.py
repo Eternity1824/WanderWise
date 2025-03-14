@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Query
-from spyder.plugins.completion.providers.kite.utils.status import status
 from models.place_note_model import Base, engine
 from external.deepseek import deepseekapi
 from external.googlemap import geocode_finder
