@@ -81,31 +81,20 @@ class DeepSeekAPI:
         locations_addresses = []
         locations_coords = []
 
-        for loc in locations:
-            try:
-                locations_addresses.append(str(loc.get('formatted_address', '')))
-                locations_coords.append(f"{loc.get('lat', '')}, {loc.get('lng', '')}")
-            except (KeyError, TypeError) as e:
-                print(f"处理location信息时出错: {e}, location: {loc}")
-
         # 准备评分提示
         prompt = f"""
         请对这篇美食或旅游点评进行打分（满分100分），评分标准如下：
         1. 内容质量（30分）：描述详细程度、是否有实用信息
         2. 真实性（20分）：是否有实际体验的描述细节
-        3. 有用程度（20分）：对其他用户的参考价值
-        4. 受欢迎度（30分）：根据用户互动数据评估
+        3. 受欢迎度（50分）：根据用户互动数据评估
 
         点评信息：
         标题: {post.get('title', '')}
         内容: {post.get('desc', '')}
-        地点: {', '.join(locations_addresses)}
-        坐标: {', '.join(locations_coords)}
 
         用户互动数据：
         点赞数: {post.get('liked_count', '0')}
         收藏数: {post.get('collected_count', '0')}
-        评论数: {post.get('comment_count', '0')}
         分享数: {post.get('share_count', '0')}
 
         格式为JSON:

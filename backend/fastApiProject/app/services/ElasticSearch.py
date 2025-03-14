@@ -15,40 +15,29 @@ class ElasticsearchService:
     def __init__(self):
         """初始化 Elasticsearch 客户端连接"""
         self.es = Elasticsearch(settings.ELASTICSEARCH_URL)
-        self.index_name = f"{settings.ELASTICSEARCH_INDEX_PREFIX}posts"
+        self.post_index_name = f"{settings.ELASTICSEARCH_INDEX_PREFIX}posts"
+        self.place_index_name = f"{settings.ELASTICSEARCH_INDEX_PREFIX}places"
         self.logger = logging.getLogger(__name__)
 
         # 确保索引存在
-        self._create_index_if_not_exists()
+        self._create_post_index_if_not_exists()
+        self._create_place_index_if_not_exists()
 
-    def _create_index_if_not_exists(self) -> None:
-        """如果索引不存在则创建索引，设置好映射关系"""
+    def _create_post_index_if_not_exists(self) -> None:
+        """如果帖子索引不存在则创建索引，设置好映射关系"""
         try:
-            if not self.es.indices.exists(index=self.index_name):
+            if not self.es.indices.exists(index=self.post_index_name):
                 # 创建索引并设置映射
                 mappings = {
                     "mappings": {
                         "properties": {
                             "note_id": {"type": "keyword","index":"true"},
-                            "type": {"type": "keyword"},
                             "title": {"type": "text", "analyzer": "ik_max_word", "search_analyzer": "ik_smart"},
                             "desc": {"type": "text", "analyzer": "ik_max_word", "search_analyzer": "ik_smart"},
-                            "video_url": {"type": "keyword"},
-                            "time": {"type": "date"},
-                            "last_update_time": {"type": "date"},
                             "user_id": {"type": "keyword"},
                             "nickname": {"type": "keyword"},
-                            "avatar": {"type": "keyword"},
-                            "liked_count": {"type": "keyword"},
-                            "collected_count": {"type": "keyword"},
-                            "comment_count": {"type": "keyword"},
-                            "share_count": {"type": "keyword"},
-                            "ip_location": {"type": "keyword"},
                             "tag_list": {"type": "text", "analyzer": "ik_max_word", "search_analyzer": "ik_smart"},
-                            "last_modify_ts": {"type": "date"},
-                            "note_url": {"type": "keyword"},
                             "source_keyword": {"type": "keyword"},
-                            "xsec_token": {"type": "keyword"},
                             "locations": {
                                 "type": "nested",
                                 "properties": {
@@ -60,7 +49,6 @@ class ElasticsearchService:
                                     "location": {"type": "geo_point"}
                                 }
                             },
-                            "score": {"type": "integer"}
                         }
                     },
                     "settings": {
@@ -78,12 +66,47 @@ class ElasticsearchService:
                         }
                     }
                 }
-                self.es.indices.create(index=self.index_name, body=mappings)
-                self.logger.info(f"索引 {self.index_name} 已创建")
+                self.es.indices.create(index=self.post_index_name, body=mappings)
+                self.logger.info(f"索引 {self.post_index_name} 已创建")
         except exceptions.TransportError as e:
-            self.logger.error(f"创建索引时出错: {e}")
+            self.logger.error(f"创建帖子索引时出错: {e}")
             raise
 
+    def _create_place_index_if_not_exists(self) -> None:
+        """如果地点索引不存在则创建索引，设置好映射关系"""
+        try:
+            if not self.es.indices.exists(index=self.place_index_name):
+                # 创建索引并设置映射
+                mappings = {
+                    "mappings": {
+                        "properties": {
+                            "place_id": {"type": "keyword", "index": "true"},
+                            "name": {"type": "text", "analyzer": "ik_max_word", "search_analyzer": "ik_smart"},
+                            "location": {"type": "geo_point"}
+                        }
+                    },
+                    "settings": {
+                        "analysis": {
+                            "analyzer": {
+                                "ik_smart": {
+                                    "type": "custom",
+                                    "tokenizer": "ik_smart"
+                                },
+                                "ik_max_word": {
+                                    "type": "custom",
+                                    "tokenizer": "ik_max_word"
+                                }
+                            }
+                        }
+                    }
+                }
+                self.es.indices.create(index=self.place_index_name, body=mappings)
+                self.logger.info(f"索引 {self.place_index_name} 已创建")
+        except exceptions.TransportError as e:
+            self.logger.error(f"创建地点索引时出错: {e}")
+            raise
+
+    # 帖子相关方法 - 保持原有实现不变
     def import_posts_from_json(self, json_file_path: str) -> Dict[str, Any]:
         """
         从JSON文件导入帖子数据，排除image_list字段
@@ -124,7 +147,7 @@ class ElasticsearchService:
                         post[time_field] = int(post[time_field])
 
                 action = {
-                    "_index": self.index_name,
+                    "_index": self.post_index_name,
                     "_id": post["note_id"],
                     "_source": post
                 }
@@ -177,7 +200,7 @@ class ElasticsearchService:
 
             # 添加帖子
             response = self.es.index(
-                index=self.index_name,
+                index=self.post_index_name,
                 id=post_data["note_id"],
                 body=post_data
             )
@@ -240,7 +263,7 @@ class ElasticsearchService:
                     "from": from_
                 }
 
-            response = self.es.search(index=self.index_name, body=query)
+            response = self.es.search(index=self.post_index_name, body=query)
             return self._format_search_results(response)
         except Exception as e:
             self.logger.error(f"关键词搜索时出错: {e}")
@@ -310,7 +333,7 @@ class ElasticsearchService:
                     "from": from_
                 }
 
-            response = self.es.search(index=self.index_name, body=query)
+            response = self.es.search(index=self.post_index_name, body=query)
             return self._format_search_results(response)
         except Exception as e:
             self.logger.error(f"地理位置搜索时出错: {e}")
@@ -338,7 +361,6 @@ class ElasticsearchService:
         try:
             # 基本查询条件
             must_queries = []
-
             # 添加关键词搜索
             if keyword:
                 must_queries.append({
@@ -402,11 +424,330 @@ class ElasticsearchService:
                     "from": from_
                 }
 
-            response = self.es.search(index=self.index_name, body=query)
+            response = self.es.search(index=self.post_index_name, body=query)
             return self._format_search_results(response)
 
         except Exception as e:
             self.logger.error(f"组合搜索时出错: {e}")
+            raise
+
+    def get_post_by_id(self, note_id: str) -> Optional[Dict[str, Any]]:
+        """
+        根据ID获取单个帖子
+
+        Args:
+            note_id: 帖子ID
+
+        Returns:
+            帖子数据或None（如果不存在）
+        """
+        try:
+            response = self.es.get(index=self.post_index_name, id=note_id)
+            return response.get("_source")
+        except exceptions.NotFoundError:
+            return None
+        except Exception as e:
+            self.logger.error(f"获取帖子时出错: {e}")
+            raise
+
+    def delete_post(self, note_id: str) -> Dict[str, Any]:
+        """
+        删除帖子
+
+        Args:
+            note_id: 帖子ID
+
+        Returns:
+            Elasticsearch的响应
+        """
+        try:
+            response = self.es.delete(index=self.post_index_name, id=note_id)
+            return response
+        except Exception as e:
+            self.logger.error(f"删除帖子时出错: {e}")
+            raise
+
+    def delete_all_posts(self) -> Dict[str, Any]:
+        """
+        删除索引中的所有帖子数据
+
+        Returns:
+            包含操作结果的字典
+        """
+        try:
+            # 使用delete_by_query删除所有文档
+            response = self.es.delete_by_query(
+                index=self.post_index_name,
+                body={
+                    "query": {
+                        "match_all": {}
+                    }
+                },
+                refresh=True  # 确保操作立即可见
+            )
+
+            self.logger.info(f"已删除索引 {self.post_index_name} 中的所有文档")
+            return {
+                "success": True,
+                "deleted": response.get("deleted", 0),
+                "total": response.get("total", 0),
+                "failures": response.get("failures", [])
+            }
+        except exceptions.TransportError as e:
+            self.logger.error(f"删除所有帖子时出错: {e}")
+            return {
+                "success": False,
+                "error": str(e)
+            }
+        except Exception as e:
+            self.logger.error(f"删除所有帖子时出错: {e}")
+            raise
+
+    def add_place(self, place: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        """
+        添加单个地点到Elasticsearch，如果已存在相同ID则跳过
+
+        Args:
+            place: 包含地点数据的字典（Google Places API返回的格式）
+
+        Returns:
+            Elasticsearch的响应，或None（如果地点已存在）
+        """
+        try:
+            # 创建数据副本，避免修改原始数据
+            place_data = place.copy()
+
+            # 确保place_id存在
+            if "place_id" not in place_data:
+                self.logger.error("地点数据缺少place_id字段")
+                raise ValueError("地点数据必须包含place_id字段")
+
+            # 检查ID是否已存在
+            place_id = place_data["place_id"]
+            if self.es.exists(index=self.place_index_name, id=place_id):
+                self.logger.info(f"地点ID {place_id} 已存在，跳过添加")
+                return None
+
+            # 添加geo_point格式的位置数据
+            if "geometry" in place_data and "location" in place_data["geometry"]:
+                place_data["location"] = {
+                    "lat": place_data["geometry"]["location"]["lat"],
+                    "lon": place_data["geometry"]["location"]["lng"]
+                }
+
+            # 添加地点
+            response = self.es.index(
+                index=self.place_index_name,
+                id=place_data["place_id"],
+                body=place_data
+            )
+            return response
+
+        except Exception as e:
+            self.logger.error(f"添加地点时出错: {e}")
+            raise
+
+    def import_places_from_json(self, json_file_path: str) -> Dict[str, Any]:
+        """
+        从JSON文件导入地点数据
+
+        Args:
+            json_file_path: JSON文件路径
+
+        Returns:
+            包含导入状态信息的字典
+        """
+        try:
+            with open(json_file_path, 'r', encoding='utf-8') as f:
+                places = json.load(f)
+
+            if not isinstance(places, list):
+                places = [places]
+
+            # 预处理数据并准备批量导入
+            actions = []
+            for place in places:
+                # 确保place_id存在
+                if "place_id" not in place:
+                    self.logger.warning(f"跳过缺少place_id的地点数据")
+                    continue
+
+                # 添加geo_point格式的位置数据
+                if "geometry" in place and "location" in place["geometry"]:
+                    place["location"] = {
+                        "lat": place["geometry"]["location"]["lat"],
+                        "lon": place["geometry"]["location"]["lng"]
+                    }
+
+                action = {
+                    "_index": self.place_index_name,
+                    "_id": place["place_id"],
+                    "_source": place
+                }
+                actions.append(action)
+
+            # 执行批量导入
+            if actions:
+                success, failed = bulk(self.es, actions, stats_only=True)
+                return {
+                    "success": success,
+                    "failed": failed,
+                    "total": len(actions)
+                }
+            return {"success": 0, "failed": 0, "total": 0}
+
+        except Exception as e:
+            self.logger.error(f"导入地点JSON数据时出错: {e}")
+            raise
+
+    def get_place_by_id(self, place_id: str) -> Optional[Dict[str, Any]]:
+        """
+        根据ID获取单个地点
+
+        Args:
+            place_id: 地点ID (Google Place ID)
+
+        Returns:
+            地点数据或None（如果不存在）
+        """
+        try:
+            response = self.es.get(index=self.place_index_name, id=place_id)
+            return response.get("_source")
+        except exceptions.NotFoundError:
+            return None
+        except Exception as e:
+            self.logger.error(f"获取地点时出错: {e}")
+            raise
+
+    def search_places_by_name(self, name: str, size: int = 10, from_: int = 0) -> Dict[str, Any]:
+        """
+        根据名称搜索地点
+
+        Args:
+            name: 搜索关键词
+            size: 返回结果数量
+            from_: 分页起始位置
+
+        Returns:
+            搜索结果
+        """
+        try:
+            query = {
+                "query": {
+                    "multi_match": {
+                        "query": name,
+                        "fields": ["name^3", "formatted_address"]
+                    }
+                },
+                "size": size,
+                "from": from_
+            }
+
+            response = self.es.search(index=self.place_index_name, body=query)
+            return self._format_search_results(response)
+        except Exception as e:
+            self.logger.error(f"地点名称搜索时出错: {e}")
+            raise
+
+    def search_places_by_location(self, lat: float, lng: float, distance: str = "1km",
+                                  size: int = 10, from_: int = 0) -> Dict[str, Any]:
+        """
+        根据地理位置搜索地点
+
+        Args:
+            lat: 纬度
+            lng: 经度
+            distance: 搜索半径
+            size: 返回结果数量
+            from_: 分页起始位置
+
+        Returns:
+            搜索结果
+        """
+        try:
+            query = {
+                "query": {
+                    "geo_distance": {
+                        "distance": distance,
+                        "location": {
+                            "lat": lat,
+                            "lon": lng
+                        }
+                    }
+                },
+                "sort": [
+                    {
+                        "_geo_distance": {
+                            "location": {
+                                "lat": lat,
+                                "lon": lng
+                            },
+                            "order": "asc",
+                            "unit": "km"
+                        }
+                    }
+                ],
+                "size": size,
+                "from": from_
+            }
+
+            response = self.es.search(index=self.place_index_name, body=query)
+            return self._format_search_results(response)
+        except Exception as e:
+            self.logger.error(f"地点地理位置搜索时出错: {e}")
+            raise
+
+    def delete_place(self, place_id: str) -> Dict[str, Any]:
+        """
+        删除地点
+
+        Args:
+            place_id: 地点ID
+
+        Returns:
+            Elasticsearch的响应
+        """
+        try:
+            response = self.es.delete(index=self.place_index_name, id=place_id)
+            return response
+        except Exception as e:
+            self.logger.error(f"删除地点时出错: {e}")
+            raise
+
+    def delete_all_places(self) -> Dict[str, Any]:
+        """
+        删除索引中的所有地点数据
+
+        Returns:
+            包含操作结果的字典
+        """
+        try:
+            # 使用delete_by_query删除所有文档
+            response = self.es.delete_by_query(
+                index=self.place_index_name,
+                body={
+                    "query": {
+                        "match_all": {}
+                    }
+                },
+                refresh=True  # 确保操作立即可见
+            )
+
+            self.logger.info(f"已删除索引 {self.place_index_name} 中的所有文档")
+            return {
+                "success": True,
+                "deleted": response.get("deleted", 0),
+                "total": response.get("total", 0),
+                "failures": response.get("failures", [])
+            }
+        except exceptions.TransportError as e:
+            self.logger.error(f"删除所有地点时出错: {e}")
+            return {
+                "success": False,
+                "error": str(e)
+            }
+        except Exception as e:
+            self.logger.error(f"删除所有地点时出错: {e}")
             raise
 
     def _format_search_results(self, response: Dict[str, Any]) -> Dict[str, Any]:
@@ -434,78 +775,6 @@ class ElasticsearchService:
             "max_score": max_score,
             "results": results
         }
-
-    def get_post_by_id(self, note_id: str) -> Optional[Dict[str, Any]]:
-        """
-        根据ID获取单个帖子
-
-        Args:
-            note_id: 帖子ID
-
-        Returns:
-            帖子数据或None（如果不存在）
-        """
-        try:
-            response = self.es.get(index=self.index_name, id=note_id)
-            return response.get("_source")
-        except exceptions.NotFoundError:
-            return None
-        except Exception as e:
-            self.logger.error(f"获取帖子时出错: {e}")
-            raise
-
-    def delete_post(self, note_id: str) -> Dict[str, Any]:
-        """
-        删除帖子
-
-        Args:
-            note_id: 帖子ID
-
-        Returns:
-            Elasticsearch的响应
-        """
-        try:
-            response = self.es.delete(index=self.index_name, id=note_id)
-            return response
-        except Exception as e:
-            self.logger.error(f"删除帖子时出错: {e}")
-            raise
-
-    def delete_all_posts(self) -> Dict[str, Any]:
-        """
-        删除索引中的所有帖子数据
-
-        Returns:
-            包含操作结果的字典
-        """
-        try:
-            # 使用delete_by_query删除所有文档
-            response = self.es.delete_by_query(
-                index=self.index_name,
-                body={
-                    "query": {
-                        "match_all": {}
-                    }
-                },
-                refresh=True  # 确保操作立即可见
-            )
-
-            self.logger.info(f"已删除索引 {self.index_name} 中的所有文档")
-            return {
-                "success": True,
-                "deleted": response.get("deleted", 0),
-                "total": response.get("total", 0),
-                "failures": response.get("failures", [])
-            }
-        except exceptions.TransportError as e:
-            self.logger.error(f"删除所有帖子时出错: {e}")
-            return {
-                "success": False,
-                "error": str(e)
-            }
-        except Exception as e:
-            self.logger.error(f"删除所有帖子时出错: {e}")
-            raise
 
 # 创建单例实例
 es_service = ElasticsearchService()

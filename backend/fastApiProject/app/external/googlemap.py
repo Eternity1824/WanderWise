@@ -535,4 +535,48 @@ geocode_finder = GeocodeFinder()
 
 
 if __name__ == "__main__":
-    main()"""
+    main()
+
+    {
+        "status": "OK",
+        "query": "Ramen DANBO Capitol Hill 1222 E Pine St, Seattle, WA 98122",
+        "place_id": "ChIJG6lbkM1qkFQRP8iOMgqQvvo",
+        "name": "Ramen DANBO Capitol Hill",
+        "formatted_address": "1222 E Pine St, Seattle, WA 98122, USA",
+        "geometry": {
+            "location": {
+                "lat": 47.61540939999999,
+                "lng": -122.3162501
+            }
+        },
+        "formatted_phone_number": "(206) 566-5479",
+        "rating": 4.5,
+        "url": "https://maps.google.com/?cid=18068037128529299519",
+        "website": "http://ramendanbo.com/",
+        "weekday_text": [
+            "Monday: 11:00 AM – 11:00 PM",
+            "Tuesday: 11:00 AM – 11:00 PM",
+            "Wednesday: 11:00 AM – 11:00 PM",
+            "Thursday: 11:00 AM – 11:00 PM",
+            "Friday: 11:00 AM – 11:00 PM",
+            "Saturday: 11:00 AM – 11:00 PM",
+            "Sunday: 11:00 AM – 11:00 PM"
+        ],
+        "photos": [
+            {
+                "height": 3024,
+                "width": 4032,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ2sdGAcJ38GxygY5O8RmOZfY1-UB6TtJ3Z9b-okiF9MveK0QquDcDvDvodOGbiCXQP-5DVE1gZUIQE5XBCIGXbadw8uFmBSWiX9qTFn8rKy1s_SVD8u9wj08LlS7mvmH2wZN-_tX5nCa8U_TOjwoASxz1pU36wDHGYSYs6QQ6gRdk_oxI3H1YR_oKgAnLcCTOgiLZOQPs6gTw0CE7QjUaTZe75FYKOz8uojhYXK2W3Evahl30HmihHvyDMGhePv6-nfQug2BrFDxZIJKosPag-fiEOv8iIM29Lyk4xeHQvhhwz0W4QUMYgqRSrJzR9ygVX8peVkKlk&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            },
+            {
+                "height": 3000,
+                "width": 4000,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ1dcGhqJVAJxruMFVlVNlbgOzZZW-wAwvv3k5Y1bKbaQVP27m0PGZVw48LAAhKbx5JfUsDypB394Qh3Rb1qA11X55EkN5En4uw80Cr390da4DQilOad5Khk0nMp0KpigGZ4HED1ram9h5RdQ3dOuB282btCJQY9klW5vIsF6_CUzl_9Qq1l7dLxUCtDk668aqeaHk_LgeoRtTR0eYEYPuUc5Auj10kz-J_FswNWbZR_ZKB1bDEg0XnmVfzWTGPYMM6uKLez9fEkB2m9r0krraWy8dzF7J0NEGRz0rcjKVKBg9v5DZJ6UKZyOunyI8F7ETufc9WEetA&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            },
+            {
+                "height": 3024,
+                "width": 4032,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ1GX3ylmSWHtPDBHCUcnfHnIUCVEumAX44pwnfed-UZoZQxFQbk22TeLzKxcKvuqsprRThHmt0LRSpLkZKoQV4wwMC7C-h0iG82uXfasPXpybrQ3FRoHNez3rZ5egWrZkveASXIHkXpSvcGCInkAzj8K8dizrkdvOwIvvsHP6k9LGD9uuUSok4emqgTXCu9Yf7ptOexhTsC1OEa4ulT_gyUYz7ovoEqVIwXWmU63-1VUTXzTdSvfvXSDXNXBU1XjPrmiAnqcdcNsJKixrRokE1aqF-PnH1xmVyk0lISicOjsLS8lGN9CsOeTbMiSsnXvCW41Ey6yLw&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            }
+        ]
+    }"""
