@@ -1,11 +1,11 @@
-from external.deepseek import deepseekapi
-from external.googlemap import geocode_finder
-from services.ElasticSearch import es_service
-from services.MysqlService import mysql_service
+from external.DeepSeek import deepseekapi
+from external.GoogleMap import geocode_finder
+from services.PlacePostService import place_post_service
+from services.PlaceService import place_service
 import json
 
 
-def process_posts(posts_data, save_interval=50):
+def process_data(posts_data, save_interval=50):
     """处理所有posts，每50条保存一次"""
     valid_posts = []
     i = 0
@@ -28,10 +28,10 @@ def process_posts(posts_data, save_interval=50):
                 note_id = post['note_id']
 
                 # 将映射添加到MySQL
-                mysql_service.add_mapping(place_id, note_id)
+                place_post_service.add_mapping(place_id, note_id)
 
                 # 将地点添加到Elasticsearch
-                es_service.add_place(place_detail)
+                place_service.add_place(place_detail)
 
                 # 只提取经纬度信息
                 if 'geometry' in place_detail and 'location' in place_detail['geometry']:
@@ -60,7 +60,7 @@ def process_posts(posts_data, save_interval=50):
         # 每处理save_interval条帖子保存一次
         if i % save_interval == 0:
             try:
-                with open(f'processed_search_contents_2025-03-11_part_{i // save_interval}.json', 'w',
+                with open(f'processed_search_contents.json', 'w',
                           encoding='utf-8') as f:
                     json.dump(valid_posts, f, ensure_ascii=False, indent=2)
                 print(f"已处理 {i} 条帖子，找到 {len(valid_posts)} 个有效posts，已保存中间结果")
