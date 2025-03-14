@@ -495,7 +495,7 @@ class GeocodeFinder:
 # 创建全局地理编码查询工具实例
 geocode_finder = GeocodeFinder()
 
-"""def main():
+def main():
     import os
     from dotenv import load_dotenv
     import json
@@ -537,7 +537,7 @@ geocode_finder = GeocodeFinder()
 if __name__ == "__main__":
     main()
 
-    {
+    """{
         "status": "OK",
         "query": "Ramen DANBO Capitol Hill 1222 E Pine St, Seattle, WA 98122",
         "place_id": "ChIJG6lbkM1qkFQRP8iOMgqQvvo",

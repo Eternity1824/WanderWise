@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Query
-from spyder.plugins.completion.providers.kite.utils.status import status
 from models.place_note_model import Base, engine
 from external.deepseek import deepseekapi
 from external.googlemap import geocode_finder
@@ -7,6 +6,8 @@ from services.ElasticSearch import es_service
 from core.RoutePlanner import RoutePlanner
 import json
 from core import dataclean
+from services.MysqlService import mysql_service
+
 router = APIRouter()
 
 
@@ -44,29 +45,48 @@ async def search(content: str = Query(None, description="search content"),
 
     planner = RoutePlanner(location_coordinates)
     southwest_route = planner.plan_route('southwest')
-    print(southwest_route)
     route_detail = geocode_finder.get_route_details(southwest_route, mode)
 
-    # 根据经纬度搜索附近的地点
     search_results = []
-    seen_note_ids = set()
-    print(route_detail)
+    places_set = set()  # Set to track unique place_ids
+
     for coordinates in route_detail['sampled_points']:
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
-        search_result = es_service.search_by_location(latitude, longitude)
-        #print(search_result)
-        for post in search_result['results']:
-            note_id = post['note_id']
-            if note_id not in seen_note_ids:
-                search_results.append(post)
-                seen_note_ids.add(note_id)
+        places = es_service.search_places(latitude, longitude)
+
+        if places["total"] > 0:
+            for place in places["results"]:
+                if place["status"] == 'OK':
+                    place_id = place["place_id"]
+
+                    # Skip if we've already processed this place
+                    if place_id in places_set:
+                        continue
+
+                    # Add to our set of processed places
+                    places_set.add(place_id)
+
+                    # Create a new dictionary for each place
+                    place_result = {}  # Create new dict inside loop
+                    place_result["place"] = place
+
+                    # Get notes for this place
+                    notes = []
+                    note_ids = mysql_service.get_notes_by_place_id(place_id)
+                    for note_id in note_ids:
+                        note = es_service.get_post_by_id(note_id)
+                        if note:  # Make sure we got a valid note
+                            notes.append(note)
+
+                    place_result["notes"] = notes
+                    search_results.append(place_result)
 
     # 返回包含经纬度和搜索结果的数据
     return {
         "route":southwest_route,
         "points":route_detail["all_points"],
-        "posts":search_results,
+        "places":search_results,
         "posts_length":len(search_results),
         "mode":mode
     }

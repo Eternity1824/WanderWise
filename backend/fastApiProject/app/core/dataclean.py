@@ -4,6 +4,7 @@ from services.ElasticSearch import es_service
 from services.MysqlService import mysql_service
 import json
 
+
 def process_posts(posts_data, save_interval=50):
     """处理所有posts，每50条保存一次"""
     valid_posts = []
@@ -14,28 +15,40 @@ def process_posts(posts_data, save_interval=50):
         # 使用DeepSeek提取地理位置
         potential_locations = deepseekapi.extract_locations(post)
         print(f"可能的地点{potential_locations}")
-        all_coordinates = []
+        coordinates_list = []  # 存储所有地点的经纬度
+
         # 对每个潜在地点查询坐标
         for location in potential_locations:
             place_detail = geocode_finder.get_place_detail(location)
-            #加入es
-            #加入mysql, place_id, note_id, index 是 place_id
-            place_id = place_detail['place_id']
-            note_id = post['note_id']
 
-            mysql_service.add_mapping(place_id, note_id)
-            es_service.add_place(place_detail)
+            if place_detail["status"] == "OK":
+                place_id = place_detail['place_id']
+                note_id = post['note_id']
 
-            all_coordinates.extend(place_detail)
+                # 将映射添加到MySQL
+                mysql_service.add_mapping(place_id, note_id)
+
+                # 将地点添加到Elasticsearch
+                es_service.add_place(place_detail)
+
+                # 只提取经纬度信息
+                if 'geometry' in place_detail and 'location' in place_detail['geometry']:
+                    coordinates = {
+                        'latitude': place_detail['geometry']['location']['lat'],
+                        'longitude': place_detail['geometry']['location']['lng'],
+                        'place_id': place_detail['place_id'],
+                        'name': place_detail.get('name', '')
+                    }
+                    coordinates_list.append(coordinates)
 
         # 如果找到了地理位置，则保留这个post
-        if all_coordinates:
+        if coordinates_list:
             # 使用DeepSeek对post进行评分
             score_info = deepseekapi.rate_post(post)
 
             # 将地理位置和评分信息添加到post中
             enriched_post = post.copy()
-            enriched_post["locations"] = all_coordinates
+            enriched_post["locations"] = coordinates_list  # 只存储经纬度信息
             enriched_post["score"] = score_info.get("score", 0)
 
             valid_posts.append(enriched_post)
@@ -53,6 +66,5 @@ def process_posts(posts_data, save_interval=50):
                 print(f"保存中间数据失败: {str(e)}")
 
     return valid_posts
-
 
 
