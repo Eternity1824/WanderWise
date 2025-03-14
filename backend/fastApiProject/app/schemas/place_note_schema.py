@@ -4,7 +4,7 @@ from typing import Optional
 
 class PlaceNoteBase(BaseModel):
     place_id: str
-    note_id: int
+    note_id: str
 
 
 class PlaceNoteCreate(PlaceNoteBase):
@@ -12,6 +12,8 @@ class PlaceNoteCreate(PlaceNoteBase):
 
 
 class PlaceNote(PlaceNoteBase):
+    id: int
+
     class Config:
         orm_mode = True
         from_attributes = True
