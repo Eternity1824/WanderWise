@@ -95,7 +95,7 @@ async def searchByKeyword(keyword: str = Query(None, description="search content
     posts = post_service.search_by_keyword(keyword)
     return [{"message":"ok"}]
 
-@router.get("/data/clean", tags=["data clean"])
+@router.get("/data/process", tags=["data clean"])
 async def dataClean():
 
 
@@ -121,7 +121,7 @@ async def dataClean():
     return [{"message": "success"}]
 
 @router.get("/data/init/es", tags=["es init"])
-async def esInit(post_path: str = Query("data/processed_search_content.json", description="search content"),
+async def esInit(post_path: str = Query("data/processed_search_contents.json", description="search content"),
                  place_path: str = Query("data/place_es_data.json", description="search content"),):
     post_result = post_service.delete_all_posts()
     print(f"删除了 {post_result['deleted']} 条数据")
@@ -129,7 +129,7 @@ async def esInit(post_path: str = Query("data/processed_search_content.json", de
 
     place_result = place_service.delete_all_places()
     print(f"删除了 {place_result['deleted']} 条数据")
-    place_service.import_posts_from_json(place_path)
+    place_service.import_places_from_json(place_path)
     return [{"message": "ok"}]
 
 @router.get("/export/place", tags=["export place"])
@@ -153,5 +153,8 @@ async def import_place_post(
     """
     从JSON文件导入地点-笔记映射数据
     """
+    Base.metadata.drop_all(engine)
+    Base.metadata.create_all(bind=engine)
+    print("数据库表已创建")
     res = place_post_service.import_mappings_from_json(path, clear)
     return {"result": res}
