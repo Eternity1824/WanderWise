@@ -502,7 +502,7 @@ def main():
 
 
     # 测试通过地点名称获取详细信息
-    place_name = "Ramen DANBO Capitol Hill 1222 E Pine St, Seattle, WA 98122"
+    place_name = "桂, 西雅图"
     print(f"\n通过地点名称获取详细信息 ({place_name}):")
     place_details = geocode_finder.get_place_detail(place_name)
 

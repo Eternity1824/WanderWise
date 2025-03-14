@@ -53,8 +53,8 @@ async def search(content: str = Query(None, description="search content"),
     for coordinates in route_detail['sampled_points']:
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
-        places = es_service.search_places(latitude, longitude)
-
+        places = es_service.search_places_by_location(latitude, longitude)
+        print(places)
         if places["total"] > 0:
             for place in places["results"]:
                 if place["status"] == 'OK':
