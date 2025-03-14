@@ -2,17 +2,18 @@ from fastapi import APIRouter, Query
 from models.place_note_model import Base, engine
 from external.deepseek import deepseekapi
 from external.googlemap import geocode_finder
-from services.ElasticSearch import es_service
 from core.RoutePlanner import RoutePlanner
 import json
 from core import dataclean
-from services.MysqlService import mysql_service
+from services.PlaceService import place_service
+from services.PostService import post_service
+from services.PlacePostService import place_post_service
 
 router = APIRouter()
 
 
-@router.get("/search", tags=["search"])
-async def search(content: str = Query(None, description="search content"),
+@router.get("/search/ai-recommend", tags=["search ai"])
+async def searchByAiRecommend(content: str = Query(None, description="search content"),
                  mode: str = Query("driving", description="交通方式", enum=["driving", "walking", "bicycling", "transit"])):
     # 传递内容到LLM获取地理点列表
     print("正在请求deepseek接口")
@@ -53,8 +54,7 @@ async def search(content: str = Query(None, description="search content"),
     for coordinates in route_detail['sampled_points']:
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
-        places = es_service.search_places_by_location(latitude, longitude)
-        print(places)
+        places = place_service.search_places_by_location(latitude, longitude)
         if places["total"] > 0:
             for place in places["results"]:
                 if place["status"] == 'OK':
@@ -73,9 +73,9 @@ async def search(content: str = Query(None, description="search content"),
 
                     # Get notes for this place
                     notes = []
-                    note_ids = mysql_service.get_notes_by_place_id(place_id)
+                    note_ids = place_post_service.get_notes_by_place_id(place_id)
                     for note_id in note_ids:
-                        note = es_service.get_post_by_id(note_id)
+                        note = post_service.get_post_by_id(note_id)
                         if note:  # Make sure we got a valid note
                             notes.append(note)
 
@@ -87,9 +87,13 @@ async def search(content: str = Query(None, description="search content"),
         "route":southwest_route,
         "points":route_detail["all_points"],
         "places":search_results,
-        "posts_length":len(search_results),
+        "places_length":len(search_results),
         "mode":mode
     }
+@router.get("/search/keyword", tags=["search keyword"])
+async def searchByKeyword(keyword: str = Query(None, description="search content")):
+    posts = post_service.search_by_keyword(keyword)
+    return [{"message":"ok"}]
 
 @router.get("/data/clean", tags=["data clean"])
 async def dataClean():
@@ -118,9 +122,9 @@ async def dataClean():
 
 @router.get("/data/init/es/post", tags=["es post init"])
 async def esInit():
-    result = es_service.delete_all_posts()
+    result = post_service.delete_all_posts()
     print(f"删除了 {result['deleted']} 条数据")
-    es_service.import_posts_from_json("data/processed_search_contents_2025-03-11_final.json")
+    post_service.import_posts_from_json("data/processed_search_contents_2025-03-11_final.json")
     return [{"message": "ok"}]
 
 

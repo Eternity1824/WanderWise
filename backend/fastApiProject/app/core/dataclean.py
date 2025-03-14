@@ -1,7 +1,7 @@
 from external.deepseek import deepseekapi
 from external.googlemap import geocode_finder
-from services.ElasticSearch import es_service
-from services.MysqlService import mysql_service
+from services.PlacePostService import place_post_service
+from services.PlaceService import place_service
 import json
 
 
@@ -28,10 +28,10 @@ def process_posts(posts_data, save_interval=50):
                 note_id = post['note_id']
 
                 # 将映射添加到MySQL
-                mysql_service.add_mapping(place_id, note_id)
+                place_post_service.add_mapping(place_id, note_id)
 
                 # 将地点添加到Elasticsearch
-                es_service.add_place(place_detail)
+                place_service.add_place(place_detail)
 
                 # 只提取经纬度信息
                 if 'geometry' in place_detail and 'location' in place_detail['geometry']:
