@@ -778,5 +778,5 @@ class ElasticsearchService:
 
 # 创建单例实例
 es_service = ElasticsearchService()
-"""if __name__ == "__main__":
-    print(es_service.get_place_by_id("ChIJ-_xduBBtkFQRbiAn-xoqh9k"))"""
+if __name__ == "__main__":
+    print(es_service.get_post_by_id("6420b0080000000011010d6e"))
