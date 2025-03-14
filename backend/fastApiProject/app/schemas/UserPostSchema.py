@@ -1,17 +1,14 @@
 from pydantic import BaseModel
 from typing import Optional
 
+class UserPostBase(BaseModel):
+    post_id: str
+    user_id: str
 
-class PlacePostBase(BaseModel):
-    place_id: str
-    note_id: str
-
-
-class PlacePostCreate(PlacePostBase):
+class UserPostCreate(UserPostBase):
     pass
 
-
-class PlacePost(PlacePostBase):
+class UserPost(UserPostBase):
     id: int
 
     class Config:

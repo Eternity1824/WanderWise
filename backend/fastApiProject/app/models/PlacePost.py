@@ -26,7 +26,7 @@ def get_db():
         db.close()
 
 
-class PlaceNote(Base):
+class PlacePost(Base):
     __tablename__ = "place_notes"
     id = Column(Integer, primary_key=True, autoincrement=True)
     place_id = Column(String(50), index=True)
