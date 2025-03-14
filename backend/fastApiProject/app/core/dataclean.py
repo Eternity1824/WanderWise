@@ -9,8 +9,10 @@ def process_posts(posts_data, save_interval=50):
     """处理所有posts，每50条保存一次"""
     valid_posts = []
     i = 0
-
+    post_set = set()
     for post in posts_data:
+        if post['note_id'] in post_set:
+            continue
         print(f"正在处理第{i + 1}条post,post id: {post['note_id']}")
         # 使用DeepSeek提取地理位置
         potential_locations = deepseekapi.extract_locations(post)
