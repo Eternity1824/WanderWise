@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
 import { useLocationContext } from '../context/LocationContext';
 import { locationService } from '../services/api';
-import { Location, MapSettings, ApiResponse, ApiRouteItem, ApiPost, ApiPostLocation, PostInfo } from '../types';
+import { Location, MapSettings, ApiResponse, ApiRouteItem, ApiPost, ApiPostLocation, PostInfo, PathPoint } from '../types';
 
 export const useLocations = () => {
   const { 
     setLocations, 
     setIsLoading, 
     setError, 
-    setMapSettings 
+    setMapSettings,
+    setPathPoints
   } = useLocationContext();
 
   // Fetch locations from API
@@ -58,6 +59,15 @@ export const useLocations = () => {
       
       // 检查响应格式并提取位置数据
       const apiResponse = response as ApiResponse;
+      
+      // 处理路径点数据
+      if (apiResponse.points && Array.isArray(apiResponse.points)) {
+        console.log('Processing path points:', apiResponse.points.length);
+        setPathPoints(apiResponse.points);
+      } else {
+        // 如果没有路径点，清空路径点数组
+        setPathPoints([]);
+      }
       
       // 处理route数组（主要景点）
       if (apiResponse.route && Array.isArray(apiResponse.route)) {

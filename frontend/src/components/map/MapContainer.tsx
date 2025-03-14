@@ -3,6 +3,7 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { useLocationContext } from '../../context/LocationContext';
 import LocationMarker from './LocationMarker';
 import RouteDisplay from './RouteDisplay';
+import PathDisplay from './PathDisplay';
 
 // Map container styles
 const containerStyle = {
@@ -26,6 +27,7 @@ const MapContainer: React.FC = () => {
     locations, 
     selectedLocations, 
     currentRoute, 
+    pathPoints,
     mapSettings,
     setMapSettings
   } = useLocationContext();
@@ -150,7 +152,17 @@ const MapContainer: React.FC = () => {
         onCenterChanged={onCenterChanged}
         onZoomChanged={onZoomChanged}
       >
-        {/* Render location markers */}
+        {/* 渲染路径点 */}
+        {pathPoints && pathPoints.length > 0 && (
+          <PathDisplay 
+            points={pathPoints} 
+            color="#4285F4" // Google蓝色
+            weight={4}
+            opacity={0.8}
+          />
+        )}
+
+        {/* 渲染位置标记 */}
         {locations.map((location) => (
           <LocationMarker
             key={`location-${location.id}`}
@@ -159,7 +171,7 @@ const MapContainer: React.FC = () => {
           />
         ))}
 
-        {/* Render route if available */}
+        {/* 渲染路线（如果有） */}
         {currentRoute && <RouteDisplay route={currentRoute} />}
       </GoogleMap>
     </div>

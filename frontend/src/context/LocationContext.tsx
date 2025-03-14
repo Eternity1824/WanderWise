@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
-import { Location, Route, SortDirection, MapSettings } from '../types';
+import { Location, Route, SortDirection, MapSettings, PathPoint } from '../types';
 
 interface LocationContextType {
   locations: Location[];
@@ -8,6 +8,8 @@ interface LocationContextType {
   setSelectedLocations: Dispatch<SetStateAction<Location[]>>;
   currentRoute: Route | null;
   setCurrentRoute: Dispatch<SetStateAction<Route | null>>;
+  pathPoints: PathPoint[];
+  setPathPoints: Dispatch<SetStateAction<PathPoint[]>>;
   sortDirection: SortDirection;
   setSortDirection: Dispatch<SetStateAction<SortDirection>>;
   mapSettings: MapSettings;
@@ -28,14 +30,15 @@ export const LocationProvider: React.FC<LocationProviderProps> = ({ children }) 
   const [locations, setLocations] = useState<Location[]>([]);
   const [selectedLocations, setSelectedLocations] = useState<Location[]>([]);
   const [currentRoute, setCurrentRoute] = useState<Route | null>(null);
+  const [pathPoints, setPathPoints] = useState<PathPoint[]>([]);
   const [sortDirection, setSortDirection] = useState<SortDirection>(SortDirection.NORTH_TO_SOUTH);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [mapSettings, setMapSettings] = useState<MapSettings>({
-    zoom: 12,
+    zoom: 13,
     center: {
-      lat: 37.7749, // Default to San Francisco
-      lng: -122.4194,
+      lat: 47.6062, // Default to Seattle
+      lng: -122.3321,
     },
   });
 
@@ -48,6 +51,8 @@ export const LocationProvider: React.FC<LocationProviderProps> = ({ children }) 
         setSelectedLocations,
         currentRoute,
         setCurrentRoute,
+        pathPoints,
+        setPathPoints,
         sortDirection,
         setSortDirection,
         mapSettings,

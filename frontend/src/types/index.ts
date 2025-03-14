@@ -23,6 +23,12 @@ export interface Route {
   directions?: any;
 }
 
+// Path point type definition
+export interface PathPoint {
+  latitude: number;
+  longitude: number;
+}
+
 // Direction type for sorting (North to South, etc.)
 export enum SortDirection {
   NORTH_TO_SOUTH = 'NORTH_TO_SOUTH',
@@ -44,7 +50,7 @@ export interface MapSettings {
 // API Response types
 export interface ApiResponse {
   route?: ApiRouteItem[];
-  points?: any[];
+  points?: PathPoint[];
   posts?: ApiPost[];
   posts_length?: number;
   mode?: string;
