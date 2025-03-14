@@ -1,6 +1,6 @@
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from models.place_note_model import PlaceNote, get_db
+from models.PlacePost import PlaceNote, get_db
 from core.MySqlCore import MySqlCore
 
 

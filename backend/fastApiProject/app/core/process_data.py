@@ -1,11 +1,11 @@
-from external.deepseek import deepseekapi
-from external.googlemap import geocode_finder
+from external.DeepSeek import deepseekapi
+from external.GoogleMap import geocode_finder
 from services.PlacePostService import place_post_service
 from services.PlaceService import place_service
 import json
 
 
-def process_posts(posts_data, save_interval=50):
+def process_data(posts_data, save_interval=50):
     """处理所有posts，每50条保存一次"""
     valid_posts = []
     i = 0

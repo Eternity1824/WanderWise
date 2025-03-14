@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Query
-from models.place_note_model import Base, engine
-from external.deepseek import deepseekapi
-from external.googlemap import geocode_finder
+from models.PlacePost import Base, engine
+from external.DeepSeek import deepseekapi
+from external.GoogleMap import geocode_finder
 from core.RoutePlanner import RoutePlanner
 import json
-from core import dataclean
+from core import process_data
 from services.PlaceService import place_service
 from services.PostService import post_service
 from services.PlacePostService import place_post_service
@@ -110,7 +110,7 @@ async def dataClean():
         print(f"加载数据失败: {str(e)}")
         posts_data = []  # 或使用示例数据
 
-    valid_posts = dataclean.process_posts(posts_data, save_interval=50)
+    valid_posts = process_data.process_data(posts_data, save_interval=50)
 
     try:
         with open('data/processed_search_contents_2025-03-11_final.json', 'w', encoding='utf-8') as f:
