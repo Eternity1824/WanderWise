@@ -2,7 +2,7 @@ from typing import List, Optional
 from sqlalchemy.orm import Session
 from models.PlacePost import PlaceNote, get_db
 from core.MySqlCore import MySqlCore
-
+from typing import List, Optional, Dict, Any
 
 class PlacePostService:
     """处理地点和笔记之间映射关系的服务"""
@@ -67,6 +67,30 @@ class PlacePostService:
         """
         return self.mysql_core.get_by_id(mapping_id)
 
+    def export_mappings_to_json(self, json_file_path: str) -> Dict[str, Any]:
+        """
+        将地点和笔记的映射关系导出到JSON文件
+
+        Args:
+            json_file_path: 导出的JSON文件路径
+
+        Returns:
+            Dict[str, Any]: 包含导出状态信息的字典
+        """
+        return self.mysql_core.export_to_json(json_file_path)
+
+    def import_mappings_from_json(self, json_file_path: str, clear_existing: bool = False) -> Dict[str, Any]:
+        """
+        从JSON文件导入地点和笔记的映射关系
+
+        Args:
+            json_file_path: JSON文件路径
+            clear_existing: 是否在导入前清空现有数据
+
+        Returns:
+            Dict[str, Any]: 包含导入状态信息的字典
+        """
+        return self.mysql_core.import_from_json(json_file_path, clear_existing)
 
 # 创建单例实例
 place_post_service = PlacePostService()

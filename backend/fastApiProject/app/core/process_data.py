@@ -60,7 +60,7 @@ def process_data(posts_data, save_interval=50):
         # 每处理save_interval条帖子保存一次
         if i % save_interval == 0:
             try:
-                with open(f'processed_search_contents_2025-03-11_part_{i // save_interval}.json', 'w',
+                with open(f'processed_search_contents.json', 'w',
                           encoding='utf-8') as f:
                     json.dump(valid_posts, f, ensure_ascii=False, indent=2)
                 print(f"已处理 {i} 条帖子，找到 {len(valid_posts)} 个有效posts，已保存中间结果")

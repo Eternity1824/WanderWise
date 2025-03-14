@@ -96,3 +96,145 @@ class MySqlCore(Generic[T]):
         except Exception as e:
             print(f"查询失败: {str(e)}")
             return []
+
+    def get_all(self) -> List[T]:
+        """
+        获取表中的所有记录
+
+        Returns:
+            List[T]: 所有记录列表
+        """
+        try:
+            return self.db.query(self.model).all()
+        except Exception as e:
+            print(f"获取所有记录失败: {str(e)}")
+            return []
+
+    def export_to_json(self, json_file_path: str) -> Dict[str, Any]:
+        """
+        将表中所有数据导出到JSON文件
+
+        Args:
+            json_file_path: 导出的JSON文件路径
+
+        Returns:
+            Dict[str, Any]: 包含导出状态信息的字典
+        """
+        import json
+        import time
+        from sqlalchemy.inspection import inspect
+
+        try:
+            start_time = time.time()
+
+            # 获取所有记录
+            all_records = self.get_all()
+
+            # 获取模型的列信息
+            mapper = inspect(self.model)
+            column_names = [column.key for column in mapper.columns]
+
+            # 转换为可序列化的字典列表
+            records_data = []
+            for record in all_records:
+                record_dict = {}
+                for column in column_names:
+                    record_dict[column] = getattr(record, column)
+                records_data.append(record_dict)
+
+            # 写入JSON文件
+            with open(json_file_path, 'w', encoding='utf-8') as f:
+                json.dump(records_data, f, ensure_ascii=False, indent=4)
+
+            elapsed_time = time.time() - start_time
+
+            return {
+                "status": "success",
+                "message": f"成功导出 {len(records_data)} 条记录到 {json_file_path}",
+                "total_records": len(records_data),
+                "elapsed_time": elapsed_time,
+                "file_path": json_file_path
+            }
+
+        except Exception as e:
+            return {
+                "status": "error",
+                "message": f"导出数据失败: {str(e)}",
+                "error": str(e)
+            }
+
+    def import_from_json(self, json_file_path: str, clear_existing: bool = False) -> Dict[str, Any]:
+        """
+        从JSON文件导入数据到表中
+
+        Args:
+            json_file_path: JSON文件路径
+            clear_existing: 是否在导入前清空现有数据
+
+        Returns:
+            Dict[str, Any]: 包含导入状态信息的字典
+        """
+        import json
+        import time
+
+        try:
+            start_time = time.time()
+
+            # 读取JSON文件
+            with open(json_file_path, 'r', encoding='utf-8') as f:
+                records_data = json.load(f)
+
+            # 验证数据格式
+            if not isinstance(records_data, list):
+                return {
+                    "status": "error",
+                    "message": "导入失败: JSON文件必须包含一个数组",
+                    "error": "Invalid format"
+                }
+
+            # 如果需要，清空现有数据
+            if clear_existing:
+                self.clear_table()
+
+            # 导入数据
+            success_count = 0
+            failed_count = 0
+            skipped_count = 0
+
+            for record_data in records_data:
+                try:
+                    # 如果有ID且存在相同ID的记录，则跳过
+                    if "id" in record_data:
+                        existing_record = self.get_by_id(record_data["id"])
+                        if existing_record:
+                            skipped_count += 1
+                            continue
+
+                    # 添加记录
+                    result = self.add(record_data)
+                    if result:
+                        success_count += 1
+                    else:
+                        failed_count += 1
+                except Exception as e:
+                    print(f"导入记录失败: {str(e)}")
+                    failed_count += 1
+
+            elapsed_time = time.time() - start_time
+
+            return {
+                "status": "success" if failed_count == 0 else "partial",
+                "message": f"导入完成: 成功 {success_count}, 跳过 {skipped_count}, 失败 {failed_count}",
+                "total_processed": len(records_data),
+                "success_count": success_count,
+                "skipped_count": skipped_count,
+                "failed_count": failed_count,
+                "elapsed_time": elapsed_time
+            }
+
+        except Exception as e:
+            return {
+                "status": "error",
+                "message": f"导入数据失败: {str(e)}",
+                "error": str(e)
+            }

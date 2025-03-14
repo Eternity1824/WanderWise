@@ -220,5 +220,115 @@ class ElasticsearchCore:
             "results": results
         }
 
+    def export_to_json(self, index_name: str, json_file_path: str, query: dict = None, scroll: str = '2m',
+                       size: int = 1000) -> dict:
+        """
+        将Elasticsearch索引的数据导出到JSON文件
+
+        Args:
+            index_name: 索引名称
+            json_file_path: 导出的JSON文件路径
+            query: 可选的查询参数，用于筛选导出的数据
+            scroll: scroll参数，默认为2分钟
+            size: 每批次获取的文档数量
+
+        Returns:
+            包含导出状态信息的字典
+        """
+        import json
+        import time
+
+        # 默认查询所有文档
+        if query is None:
+            query = {"query": {"match_all": {}}}
+
+        # 初始化scroll
+        scroll_id = None
+        total_docs = 0
+        start_time = time.time()
+
+        try:
+            # 获取初始结果和scroll_id
+            result = self.es.search(
+                index=index_name,
+                body=query,
+                scroll=scroll,
+                size=size
+            )
+
+            scroll_id = result.get('_scroll_id')
+            hits = result.get('hits', {}).get('hits', [])
+            total_docs_estimate = result.get('hits', {}).get('total', {})
+            if isinstance(total_docs_estimate, dict):
+                total_docs_estimate = total_docs_estimate.get('value', 0)
+
+            # 打开文件
+            with open(json_file_path, 'w', encoding='utf-8') as f:
+                # 写入文件头
+                f.write('[\n')
+
+                # 写入第一批结果
+                for i, hit in enumerate(hits):
+                    doc = hit.get('_source', {})
+                    json_str = json.dumps(doc, ensure_ascii=False)
+
+                    # 除了最后一个文档外，所有文档后面都要加逗号
+                    if i < len(hits) - 1 or total_docs_estimate > len(hits):
+                        f.write(json_str + ',\n')
+                    else:
+                        f.write(json_str + '\n')
+
+                    total_docs += 1
+
+                # 如果还有更多文档，继续获取
+                while len(hits) > 0:
+                    result = self.es.scroll(
+                        scroll_id=scroll_id,
+                        scroll=scroll
+                    )
+
+                    scroll_id = result.get('_scroll_id')
+                    hits = result.get('hits', {}).get('hits', [])
+
+                    # 写入后续批次结果
+                    for i, hit in enumerate(hits):
+                        doc = hit.get('_source', {})
+                        json_str = json.dumps(doc, ensure_ascii=False)
+
+                        # 除了最后一个文档外，所有文档后面都要加逗号
+                        if i < len(hits) - 1 or len(hits) == size:
+                            f.write(json_str + ',\n')
+                        else:
+                            f.write(json_str + '\n')
+
+                        total_docs += 1
+
+                # 写入文件尾
+                f.write(']')
+
+            elapsed_time = time.time() - start_time
+
+            return {
+                "status": "success",
+                "message": f"成功导出 {total_docs} 个文档到 {json_file_path}",
+                "total_docs": total_docs,
+                "elapsed_time": elapsed_time,
+                "file_path": json_file_path
+            }
+
+        except Exception as e:
+            return {
+                "status": "error",
+                "message": f"导出数据失败: {str(e)}",
+                "error": str(e)
+            }
+        finally:
+            # 清理scroll上下文
+            if scroll_id:
+                try:
+                    self.es.clear_scroll(scroll_id=scroll_id)
+                except:
+                    pass
+
 # 创建单例实例
 es_core = ElasticsearchCore()

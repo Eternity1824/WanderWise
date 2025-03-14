@@ -113,19 +113,45 @@ async def dataClean():
     valid_posts = process_data.process_data(posts_data, save_interval=50)
 
     try:
-        with open('data/processed_search_contents_2025-03-11_final.json', 'w', encoding='utf-8') as f:
+        with open('data/processed_search_contents.json', 'w', encoding='utf-8') as f:
             json.dump(valid_posts, f, ensure_ascii=False, indent=2)
-        print(f"成功处理 {len(valid_posts)} 个有效posts，已保存到 processed_search_contents_2025-03-11_final.json")
+        print(f"成功处理 {len(valid_posts)} 个有效posts，已保存到 processed_search_contents.json")
     except Exception as e:
         print(f"保存最终数据失败: {str(e)}")
     return [{"message": "success"}]
 
-@router.get("/data/init/es/post", tags=["es post init"])
-async def esInit():
-    result = post_service.delete_all_posts()
-    print(f"删除了 {result['deleted']} 条数据")
-    post_service.import_posts_from_json("data/processed_search_contents_2025-03-11_final.json")
+@router.get("/data/init/es", tags=["es init"])
+async def esInit(post_path: str = Query("data/processed_search_content.json", description="search content"),
+                 place_path: str = Query("data/place_es_data.json", description="search content"),):
+    post_result = post_service.delete_all_posts()
+    print(f"删除了 {post_result['deleted']} 条数据")
+    post_service.import_posts_from_json(post_path)
+
+    place_result = place_service.delete_all_places()
+    print(f"删除了 {place_result['deleted']} 条数据")
+    place_service.import_posts_from_json(place_path)
     return [{"message": "ok"}]
 
+@router.get("/export/place", tags=["export place"])
+async def exportPlace(path: str = Query("data/place_es_data.json", description="search content")):
+    res = place_service.export_places_to_json(path)
+    return [{"result":res}]
 
+@router.get("/export/place_post", tags=["export place_post"])
+async def export_place_post(path: str = Query("data/place_post_mysql_data.json", description="导出文件路径")):
+    """
+    导出地点-笔记映射数据到JSON文件
+    """
+    res = place_post_service.export_mappings_to_json(path)
+    return {"result": res}
 
+@router.get("/import/place_post", tags=["import place_post"])
+async def import_place_post(
+    path: str = Query("data/place_post_mysql_data.json", description="导入文件路径"),
+    clear: bool = Query(True, description="是否清空现有数据")
+):
+    """
+    从JSON文件导入地点-笔记映射数据
+    """
+    res = place_post_service.import_mappings_from_json(path, clear)
+    return {"result": res}
