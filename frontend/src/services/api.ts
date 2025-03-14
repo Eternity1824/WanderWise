@@ -1,9 +1,19 @@
 import axios from 'axios';
 import { Location, Route } from '../types';
 
+// 创建一个CORS代理URL
+const createProxyUrl = (url: string) => {
+  // 如果是开发环境，使用CORS代理
+  if (import.meta.env.DEV) {
+    // 使用Vite代理
+    return '/api';
+  }
+  return url;
+};
+
 // Create an axios instance with default config
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api',
+  baseURL: createProxyUrl(import.meta.env.VITE_API_BASE_URL || 'http://localhost:8082'),
   headers: {
     'Content-Type': 'application/json',
   },
@@ -36,9 +46,13 @@ export const locationService = {
   // Search locations by query
   searchLocations: async (query: string): Promise<Location[]> => {
     try {
-      const response = await api.get<Location[]>(`/locations/search`, {
-        params: { query },
+      console.log('Sending request to:', `${api.defaults.baseURL}/search?content=${encodeURIComponent(query)}`);
+      
+      const response = await api.get('/search', {
+        params: { content: query },
       });
+      
+      console.log('Response data:', response.data);
       return response.data;
     } catch (error) {
       console.error('Error searching locations:', error);

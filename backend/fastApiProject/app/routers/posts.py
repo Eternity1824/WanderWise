@@ -12,6 +12,7 @@ async def search(content: str = Query(None, description="search content"),
     # 传递内容到LLM获取地理点列表
     print("正在请求deepseek接口")
     locations, keywords = deepseekapi.process_user_query(content)
+    print(locations)
 
     # 存储所有地点的经纬度信息
     location_coordinates = []
@@ -19,6 +20,7 @@ async def search(content: str = Query(None, description="search content"),
     # 遍历locations列表，获取每个地点的地理编码信息
     for location in locations:
         geocode_result = geocode_finder.get_locations(location)
+        print(geocode_result)
 
         # 检查结果是否有效
         if geocode_result.get('status') == 'OK' and geocode_result.get('results'):
@@ -50,7 +52,7 @@ async def search(content: str = Query(None, description="search content"),
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
         search_result = es_service.search_by_location(latitude, longitude)
-        print(search_result)
+        #print(search_result)
         for post in search_result['results']:
             note_id = post['note_id']
             if note_id not in seen_note_ids:

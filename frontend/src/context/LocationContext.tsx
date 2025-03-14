@@ -1,21 +1,21 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
 import { Location, Route, SortDirection, MapSettings } from '../types';
 
 interface LocationContextType {
   locations: Location[];
-  setLocations: (locations: Location[]) => void;
+  setLocations: Dispatch<SetStateAction<Location[]>>;
   selectedLocations: Location[];
-  setSelectedLocations: (locations: Location[]) => void;
+  setSelectedLocations: Dispatch<SetStateAction<Location[]>>;
   currentRoute: Route | null;
-  setCurrentRoute: (route: Route | null) => void;
+  setCurrentRoute: Dispatch<SetStateAction<Route | null>>;
   sortDirection: SortDirection;
-  setSortDirection: (direction: SortDirection) => void;
+  setSortDirection: Dispatch<SetStateAction<SortDirection>>;
   mapSettings: MapSettings;
-  setMapSettings: (settings: MapSettings) => void;
+  setMapSettings: Dispatch<SetStateAction<MapSettings>>;
   isLoading: boolean;
-  setIsLoading: (isLoading: boolean) => void;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
   error: string | null;
-  setError: (error: string | null) => void;
+  setError: Dispatch<SetStateAction<string | null>>;
 }
 
 const LocationContext = createContext<LocationContextType | undefined>(undefined);
