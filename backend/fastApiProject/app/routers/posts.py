@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Query
 from spyder.plugins.completion.providers.kite.utils.status import status
-
+from models.place_note_model import Base, engine
 from external.deepseek import deepseekapi
 from external.googlemap import geocode_finder
 from services.ElasticSearch import es_service
@@ -73,8 +73,14 @@ async def search(content: str = Query(None, description="search content"),
 
 @router.get("/data/clean", tags=["data clean"])
 async def dataClean():
+
+
+    # 创建所有定义的表
+    Base.metadata.drop_all(engine)
+    Base.metadata.create_all(bind=engine)
+    print("数据库表已创建")
     try:
-        with open('search_contents_2025-03-11.json', 'r', encoding='utf-8') as f:
+        with open('data/search_contents_2025-03-11.json', 'r', encoding='utf-8') as f:
             posts_data = json.load(f)
     except Exception as e:
         print(f"加载数据失败: {str(e)}")
@@ -83,7 +89,7 @@ async def dataClean():
     valid_posts = dataclean.process_posts(posts_data, save_interval=50)
 
     try:
-        with open('processed_search_contents_2025-03-11_final.json', 'w', encoding='utf-8') as f:
+        with open('data/processed_search_contents_2025-03-11_final.json', 'w', encoding='utf-8') as f:
             json.dump(valid_posts, f, ensure_ascii=False, indent=2)
         print(f"成功处理 {len(valid_posts)} 个有效posts，已保存到 processed_search_contents_2025-03-11_final.json")
     except Exception as e:

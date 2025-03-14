@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy import create_engine
 
-from app.config import get_settings
+from config import get_settings
 
 settings = get_settings()
 
@@ -28,11 +28,6 @@ def get_db():
 
 class PlaceNote(Base):
     __tablename__ = "place_notes"
-
-    place_id = Column(String(255), primary_key=True, index=True)
-    note_id = Column(Integer, index=True, unique=True)
-
-    # 如果需要添加其他限制或索引
-    __table_args__ = (
-        UniqueConstraint('note_id', name='uq_note_id'),
-    )
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    place_id = Column(String(50), index=True)
+    note_id = Column(String(32), index=True)

@@ -1,6 +1,7 @@
 from external.deepseek import deepseekapi
 from external.googlemap import geocode_finder
 from services.ElasticSearch import es_service
+from services.MysqlService import mysql_service
 import json
 
 def process_posts(posts_data, save_interval=50):
@@ -18,9 +19,12 @@ def process_posts(posts_data, save_interval=50):
         for location in potential_locations:
             place_detail = geocode_finder.get_place_detail(location)
             #加入es
-            es_service.add_place(place_detail)
             #加入mysql, place_id, note_id, index 是 place_id
+            place_id = place_detail['place_id']
+            note_id = post['note_id']
 
+            mysql_service.add_mapping(place_id, note_id)
+            es_service.add_place(place_detail)
 
             all_coordinates.extend(place_detail)
 
@@ -49,3 +53,6 @@ def process_posts(posts_data, save_interval=50):
                 print(f"保存中间数据失败: {str(e)}")
 
     return valid_posts
+
+
+

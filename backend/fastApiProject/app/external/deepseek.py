@@ -67,19 +67,15 @@ class DeepSeekAPI:
             print(f"DeepSeek API调用失败: {str(e)}")
             return []
 
-    def rate_post(self, post: Dict[str, Any], locations: List[Dict[str, Any]]) -> Dict[str, int]:
+    def rate_post(self, post: Dict[str, Any]) -> Dict[str, int]:
         """对帖子进行打分
 
         Args:
             post: 帖子数据
-            locations: 地点数据列表，包含坐标和地址
 
         Returns:
             评分结果，格式为 {"score": 分数}
         """
-        # 处理locations信息，避免格式化错误
-        locations_addresses = []
-        locations_coords = []
 
         # 准备评分提示
         prompt = f"""
