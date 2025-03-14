@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocationContext } from '../context/LocationContext';
 import { locationService } from '../services/api';
-import { Location, MapSettings, ApiResponse, ApiRouteItem, ApiPost, ApiPostLocation, PostInfo, PathPoint } from '../types';
+import { Location, MapSettings, ApiResponse, ApiRouteItem, ApiPost, ApiPostLocation, PostInfo, PathPoint, ApiPhoto } from '../types';
 
 export const useLocations = () => {
   const { 
@@ -11,6 +11,53 @@ export const useLocations = () => {
     setMapSettings,
     setPathPoints
   } = useLocationContext();
+
+  // 解析营业时间文本为对象
+  const parseWeekdayText = (weekdayText?: string[]): Location['openingHours'] => {
+    if (!weekdayText || weekdayText.length === 0) return undefined;
+    
+    const openingHours: Location['openingHours'] = {};
+    
+    weekdayText.forEach(text => {
+      const match = text.match(/^(\w+):\s(.+)$/);
+      if (match) {
+        const day = match[1].toLowerCase();
+        const hours = match[2];
+        
+        switch (day) {
+          case 'monday':
+            openingHours.monday = hours;
+            break;
+          case 'tuesday':
+            openingHours.tuesday = hours;
+            break;
+          case 'wednesday':
+            openingHours.wednesday = hours;
+            break;
+          case 'thursday':
+            openingHours.thursday = hours;
+            break;
+          case 'friday':
+            openingHours.friday = hours;
+            break;
+          case 'saturday':
+            openingHours.saturday = hours;
+            break;
+          case 'sunday':
+            openingHours.sunday = hours;
+            break;
+        }
+      }
+    });
+    
+    return openingHours;
+  };
+  
+  // 提取照片URL
+  const extractPhotoUrls = (photos?: ApiPhoto[]): string[] => {
+    if (!photos || photos.length === 0) return [];
+    return photos.map(photo => photo.photo_url);
+  };
 
   // Fetch locations from API
   const fetchLocations = async () => {
@@ -73,14 +120,19 @@ export const useLocations = () => {
       if (apiResponse.route && Array.isArray(apiResponse.route)) {
         console.log('Processing route data:', apiResponse.route);
         apiResponse.route.forEach((item: ApiRouteItem, index: number) => {
-          if (!item.place_id) return;
-          
-          const locationId = item.place_id;
+          // 使用name和坐标生成唯一ID
+          const locationId = item.place_id || `route-${item.name}-${item.latitude}-${item.longitude}`;
           
           // 如果这个地点已经存在，更新它
           if (locationMap.has(locationId)) {
             // 不需要更新，因为route没有帖子信息
           } else {
+            // 提取照片URL
+            const photoUrls = extractPhotoUrls(item.photos);
+            
+            // 解析营业时间
+            const openingHours = parseWeekdayText(item.weekday_text);
+            
             // 创建新的地点
             locationMap.set(locationId, {
               id: locationId,
@@ -92,8 +144,13 @@ export const useLocations = () => {
               description: '',
               address: item.formatted_address || '',
               category: 'route',
-              rating: 0,
-              postInfos: [] // 初始化空数组
+              rating: item.rating || 0,
+              postInfos: [], // 初始化空数组
+              // 添加新字段
+              photos: photoUrls,
+              phone: item.formatted_phone_number,
+              website: item.website,
+              openingHours: openingHours
             });
           }
         });
@@ -151,7 +208,9 @@ export const useLocations = () => {
                   address: location.formatted_address || '',
                   category: 'post',
                   rating: 0,
-                  postInfos: [postInfo]
+                  postInfos: [postInfo],
+                  // 添加图片
+                  photos: location.photos || []
                 });
               }
             });

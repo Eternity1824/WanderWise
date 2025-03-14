@@ -11,6 +11,18 @@ export interface Location {
   category?: string;
   rating?: number;
   postInfos?: PostInfo[];
+  photos?: string[];  // 图片URL数组
+  phone?: string;     // 电话号码
+  website?: string;   // 官网地址
+  openingHours?: {    // 营业时间
+    monday?: string;
+    tuesday?: string;
+    wednesday?: string;
+    thursday?: string;
+    friday?: string;
+    saturday?: string;
+    sunday?: string;
+  };
 }
 
 // Route type definition
@@ -56,12 +68,25 @@ export interface ApiResponse {
   mode?: string;
 }
 
+// 照片类型
+export interface ApiPhoto {
+  height: number;
+  width: number;
+  photo_url: string;
+}
+
 export interface ApiRouteItem {
   place_id?: string;
   name?: string;
   latitude?: number;
   longitude?: number;
   formatted_address?: string;
+  formatted_phone_number?: string;  // 更新为后端返回的字段名
+  rating?: number;
+  url?: string;                     // Google Maps URL
+  website?: string;
+  weekday_text?: string[];         // 营业时间数组
+  photos?: ApiPhoto[];             // 照片对象数组
 }
 
 export interface ApiPost {
@@ -82,6 +107,7 @@ export interface ApiPostLocation {
   lat?: number;
   lng?: number;
   formatted_address?: string;
+  photos?: string[];  // 图片URL数组
 }
 
 // PostInfo type definition
