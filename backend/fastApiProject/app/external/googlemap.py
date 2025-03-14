@@ -22,44 +22,126 @@ class GeocodeFinder:
         self.api_key = settings.GOOGLE_MAPS_API_KEY
         self.base_url = "https://maps.googleapis.com/maps/api/geocode/json"
         self.directions_url = "https://maps.googleapis.com/maps/api/directions/json"
+        self.place_search_url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json"
+        self.place_details_url = "https://maps.googleapis.com/maps/api/place/details/json"
 
-    def get_locations(self, place_name: str, region: Optional[str] = None, language: str = "en") -> Dict:
+
+    def get_place_detail(self, place_name: str, region: Optional[str] = None, language: str = "en") -> Dict:
         """
-        根据地点名称或地址查询坐标，返回所有结果
+        根据地点名称获取详细信息（包括地址、电话、评分、网址、营业时间和照片等）
+        只返回前三条照片信息，每条照片只包含URL、高度和宽度
 
         Args:
-            place_name: 地点名称或地址
-            region: 首选区域代码，如 "cn"
-            language: 结果语言，默认为英文 "en"
+            place_name: 地点名称
+            region: 偏向的区域代码，例如"us"表示美国
+            language: 返回结果的语言
 
         Returns:
-            地理编码查询结果，包含多个位置信息
+            包含地点详细信息的字典
         """
-        # 构建请求参数
-        params = {
-            "address": place_name,
-            "key": self.api_key,
-            "language": language
-        }
-
-        if region:
-            params["region"] = region
-
-        # 发送请求
         try:
-            response = requests.get(self.base_url, params=params)
-            response.raise_for_status()
-            result = response.json()
+            # 第一步：使用 Find Place API 找到地点的 place_id
+            search_params = {
+                "input": place_name,
+                "inputtype": "textquery",
+                "key": self.api_key,
+                "language": language,
+                "fields": "place_id,name,formatted_address,geometry"
+            }
 
-            # 格式化返回结果
-            return self._format_response(result, place_name)
+            if region:
+                search_params["locationbias"] = f"region:{region}"
+
+            search_response = requests.get(self.place_search_url, params=search_params, timeout=30)
+            search_response.raise_for_status()
+            search_result = search_response.json()
+
+            # 检查搜索结果状态
+            if search_result["status"] != "OK" or not search_result.get("candidates"):
+                error_msg = f"未找到地点: {place_name}"
+                if "error_message" in search_result:
+                    error_msg += f" - {search_result['error_message']}"
+
+                logger.error(error_msg)
+                return {
+                    "status": "ERROR",
+                    "error_message": error_msg,
+                    "query": place_name,
+                    "details": None
+                }
+
+            # 获取第一个结果的 place_id
+            place_id = search_result["candidates"][0]["place_id"]
+
+            # 第二步：使用 Place Details API 获取详细信息
+            details_params = {
+                "place_id": place_id,
+                "key": self.api_key,
+                "language": language,
+                "fields": "name,formatted_address,formatted_phone_number,geometry,rating,url,website,opening_hours,place_id,photos"
+            }
+
+            details_response = requests.get(self.place_details_url, params=details_params, timeout=30)
+            details_response.raise_for_status()
+            details_result = details_response.json()
+
+            # 检查详情结果状态
+            if details_result["status"] != "OK":
+                error_msg = f"获取地点详情失败: {place_name}"
+                if "error_message" in details_result:
+                    error_msg += f" - {details_result['error_message']}"
+
+                logger.error(error_msg)
+                return {
+                    "status": "ERROR",
+                    "error_message": error_msg,
+                    "query": place_name,
+                    "details": None
+                }
+
+            # 提取并格式化详细信息
+            place_info = details_result["result"]
+            formatted_details = {
+                "status": "OK",
+                "query": place_name,
+                "place_id": place_id,
+                "name": place_info.get("name", ""),
+                "formatted_address": place_info.get("formatted_address", ""),
+                "geometry": {
+                    "location": place_info.get("geometry", {}).get("location", {})
+                },
+                "formatted_phone_number": place_info.get("formatted_phone_number", ""),
+                "rating": place_info.get("rating", 0),
+                "url": place_info.get("url", ""),
+                "website": place_info.get("website", "")
+            }
+
+            # 添加营业时间（如果存在）
+            if "opening_hours" in place_info and "weekday_text" in place_info["opening_hours"]:
+                formatted_details["weekday_text"] = place_info["opening_hours"]["weekday_text"]
+
+            # 添加照片信息（如果存在），只保留前三张照片，每张只包含URL、高度和宽度
+            if "photos" in place_info:
+                photos = []
+                for photo in place_info["photos"][:3]:  # 只取前三条照片
+                    photo_data = {
+                        "height": photo.get("height"),
+                        "width": photo.get("width"),
+                        "photo_url": f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference={photo.get('photo_reference')}&key={self.api_key}"
+                    }
+                    photos.append(photo_data)
+
+                formatted_details["photos"] = photos
+
+            return formatted_details
+
         except Exception as e:
-            logger.error(f"地理编码请求错误: {e}")
+            logger.error(f"获取地点详情错误: {e}")
             return {
                 "status": "ERROR",
                 "error_message": str(e),
                 "query": place_name,
-                "results": []
+                "details": None
             }
 
     def get_route_details(self,
@@ -409,56 +491,48 @@ class GeocodeFinder:
 
         return sampled_points
 
-    def _format_response(self, api_response: Dict, query: str) -> Dict:
-        """
-        格式化API响应为更易于使用的格式
-
-        Args:
-            api_response: Google Maps API的原始响应
-            query: 原始查询
-
-        Returns:
-            格式化后的响应
-        """
-        formatted_response = {
-            "status": api_response["status"],
-            "query": query,
-            "results": []
-        }
-
-        # 添加错误信息（如果有）
-        if "error_message" in api_response:
-            formatted_response["error_message"] = api_response["error_message"]
-
-        # 如果状态为OK，处理结果
-        if api_response["status"] == "OK":
-            for location in api_response["results"]:
-                # 提取核心信息
-                formatted_location = {
-                    "formatted_address": location["formatted_address"],
-                    "latitude": location["geometry"]["location"]["lat"],
-                    "longitude": location["geometry"]["location"]["lng"],
-                    "location_type": location["geometry"]["location_type"],
-                    "place_id": location["place_id"],
-                    "types": location["types"]
-                }
-
-                # 提取地址组件
-                address_components = {}
-                for component in location["address_components"]:
-                    for type_name in component["types"]:
-                        address_components[type_name] = {
-                            "long_name": component["long_name"],
-                            "short_name": component["short_name"]
-                        }
-
-                formatted_location["address_components"] = address_components
-
-                # 添加到结果列表
-                formatted_response["results"].append(formatted_location)
-
-        return formatted_response
-
 
 # 创建全局地理编码查询工具实例
 geocode_finder = GeocodeFinder()
+
+"""def main():
+    import os
+    from dotenv import load_dotenv
+    import json
+
+
+    # 测试通过地点名称获取详细信息
+    place_name = "Ramen DANBO Capitol Hill 1222 E Pine St, Seattle, WA 98122"
+    print(f"\n通过地点名称获取详细信息 ({place_name}):")
+    place_details = geocode_finder.get_place_detail(place_name)
+
+    # 漂亮地打印整个结果
+    print("完整响应结果:")
+    print(json.dumps(place_details, indent=2, ensure_ascii=False))
+
+    # 打印关键信息
+    if place_details["status"] == "OK":
+        print("\n关键信息摘要:")
+        print(f"地点名称: {place_details['name']}")
+        print(f"地址: {place_details['formatted_address']}")
+        print(f"电话: {place_details.get('formatted_phone_number', 'N/A')}")
+        print(f"评分: {place_details.get('rating', 'N/A')}")
+        print(f"网址: {place_details.get('website', 'N/A')}")
+
+        # 打印位置信息
+        location = place_details["geometry"]["location"]
+        print(f"位置: 纬度={location.get('lat')}, 经度={location.get('lng')}")
+
+        # 打印照片信息
+        if "photos" in place_details:
+            print(f"\n包含 {len(place_details['photos'])} 张照片:")
+            for i, photo in enumerate(place_details['photos'][:3], 1):  # 只显示前3张
+                print(f"照片 {i}: {photo['width']}x{photo['height']}")
+                print(f"照片URL: {photo['photo_url']}")
+
+            if len(place_details['photos']) > 3:
+                print(f"... 还有 {len(place_details['photos']) - 3} 张照片未显示")
+
+
+if __name__ == "__main__":
+    main()"""

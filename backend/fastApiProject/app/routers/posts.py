@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Query
+from spyder.plugins.completion.providers.kite.utils.status import status
+
 from external.deepseek import deepseekapi
 from external.googlemap import geocode_finder
 from services.elasticsearchService import es_service
@@ -19,11 +21,11 @@ async def search(content: str = Query(None, description="search content"),
 
     # 遍历locations列表，获取每个地点的地理编码信息
     for location in locations:
-        geocode_result = geocode_finder.get_locations(location)
+        geocode_result = geocode_finder.get_place_detail(location)
         print(geocode_result)
 
         # 检查结果是否有效
-        if geocode_result.get('status') == 'OK' and geocode_result.get('results'):
+        if geocode_result["status"] == 'OK':
             for result in geocode_result.get('results', []):
                 # 提取经纬度
                 latitude = result.get('latitude')
