@@ -1,6 +1,6 @@
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from models.PlacePost import PlaceNote, get_db
+from models.PlacePost import PlacePost, get_db
 from core.MySqlCore import MySqlCore
 from typing import List, Optional, Dict, Any
 
@@ -14,7 +14,7 @@ class PlacePostService:
         Args:
             db: 数据库会话，默认从 get_db 获取
         """
-        self.mysql_core = MySqlCore(db, PlaceNote)
+        self.mysql_core = MySqlCore(db, PlacePost)
 
     def clear_database(self) -> bool:
         """
@@ -25,7 +25,7 @@ class PlacePostService:
         """
         return self.mysql_core.clear_table()
 
-    def add_mapping(self, place_id: str, note_id: str) -> Optional[PlaceNote]:
+    def add_mapping(self, place_id: str, note_id: str) -> Optional[PlacePost]:
         """
         添加一条 place_id 和 note_id 的映射记录
 
@@ -34,7 +34,7 @@ class PlacePostService:
             note_id: 笔记ID (Post ID)
 
         Returns:
-            Optional[PlaceNote]: 添加的记录，失败则返回None
+            Optional[PlacePost]: 添加的记录，失败则返回None
         """
         item_data = {
             "place_id": place_id,
@@ -55,7 +55,7 @@ class PlacePostService:
         mappings = self.mysql_core.get_by_filter(place_id=place_id)
         return [mapping.note_id for mapping in mappings]
 
-    def get_mapping_by_id(self, mapping_id: int) -> Optional[PlaceNote]:
+    def get_mapping_by_id(self, mapping_id: int) -> Optional[PlacePost]:
         """
         通过ID查找映射记录
 
@@ -63,7 +63,7 @@ class PlacePostService:
             mapping_id: 映射记录ID
 
         Returns:
-            Optional[PlaceNote]: 找到的记录，不存在则返回None
+            Optional[PlacePost]: 找到的记录，不存在则返回None
         """
         return self.mysql_core.get_by_id(mapping_id)
 

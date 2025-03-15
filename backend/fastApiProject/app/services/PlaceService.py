@@ -20,7 +20,8 @@ class PlaceService:
                 "properties": {
                     "place_id": {"type": "keyword", "index": "true"},
                     "name": {"type": "text", "analyzer": "ik_max_word", "search_analyzer": "ik_smart"},
-                    "location": {"type": "geo_point"}
+                    "location": {"type": "geo_point"},
+                    "source_keyword":{"type": "keyword", "index": "true"},
                 }
             },
             "settings": {
