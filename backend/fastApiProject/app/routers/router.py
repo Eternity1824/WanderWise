@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Query, Path
 from models.PlacePost import Base, engine
-from models.UserNote import UserNote  # Import the UserNote model so it's registered with Base
+from models.UserNote import UserNote
 from external.DeepSeek import deepseekapi
 from external.GoogleMap import geocode_finder
 from core.RoutePlanner import RoutePlanner
@@ -11,6 +11,7 @@ from services.PostService import post_service
 from services.PlacePostService import place_post_service
 from services.UserNoteService import user_note_service
 from schemas.UserNoteSchema import UserNote as UserNoteSchema, UserNoteCreate
+from external.WikipediaFinder import wikipedia_finder
 
 # Create all tables at import time
 Base.metadata.create_all(bind=engine)
@@ -55,38 +56,46 @@ async def searchByAiRecommend(content: str = Query(None, description="search con
     route_detail = geocode_finder.get_route_details(southwest_route, mode)
 
     search_results = []
-    places_set = set()  # Set to track unique place_ids
+    places_set = set()
 
     for coordinates in route_detail['sampled_points']:
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
-        places = place_service.search_places_by_location(latitude, longitude)
-        if places["total"] > 0:
-            for place in places["results"]:
-                if place["status"] == 'OK':
-                    place_id = place["place_id"]
+        #找到相关的places
+        restaurants = place_service.search_places_mixed(latitude, longitude,srouce_keyword="西雅图美食")
+        views1 = place_service.search_places_views(latitude, longitude, distance= "15km", source_keyword="西雅图景点")
+        views2 = place_service.search_places_views(latitude, longitude, distance="15km", source_keyword="西雅图景点")
+        places = []
+        if restaurants["total"] > 0:
+            places.extend(restaurants["resultes"])
+        if views1["total"] > 0:
+            places.extend(views1["resultes"])
+        if views2["total"] > 0:
+            places.extend(views2["resultes"])
+        for place in places:
+            if place["status"] == 'OK':
+                place_id = place["place_id"]
 
-                    # Skip if we've already processed this place
-                    if place_id in places_set:
-                        continue
+                # Skip if we've already processed this place
+                if place_id in places_set:
+                    continue
 
-                    # Add to our set of processed places
-                    places_set.add(place_id)
+                # Add to our set of processed places
+                places_set.add(place_id)
 
-                    # Create a new dictionary for each place
-                    place_result = {}  # Create new dict inside loop
-                    place_result["place"] = place
+                # Create a new dictionary for each place
+                place_result = {}
+                place_result["place"] = place
 
-                    # Get notes for this place
-                    notes = []
-                    note_ids = place_post_service.get_notes_by_place_id(place_id)
-                    for note_id in note_ids:
-                        note = post_service.get_post_by_id(note_id)
-                        if note:  # Make sure we got a valid note
-                            notes.append(note)
-
-                    place_result["notes"] = notes
-                    search_results.append(place_result)
+                # Get notes for this place
+                notes = []
+                note_ids = place_post_service.get_notes_by_place_id(place_id)
+                for note_id in note_ids:
+                    note = post_service.get_post_by_id(note_id)
+                    if note:  # Make sure we got a valid note
+                        notes.append(note)
+                place_result["notes"] = notes
+                search_results.append(place_result)
 
     # 返回包含经纬度和搜索结果的数据
     return {
@@ -103,8 +112,6 @@ async def searchByKeyword(keyword: str = Query(None, description="search content
 
 @router.get("/data/process", tags=["data clean"])
 async def dataClean():
-
-
     # 创建所有定义的表
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(bind=engine)
@@ -126,6 +133,13 @@ async def dataClean():
         print(f"保存最终数据失败: {str(e)}")
     return [{"message": "success"}]
 
+@router.get("/data/clear", tags=["data clear"])
+async def dataClear():
+    Base.metadata.drop_all(engine)
+    place_service.delete_all_places()
+    post_service.delete_all_posts()
+    return [{"message": "success"}]
+
 @router.get("/data/init/es", tags=["es init"])
 async def esInit(post_path: str = Query("data/processed_search_contents.json", description="search content"),
                  place_path: str = Query("data/place_es_data.json", description="search content"),):
@@ -139,7 +153,7 @@ async def esInit(post_path: str = Query("data/processed_search_contents.json", d
     return [{"message": "ok"}]
 
 @router.get("/export/place", tags=["export place"])
-async def exportPlace(path: str = Query("data/place_es_data.json", description="search content")):
+async def exportPlace(path: str = Query("data/place_es_data_example.json", description="search content")):
     res = place_service.export_places_to_json(path)
     return [{"result":res}]
 

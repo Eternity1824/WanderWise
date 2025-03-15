@@ -27,9 +27,11 @@ def process_data(posts_data, save_interval=50):
                 place_id = place_detail['place_id']
                 note_id = post['note_id']
                 description = ""
+                place_detail['source_keyword'] = post['source_keyword']
                 if "景点" in post["source_keyword"] or "风景" in post["source_keyword"]:
                     description = wikipedia_finder.get_place_description(place_detail["name"])["description"]
                 place_detail['description'] = description
+
                 # 将映射添加到MySQL
                 place_post_service.add_mapping(place_id, note_id)
                 # 将地点添加到Elasticsearch

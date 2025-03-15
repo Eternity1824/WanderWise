@@ -1,0 +1,137 @@
+[
+    {
+        "status": "OK",
+        "query": "The Quad - University of Washington, Seattle",
+        "place_id": "ChIJyZAfHY0UkFQRiDI6e94dQmQ",
+        "name": "The Quad - University of Washington",
+        "formatted_address": "Pierce Ln, Seattle, WA 98195, USA",
+        "geometry": {
+            "location": {
+                "lat": 47.65726309999999,
+                "lng": -122.3071972
+            }
+        },
+        "formatted_phone_number": "(206) 543-9198",
+        "rating": 4.8,
+        "url": "https://maps.google.com/?cid=7224369593643053704",
+        "website": "http://www.washington.edu/home/tour/lib_quad.html",
+        "weekday_text": [
+            "Monday: Open 24 hours",
+            "Tuesday: Open 24 hours",
+            "Wednesday: Open 24 hours",
+            "Thursday: Open 24 hours",
+            "Friday: Open 24 hours",
+            "Saturday: Open 24 hours",
+            "Sunday: Open 24 hours"
+        ],
+        "photos": [
+            {
+                "height": 9072,
+                "width": 12096,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ25iY2AH4Zb0v0JuOOpCXVPFV_byoCnMYHizqo9FSaCr5S7bznUKLNfoTNZz3DdeNF109kC0iO1WlWffsVH3_Rp3F913t0KOM7-cybcVh-b6f-_iaZh8Xf-u-R6NFHNQVdkSCTMeBAHSUG67tYoU0GNFPyvfpceaZKacmEavEybZq1uZpuz0RAEE_hViooCUUQTdasZP-XZU6iTSe2y57fw59UYLLe9m2BYWk9VJ0Msjlpjn5nzsfVit9fxI1J5QDqn03vOW1oy9OeLP2gXCmP1lRSi5Pz04efRigOwVDeKS-25NKTOf3lhl42X-kXrACxrJ8PgqOg&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            },
+            {
+                "height": 3024,
+                "width": 4032,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ1jP4k5yHnVNhkyqMWDHXVQVFwCuhByZGD33gRFfO212G8IFKUWvyfn52owYoh7qpbO3QCE6OfjA2l-9lJxIYS1GJzYHqtZ-P5uXoxtc95XQEV6Amxb__xrqmVAY48zL1iX_FMqQfWSB7wyn1bLs7-u6w90L7P6zTkv2NCNx2xCD8LpFNfBx9ExPZLZKbTUK_PksKUfPM-5Ksgqsr1ONbmbE0iyfir0GDOCf9N1Sb_tybGPRrfYm69XtW--LD-yj5INqL79Og5ydl_PqFPrLA1EqBp3Cs1Q8ZPxTlads6BSX30fvvFxbnw4fGwdryWWNFScolCMVc0&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            },
+            {
+                "height": 2160,
+                "width": 3240,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ0Oc2scHOcEApTS8G8Uxj5WmcZ5NP9wzU1atWkI5iM7zi2uHhoCzxLbtYPoZRln0Odr7O33eHjT_wIPbJrehgVFmdWxcnLAtTBUkO1BxCh8OFGmLfMezG2CUv17sPdZ3a-Ug1laeLVBoEA-ydTKpD0kJuN4nFNq8XOGnrzXPxA5L_BxD7pEwnJZz2SfGIxx_ICi97JBM4Pbovztyql0no3yVobyhQ2VoV9HHdKxvO6QczhRuvrSueU-7br8BSMHrEo-fAMI8XZtwrGCLxWT3NrOSgxqdwlCIKrHrS0uxe2QKn1cBXgL4OPwaQUGd4-gTp8tiWHzIcw&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            }
+        ],
+        "source_keyword": "西雅图景点",
+        "description": "The Liberal Arts Quadrangle, more popularly known as the Quad, is the main quadrangle at the University of Washington in Seattle, Washington. It is often considered the school's trademark attraction. Raitt Hall and Savery Hall frame the northwestern boundary while Gowen, Smith, and Miller Halls frame the southeast. At the top of the quad sits the latest buildings on the quad, the Art and Music Buildings. The quad is lined with thirty Yoshino cherry trees, which blossom between mid-March and early April."
+    },
+    {
+        "status": "OK",
+        "query": "Suzzallo and Allen Libraries, Seattle",
+        "place_id": "ChIJVVVVRewUkFQRceNi_l_ha2w",
+        "name": "Suzzallo and Allen Libraries",
+        "formatted_address": "4000 15th Ave NE, Seattle, WA 98195, USA",
+        "geometry": {
+            "location": {
+                "lat": 47.6557702,
+                "lng": -122.3078427
+            }
+        },
+        "formatted_phone_number": "(206) 543-0242",
+        "rating": 4.8,
+        "url": "https://maps.google.com/?cid=7812585781010293617",
+        "website": "https://www.lib.washington.edu/suzzallo",
+        "weekday_text": [
+            "Monday: 8:00 AM – 8:00 PM",
+            "Tuesday: 8:00 AM – 8:00 PM",
+            "Wednesday: 8:00 AM – 8:00 PM",
+            "Thursday: 8:00 AM – 8:00 PM",
+            "Friday: 8:00 AM – 5:00 PM",
+            "Saturday: Closed",
+            "Sunday: 1:00 – 8:00 PM"
+        ],
+        "photos": [
+            {
+                "height": 3024,
+                "width": 4032,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ1NK5EBoDx83slBTGfnGbjUn8Bp9Xbh3GQjeFLyJyAzwM8gXYSMKiUl3_xqxqGhsBkGKgDwcHWdKfEnnfSntFe6ysW0JpOlxruqMy-mbMTVFqgGyAX3RmgPwqyunruvlNVNFLvY3_jlJjMxoCTONQD6Fe4HhJYfHu7xBdj0zAdJ9YvUzikutC2HMI_MWdllvBbVmI0EdXui6G3-WBwK3mN6p-6m2yYhcpyI280ZQEyL6V-a8pd55AOfyiR_FbEYk-i_hkznoAzmPkTLiT64p4UeY5EhbNtOffA5NixDngOm3aVjc_9WcIlYMxjR9RD1oKQ1p8DLQ9aTlIX-TlVvoXPKuhQ-RMvEoqfh07-97-ojnrH68JZKjXI_rFmzvqsPdTLJUozAxPMAuFWqEKSIDyAPfjugP_IVigYlX8Mj76-TaCGpIaRhauYIlSE20cqVi8h3XLoUEzwA_jWy1k1fGXFXMTbOXHR7xj8kOxd_rEI96iFXX1TAQ-oVi0PU2bAZikZHMsmbM5E1n28h-RcgGM0IiVR9NEZSYOIniUnyJh41sql-wEQKvwfSMGpsa-_MIFMTR2Cf-yw6OEm31HocbroDdoNKADmCwGWCIio9OR8&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            },
+            {
+                "height": 3024,
+                "width": 4032,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ1FEJRyiRYspvQZHVrjj8ZKHc1RRgNpuU2Az3VOfoPLE1ccUSCM-jCpn-V8iJnbnYzOQM2hqnlX4_xC-EJHrdm1YWIoSnv7ZAhwCUBOuwjAnJA5fQORJy2fkVBdGIG_3FnYoZs8nbjP86pWpScM05wJV0A0n4WvhDDWPO0otUA_Q97kAFIhPXs39luedE0nvyCgDseOLP0cN5NZvVOsinRwILC8CjGitNdiyeSqV5e2IvOm-5oCtzMjM3QyCUcwCyvZF5MdveP8z83Oyfol4Sq9JljlzK-wdiXGNIdeWWv6_RHghqkAl-yP6blkeY_m1M_yIrbU2PMp3w3MjqeGJLG4gf68xef_QQwDBMU7FLBSk7zauIEm0Yj7IJQMiJeVtFKCBplGYj_59EfQb6qDBgcryJAvBHnxdiNmCjY07S9JCoyJ0ICr6vXGNbDcWlyHLshu_1hyruS2zv3HMn3Pl4EdcvxeZjZNagxSapCSl7IUqVMP_ARqhQoz1Kxz9PAACAwZuNlNNBzCKfl2fMpeVSV22UeNYPXy2oguu5np6-cggtBeI3COCOypY4hwmwEPpZ2FmEnChKyK59mzvB1JOBaS9nSjk1SmdUYvkNu6&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            },
+            {
+                "height": 4032,
+                "width": 3024,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ0BJohmY1FXB138bqnSPufLVb3i-6wgJOyIhVRBlJ47PMlbBwz0EQ426Dwj1S29nc4VeuH-ZZ872qo7kFP1FwJbOHSXLPEGlEWUnrBw2NcHcdGXxgD_sJQvT_u8YcI2VkvP6WPRNm6riEJxVjZXkOL7lFzC7Xc6hSK8pYS32rQA0TNQzDimdcLSgfTOoV_OZspwKOxpvLux_PdJun-PZ4tZu4EAL35ata7OEdCG5FhTqPSojmQBLJWgQyewMjIZCw7rAwJ5W7qDLHWlby-HcHYAPVd6tVkbz1y1u0TLPXYgckQCFGF-TGX0Zm502ehrvngE4Q58OWy5Hl7vsJxDdjhNyRiwmfpiXFch8iezbbTayp3mOiUbhsp_ECtsVGodOr4Ptwsv5Kgz3qIwG1arJX04-LTQtfjgmUh2DXSK86-UPZSACfvdAmz6RWTPyWBmfXs5nEaRl2sN0oPtSimUJv70KF-jTbRxlkHkFyvb0Oeka2M1CicKRYAjyhGMFGk_8QN7eiLeO6bmagM1tnqGrv7KUh1VEHz7qCS2JG-BenzMEEqAWH31r7xc5thHLOWdpw2p4nmvUL2ZeKmAvovdR98ChLsguxjWRfvOhP6sVAs&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            }
+        ],
+        "source_keyword": "西雅图景点",
+        "description": "Suzzallo Library is the central library of the University of Washington in Seattle, and perhaps the most recognizable building on campus. It is named for Henry Suzzallo, who was president of the University of Washington until he stepped down in 1926, the same year the first phase of the library's construction was completed. The library was renamed for him after his death in 1933."
+    },
+    {
+        "status": "OK",
+        "query": "Paik's Noodle, Bellevue",
+        "place_id": "ChIJMxuYBvdtkFQRb_Vno_0QulE",
+        "name": "Paik's Noodle",
+        "formatted_address": "677 120th Ave NE, Bellevue, WA 98005, USA",
+        "geometry": {
+            "location": {
+                "lat": 47.6162172,
+                "lng": -122.1807079
+            }
+        },
+        "formatted_phone_number": "(425) 698-1370",
+        "rating": 4.3,
+        "url": "https://maps.google.com/?cid=5889038144294614383",
+        "website": "https://eatpaiks.com/",
+        "weekday_text": [
+            "Monday: 11:00 AM – 2:30 PM, 4:30 – 9:00 PM",
+            "Tuesday: Closed",
+            "Wednesday: 11:00 AM – 2:30 PM, 4:30 – 9:00 PM",
+            "Thursday: 11:00 AM – 2:30 PM, 4:30 – 9:00 PM",
+            "Friday: 11:00 AM – 2:30 PM, 4:30 – 9:00 PM",
+            "Saturday: 11:00 AM – 2:30 PM, 4:30 – 9:00 PM",
+            "Sunday: 11:00 AM – 2:30 PM, 4:30 – 9:00 PM"
+        ],
+        "photos": [
+            {
+                "height": 3024,
+                "width": 4032,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ3SI1xBOtlITcfxzkyikj3Px8QI5DC-KLx417rRFrpaeGebbTas8I2rJL8Fngw34t1EZS5cp72z3VCQW9-R3tWxyNHU5Gea8RNvma6x8sHXokBgorlr613PR4vkQiePfc8naqEaVqgAcXgCppteIrJm6zbVxzwSYQs0n_rtKlK4byqWzVdftz3Z_NaK8IoF-n-WCulcOTErPBkgQSBREzdy-VsTqF07x5aa2nkwk1qOSDBq5zL3Y_sorhQwPLmKOxLdNiN8zw3pIfPtpCWbAwFh_Rl_AnFqOtlkeS3NqEwk6ZkRuGqAK_ZxWiVp069fxfArQMYS2Uk&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            },
+            {
+                "height": 726,
+                "width": 1290,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ1mvdRHDgtvNkZuWAg7MX5ASb85d_5Hpun1NSMIH56hARPOF9kTNiD6_9Ht9HoHOyKCh_dLAUtyBwctgN6V1DW2DGp1sn2tnSm3j4KMEU1SuRvA0yMZTDmbVNoxVOwSGbltcx8Yl6hMCqwNV3f2i9sgjZr7s5RwZfgpCZOVP6rMqL8Wl59WIeMxDsA5jAJGf-aqXAjZKL64E5WQsTXMxyc3hJOg9vp-4AkMi6wpL-BI7mifaPlHsJsh8c-rnQgKCS0-rJLxQYiLMmSbfQ4Dfbt-1xNfSrUBMjckQaBlzixhgTFZ6k3EZU4LiHi4TU4ag6XCnDua81k&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            },
+            {
+                "height": 3024,
+                "width": 4032,
+                "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AUy1YQ39Y76bW6Ce9T5J-zlFCHQAeULUHUr89vrfFxDouNrWpzF5pR62CrnY7fsCGHYJ9R69NLUyF5mjNkjYWfzPsPXP2jX402Eu9BVbNmxc1qYatuzLE1_wbqnqq6x1EkYXq1HnVjgjWieqny1nOC_pW7RJEM9GRpw-9H5mEDe0HgOtaqj63vPSNqK5a24KqJ4b0Gssp0PKcGjSgp4wg-oKRbHdYcDWDmaez9R256_yWzBa9lYQKlNEBzFNJ2-eEG-Q9aLQpTR6_u35zFXlLC_v2eZjEyojkIF6lvk1H1suIViChhVosuoVDyiqFVpivgT23Epstegeo1U&key=AIzaSyD4K_0sPAIWmIE8jandYAlaNqMSTu9jAOY"
+            }
+        ],
+        "source_keyword": "西雅图美食",
+        "description": ""
+    }
+]
