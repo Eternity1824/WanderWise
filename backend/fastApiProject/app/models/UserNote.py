@@ -3,8 +3,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
-from config import get_settings
-from models.PlacePost import Base, get_db
+from app.config import get_settings
+from app.models.PlacePost import Base, get_db
 
 class UserNote(Base):
     __tablename__ = "user_notes"

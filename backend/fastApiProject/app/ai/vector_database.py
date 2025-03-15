@@ -71,7 +71,7 @@ class VectorDatabase:
         """
         Save the index to disk.
         """
-        faiss.write_index(self.index, self.database_path)
+        faiss.write_index(self.index, self.index_path)
         open(self.meta_path, "w").write(json.dumps(self.meta, indent=2))
         print(f"Index saved to {self.database_path}")
     

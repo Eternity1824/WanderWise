@@ -39,8 +39,19 @@ print(imageDB.search(image_features[search_idx:search_idx+1]))
 
 # test loading
 
-# contentDB = VectorDatabase("content.db")
-# imageDB = VectorDatabase("image.db")
+contentDB = VectorDatabase(database_path="content.db")
+imageDB = VectorDatabase(database_path="image.db")
 
-# contentDB.search()
 
+# from app.models.clip_image_encoder import CLIPImageEncoder
+
+# from app.ai.clustering.utils import load_image_from_file
+
+# image_file_path = "../../../images/images/669213cb0000000025002493/0.jpg"
+
+# clip_encoder = CLIPImageEncoder()
+# a = clip_encoder.inference([load_image_from_file(image_file_path)])
+
+# import numpy as np
+
+# np.save('array.npy', a)

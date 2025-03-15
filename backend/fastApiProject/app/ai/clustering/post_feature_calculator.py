@@ -86,10 +86,8 @@ class PostFeatureCalculator:
         post_image_features = []
         for i in range(len(posts)):
             # Get features of all images belonging to post i
-            import pdb
-            pdb.set_trace()
             post_i_features = image_embeddings[post_image_indices == i]
-            if not post_i_features:
+            if len(post_i_features) == 0:
                 post_image_features.append(np.zeros(image_embeddings.shape[1]))
             else:
                 # Max pooling across images (dim=0)
@@ -97,7 +95,7 @@ class PostFeatureCalculator:
                 post_image_features.append(post_i_max_pooled)
 
         # 3. return result
-        return post_image_features
+        return np.array(post_image_features)
 
     @staticmethod
     def get_post_tag_embedding(posts: List[dict]):
