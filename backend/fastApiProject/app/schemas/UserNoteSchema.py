@@ -3,7 +3,7 @@ from typing import Optional
 
 class UserNoteBase(BaseModel):
     user_id: str
-    post_count: int
+    post_count: int  # Represents the count of posts favorited by the user
 
 class UserNoteCreate(UserNoteBase):
     pass

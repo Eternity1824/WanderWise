@@ -5,7 +5,7 @@ from models.PlacePost import get_db
 from core.MySqlCore import MySqlCore
 
 class UserNoteService:
-    """Handles operations for user notes tracking"""
+    """Handles operations for tracking user favorite post counts"""
 
     def __init__(self, db: Session = next(get_db())):
         """
@@ -25,9 +25,9 @@ class UserNoteService:
         """
         return self.mysql_core.clear_table()
     
-    def add_or_update_user_note_count(self, user_id: str, count: int = 1) -> Optional[UserNote]:
+    def increment_favorite_count(self, user_id: str, count: int = 1) -> Optional[UserNote]:
         """
-        Add a new user note record or update the count if it exists
+        Increment the favorite post count for a user
         
         Args:
             user_id: User ID
@@ -53,15 +53,37 @@ class UserNoteService:
             }
             return self.mysql_core.add(item_data)
     
-    def get_user_note_count(self, user_id: str) -> int:
+    def decrement_favorite_count(self, user_id: str, count: int = 1) -> Optional[UserNote]:
         """
-        Get the post count for a specific user
+        Decrement the favorite post count for a user
+        
+        Args:
+            user_id: User ID
+            count: Number to decrement the post_count by, default 1
+            
+        Returns:
+            Optional[UserNote]: Updated record, None if failed
+        """
+        existing_records = self.mysql_core.get_by_filter(user_id=user_id)
+        
+        if existing_records:
+            existing_record = existing_records[0]
+            # Ensure count doesn't go below 0
+            existing_record.post_count = max(0, existing_record.post_count - count)
+            self.mysql_core.db.commit()
+            return existing_record
+        
+        return None
+    
+    def get_favorite_count(self, user_id: str) -> int:
+        """
+        Get the number of posts favorited by a user
         
         Args:
             user_id: User ID
             
         Returns:
-            int: Post count for the user, 0 if user not found
+            int: Favorite post count for the user, 0 if user not found
         """
         records = self.mysql_core.get_by_filter(user_id=user_id)
         if records:

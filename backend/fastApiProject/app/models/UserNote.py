@@ -10,4 +10,4 @@ class UserNote(Base):
     __tablename__ = "user_notes"
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(String(50), index=True)
-    post_count = Column(Integer, default=0)
+    post_count = Column(Integer, default=0)  # Tracks the count of posts favorited by the user
