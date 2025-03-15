@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Path
 from models.PlacePost import Base, engine
+from models.UserNote import UserNote  # Import the UserNote model so it's registered with Base
 from external.DeepSeek import deepseekapi
 from external.GoogleMap import geocode_finder
 from core.RoutePlanner import RoutePlanner
@@ -8,6 +9,11 @@ from core import process_data
 from services.PlaceService import place_service
 from services.PostService import post_service
 from services.PlacePostService import place_post_service
+from services.UserNoteService import user_note_service
+from schemas.UserNoteSchema import UserNote as UserNoteSchema, UserNoteCreate
+
+# Create all tables at import time
+Base.metadata.create_all(bind=engine)
 
 router = APIRouter()
 
@@ -158,3 +164,37 @@ async def import_place_post(
     print("数据库表已创建")
     res = place_post_service.import_mappings_from_json(path, clear)
     return {"result": res}
+
+# User Note endpoints
+@router.get("/user/{user_id}/notes/count", response_model=int, tags=["user notes"])
+async def get_user_note_count(user_id: str = Path(..., description="User ID")):
+    """
+    Get the count of posts collected by a user
+    """
+    return user_note_service.get_user_note_count(user_id)
+
+@router.post("/user/{user_id}/notes/add", response_model=UserNoteSchema, tags=["user notes"])
+async def add_user_note(
+    user_id: str = Path(..., description="User ID"),
+    count: int = Query(1, description="Number to increment the count by")
+):
+    """
+    Add or update a user's post count
+    """
+    return user_note_service.add_or_update_user_note_count(user_id, count)
+
+@router.get("/users/notes", response_model=list[UserNoteSchema], tags=["user notes"])
+async def get_all_user_notes():
+    """
+    Get all user note records
+    """
+    return user_note_service.get_all_user_notes()
+
+@router.get("/user/notes/init", tags=["user notes"])
+async def init_user_notes_table():
+    """
+    Initialize the user_notes table (clear and recreate)
+    """
+    Base.metadata.create_all(bind=engine)
+    user_note_service.clear_database()
+    return {"message": "User notes table initialized"}
