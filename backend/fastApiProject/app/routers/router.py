@@ -8,7 +8,7 @@ from core import process_data
 from services.PlaceService import place_service
 from services.PostService import post_service
 from services.PlacePostService import place_post_service
-
+from external.WikipediaFinder import wikipedia_finder
 router = APIRouter()
 
 
@@ -97,8 +97,6 @@ async def searchByKeyword(keyword: str = Query(None, description="search content
 
 @router.get("/data/process", tags=["data clean"])
 async def dataClean():
-
-
     # 创建所有定义的表
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(bind=engine)
