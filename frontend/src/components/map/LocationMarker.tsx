@@ -61,12 +61,22 @@ const LocationMarker: React.FC<LocationMarkerProps> = ({ location, isSelected })
         url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
         scaledSize: new window.google.maps.Size(40, 40),
       };
+    } else if (location.category === 'place') {
+      // 为place类别使用绿色圆点
+      return {
+        path: window.google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+        fillColor: '#00b300', // 深绿色
+        fillOpacity: 1,
+        strokeColor: '#ffffff', // 白色边框
+        strokeWeight: 2,
+      };
     } else if (location.category === 'post') {
       // 为post类别使用更小的绿色圆点
       return {
         path: window.google.maps.SymbolPath.CIRCLE,
         scale: 8,
-        fillColor: '#00b300', // 深绿色
+        fillColor: '#4CAF50', // 浅绿色
         fillOpacity: 1,
         strokeColor: '#ffffff', // 白色边框
         strokeWeight: 2,
@@ -118,15 +128,15 @@ const LocationMarker: React.FC<LocationMarkerProps> = ({ location, isSelected })
 
   // 获取动画设置
   const getAnimation = () => {
-    return location.category === 'route' 
+    return location.category === 'route' || location.category === 'place'
       ? window.google.maps.Animation.DROP 
       : undefined;
   };
 
   // 渲染地点卡片或帖子信息
   const renderInfoContent = () => {
-    // 如果是route类别的地点，显示地点卡片
-    if (location.category === 'route') {
+    // 如果是route或place类别的地点，显示地点卡片
+    if (location.category === 'route' || location.category === 'place') {
       return (
         <LocationCard 
           location={location} 

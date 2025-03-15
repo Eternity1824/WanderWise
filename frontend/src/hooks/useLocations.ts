@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocationContext } from '../context/LocationContext';
 import { locationService } from '../services/api';
-import { Location, MapSettings, ApiResponse, ApiRouteItem, ApiPost, ApiPostLocation, PostInfo, PathPoint, ApiPhoto } from '../types';
+import { Location, MapSettings, ApiResponse, ApiRouteItem, ApiPost, ApiPostLocation, PostInfo, PathPoint, ApiPhoto, ApiPlace } from '../types';
 
 export const useLocations = () => {
   const { 
@@ -153,6 +153,51 @@ export const useLocations = () => {
               openingHours: openingHours
             });
           }
+        });
+      }
+      
+      // 处理places数组（周边推荐的地点）
+      if (apiResponse.places && Array.isArray(apiResponse.places)) {
+        console.log('Processing places data:', apiResponse.places);
+        apiResponse.places.forEach((placeItem: ApiPlace) => {
+          const place = placeItem.place;
+          if (!place || !place.place_id) return;
+          
+          const locationId = place.place_id;
+          
+          // 如果这个地点已经存在，不重复添加
+          if (locationMap.has(locationId)) {
+            return;
+          }
+          
+          // 提取照片URL
+          const photoUrls = extractPhotoUrls(place.photos);
+          
+          // 解析营业时间
+          const openingHours = parseWeekdayText(place.weekday_text);
+          
+          // 获取位置坐标
+          const position = {
+            lat: place.geometry?.location?.lat || place.location?.lat || 0,
+            lng: place.geometry?.location?.lng || place.location?.lon || 0,
+          };
+          
+          // 创建新的地点
+          locationMap.set(locationId, {
+            id: locationId,
+            name: place.name || '未命名地点',
+            position: position,
+            description: '',
+            address: place.formatted_address || '',
+            category: 'place', // 使用'place'类别区分周边推荐地点
+            rating: place.rating || 0,
+            postInfos: [], // 初始化空数组
+            // 添加新字段
+            photos: photoUrls,
+            phone: place.formatted_phone_number,
+            website: place.website,
+            openingHours: openingHours
+          });
         });
       }
       

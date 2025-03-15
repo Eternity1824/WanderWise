@@ -6,9 +6,9 @@ export interface Location {
     lat: number;
     lng: number;
   };
-  description?: string;
-  address?: string;
-  category?: string;
+  description: string;
+  address: string;
+  category: 'route' | 'post' | 'place'; // 添加 'place' 类别
   rating?: number;
   postInfos?: PostInfo[];
   photos?: string[];  // 图片URL数组
@@ -62,8 +62,9 @@ export interface MapSettings {
 // API Response types
 export interface ApiResponse {
   route?: ApiRouteItem[];
-  points?: PathPoint[];
   posts?: ApiPost[];
+  points?: PathPoint[];
+  places?: ApiPlace[];
   posts_length?: number;
   mode?: string;
 }
@@ -120,4 +121,33 @@ export interface PostInfo {
   desc?: string;
   score?: number;
   _score?: number;
+}
+
+// API Place 类型
+export interface ApiPlace {
+  place: {
+    status: string;
+    query: string;
+    place_id: string;
+    name: string;
+    formatted_address: string;
+    formatted_phone_number?: string;
+    rating?: number;
+    url?: string;
+    website?: string;
+    weekday_text?: string[];
+    geometry: {
+      location: {
+        lat: number;
+        lng: number;
+      }
+    };
+    photos?: ApiPhoto[];
+    location?: {
+      lat: number;
+      lon: number;
+    };
+    _score?: number | null;
+  };
+  notes?: ApiPost[]; // 注意可能包含相关的笔记
 } 
