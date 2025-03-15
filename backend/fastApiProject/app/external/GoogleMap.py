@@ -500,7 +500,6 @@ def main():
     from dotenv import load_dotenv
     import json
 
-
     # 测试通过地点名称获取详细信息
     place_name = "桂, 西雅图"
     print(f"\n通过地点名称获取详细信息 ({place_name}):")
