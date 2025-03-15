@@ -62,16 +62,13 @@ async def searchByAiRecommend(content: str = Query(None, description="search con
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
         #找到相关的places
-        restaurants = place_service.search_places_mixed(latitude, longitude,srouce_keyword="西雅图美食")
-        views1 = place_service.search_places_views(latitude, longitude, distance= "15km", source_keyword="西雅图景点")
-        views2 = place_service.search_places_views(latitude, longitude, distance="15km", source_keyword="西雅图景点")
+        restaurants = place_service.search_places_mixed(latitude, longitude,source_keyword="美食",size = 10)
+        views = place_service.search_places_mixed(latitude, longitude, distance= "10km", source_keyword="景点", size = 10)
         places = []
         if restaurants["total"] > 0:
-            places.extend(restaurants["resultes"])
-        if views1["total"] > 0:
-            places.extend(views1["resultes"])
-        if views2["total"] > 0:
-            places.extend(views2["resultes"])
+            places.extend(restaurants["results"])
+        if views["total"] > 0:
+            places.extend(views["results"])
         for place in places:
             if place["status"] == 'OK':
                 place_id = place["place_id"]
@@ -152,11 +149,22 @@ async def esInit(post_path: str = Query("data/processed_search_contents.json", d
     place_service.import_places_from_json(place_path)
     return [{"message": "ok"}]
 
-@router.get("/export/place", tags=["export place"])
-async def exportPlace(path: str = Query("data/place_es_data_example.json", description="search content")):
-    res = place_service.export_places_to_json(path)
-    return [{"result":res}]
+@router.get("/export/es/data", tags=["export data"])
+async def export_es_data(
+        place_path: str = Query("data/place_es_data.json", description="Path to save place data"),
+        post_path: str = Query("data/post_es_data.json", description="Path to save post data")
+):
+    # 导出地点数据
+    place_result = place_service.export_places_to_json(place_path)
 
+    # 导出帖子数据
+    post_result = post_service.export_posts_to_json(post_path)
+
+    # 返回两个操作的结果
+    return {
+        "place_export": place_result,
+        "post_export": post_result
+    }
 @router.get("/export/place_post", tags=["export place_post"])
 async def export_place_post(path: str = Query("data/place_post_mysql_data.json", description="导出文件路径")):
     """

@@ -1,6 +1,7 @@
 from external.DeepSeek import deepseekapi
 from external.GoogleMap import geocode_finder
 from external.WikipediaFinder import wikipedia_finder
+from services import post_service
 from services.PlacePostService import place_post_service
 from services.PlaceService import place_service
 import json
@@ -58,7 +59,7 @@ def process_data(posts_data, save_interval=50):
             enriched_post["score"] = score_info.get("score", 0)
 
             valid_posts.append(enriched_post)
-
+            post_service.add_post(enriched_post)
         i += 1
 
         # 每处理save_interval条帖子保存一次

@@ -501,7 +501,7 @@ def main():
     import json
 
     # 测试通过地点名称获取详细信息
-    place_name = "桂, 西雅图"
+    place_name = "西雅图美食"
     print(f"\n通过地点名称获取详细信息 ({place_name}):")
     place_details = geocode_finder.get_place_detail(place_name)
 

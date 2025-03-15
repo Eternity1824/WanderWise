@@ -386,7 +386,7 @@ class PlaceService:
         # 添加source_keyword条件（如果提供）
         if source_keyword is not None:
             keyword_query = {
-                "term": {
+                "match": {
                     "source_keyword": source_keyword
                 }
             }
@@ -433,6 +433,8 @@ class PlaceService:
                 }
             ]
 
-        return es_core.search(self.place_index_name, query)
+        result = es_core.search(self.place_index_name, query)
+
+        return result
 # 创建单例实例
 place_service = PlaceService()
