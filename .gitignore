@@ -29,3 +29,5 @@ logs/
 
 backend/fastApiProject/app/images/*
 !backend/fastApiProject/app/images/.gitkeep
+
+**/__pycache__
