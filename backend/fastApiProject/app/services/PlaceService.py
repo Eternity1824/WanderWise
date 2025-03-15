@@ -21,7 +21,7 @@ class PlaceService:
                     "place_id": {"type": "keyword", "index": "true"},
                     "name": {"type": "text", "analyzer": "ik_max_word", "search_analyzer": "ik_smart"},
                     "location": {"type": "geo_point"},
-                    "source_keyword":{"type": "keyword"},
+                    "place_type":{"type": "keyword"},
                 }
             },
             "settings": {
@@ -346,7 +346,7 @@ class PlaceService:
                     pass
 
     def search_places_mixed(self, lat: float = None, lng: float = None, distance: str = "1km",
-                            source_keyword: str = None, name: str = None,
+                            placeType: str = None, name: str = None,
                             size: int = 10, from_: int = 0) -> Dict[str, Any]:
         """
         混合查询地点，支持可选组合条件
@@ -355,7 +355,7 @@ class PlaceService:
             lat: 可选，纬度
             lng: 可选，经度
             distance: 搜索半径，默认1km
-            source_keyword: 可选，来源关键词
+            placeType: 可选，来源关键词
             name: 可选，地点名称关键词
             size: 返回结果数量
             from_: 分页起始位置
@@ -383,12 +383,10 @@ class PlaceService:
             }
             bool_query["bool"]["must"].append(geo_query)
 
-        # 添加source_keyword条件（如果提供）
-        if source_keyword is not None:
+        if placeType is not None:
             keyword_query = {
-                "match": {
-                    "source_keyword": source_keyword
-                }
+                "term": {
+                    "place_type": placeType                }
             }
             bool_query["bool"]["must"].append(keyword_query)
 

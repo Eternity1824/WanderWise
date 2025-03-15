@@ -18,7 +18,6 @@ Base.metadata.create_all(bind=engine)
 
 router = APIRouter()
 
-
 @router.get("/search/ai-recommend", tags=["search ai"])
 async def searchByAiRecommend(content: str = Query(None, description="search content"),
                  mode: str = Query("driving", description="交通方式", enum=["driving", "walking", "bicycling", "transit"])):
@@ -114,7 +113,7 @@ async def dataClean():
     Base.metadata.create_all(bind=engine)
     print("数据库表已创建")
     try:
-        with open('data/search_contents_2025-03-11.json', 'r', encoding='utf-8') as f:
+        with open('data/post.json', 'r', encoding='utf-8') as f:
             posts_data = json.load(f)
     except Exception as e:
         print(f"加载数据失败: {str(e)}")
