@@ -1,0 +1,46 @@
+import sys
+
+sys.path.append('.')  # 确保可以找到app模块
+
+import glob
+from app.ai.clustering.post_feature_calculator import PostFeatureCalculator
+from app.ai.vector_database import VectorDatabase
+import time
+
+import json
+
+posts = json.loads(open("../../../search_contents_2025-03-11.json", "r").read())
+
+image_base_dir = "../../../images/images"
+
+for post in posts:
+    note_id = post['note_id']
+    post['image_list'] = ','.join(list(glob.glob(image_base_dir + "/" + note_id + "/*.jpg")))
+
+timestamp = time.time()
+content_features = PostFeatureCalculator.get_post_content_embedding(posts)
+print("content embedding: ", time.time() - timestamp)
+image_features = PostFeatureCalculator.get_post_image_embedding(posts)
+print("image embedding: ", time.time() - timestamp)
+
+post_ids = [post['note_id'] for post in posts]
+contentDB = VectorDatabase(content_features.shape[1], "content.db")
+contentDB.add(post_ids, content_features)
+contentDB.save()
+imageDB = VectorDatabase(content_features.shape[1], "image.db")
+imageDB.add(post_ids, image_features)
+imageDB.save()
+
+search_idx = 20
+print(posts[20]['desc'])
+
+print(contentDB.search(content_features[search_idx:search_idx+1]))
+print(imageDB.search(image_features[search_idx:search_idx+1]))
+
+# test loading
+
+# contentDB = VectorDatabase("content.db")
+# imageDB = VectorDatabase("image.db")
+
+# contentDB.search()
+

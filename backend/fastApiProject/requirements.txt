@@ -1,0 +1,6 @@
+sentence_transformers
+faiss-cpu  # faiss-gpu optional
+numpy
+pillow
+onnxruntime  # onnxruntime-gpu optional
+
