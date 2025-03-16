@@ -1,9 +1,9 @@
 import re
 from typing import List
-from app.models.text_2_vec import Text2Vec
-from app.models.clip_image_encoder import CLIPImageEncoder
+from models.text_2_vec import Text2Vec
+from models.clip_image_encoder import CLIPImageEncoder
 import numpy as np
-from app.ai.clustering.utils import load_image_from_file, load_image_from_url
+from ai.clustering.utils import load_image_from_file, load_image_from_url
 from tqdm import tqdm
 from multiprocessing import Pool
 

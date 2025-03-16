@@ -3,9 +3,12 @@ import re
 from typing import List, Dict, Any, Optional, Tuple
 from openai import OpenAI
 
-api_key = "lm-studio"
-base_url = "http://10.242.195.117:1234/v1"
-model = "llama-3.2-3b-instruct"
+api_key = "BCR05T3-KCJM8W8-NQN65AH-Y10RNG2"
+base_url = "http://10.245.216.225:3001/api/v1/"
+
+
+
+model = "QualcommAI"
 class DeepSeekAPI:
     """DeepSeek API 服务封装"""
 

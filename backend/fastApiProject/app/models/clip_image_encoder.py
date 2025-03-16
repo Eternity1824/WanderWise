@@ -1,5 +1,5 @@
 import torch
-from app.models.singleton_meta import SingletonMeta
+from models.singleton_meta import SingletonMeta
 import onnxruntime as ort
 import numpy as np
 

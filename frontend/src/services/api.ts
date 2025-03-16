@@ -48,7 +48,7 @@ export const locationService = {
     try {
       console.log('Sending request to:', `${api.defaults.baseURL}/search?content=${encodeURIComponent(query)}`);
       
-      const response = await api.get('/search/recommend', {
+      const response = await api.get('/search/ai-recommend', {
         params: { content: query },
       });
       

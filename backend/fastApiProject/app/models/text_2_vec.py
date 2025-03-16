@@ -1,6 +1,6 @@
 import torch
 from transformers import BertForSequenceClassification, BertTokenizer
-from app.models.singleton_meta import SingletonMeta
+from models.singleton_meta import SingletonMeta
 
 """
 Direct Pytorch inference

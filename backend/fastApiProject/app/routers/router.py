@@ -1,7 +1,6 @@
 from http.client import HTTPException
 
 from fastapi import APIRouter, Query, Path
-from sipbuild.generator.parser.tokens import keywords
 
 from models.PlacePost import Base, engine
 from external.DeepSeek import deepseekapi
@@ -19,6 +18,7 @@ async def searchByRecommend(content: str = Query(None, description="search conte
                  mode: str = Query("driving", description="交通方式", enum=["driving", "walking", "bicycling", "transit"]),
                             userId: str = Query("0001", description="user id")):
     #根据userId拿到userfector
+    print("1")
     keywords = []
     place_ids = set()
     while keywords == []:
@@ -62,7 +62,7 @@ async def searchByRecommend(content: str = Query(None, description="search conte
                     }
         location_coordinates.append(location_info)
     planner = RoutePlanner(location_coordinates)
-    southwest_route = planner.plan_route('southwest')
+    southwest_route = planner.plan_route('southeast')
     print(southwest_route)
     route_detail = geocode_finder.get_route_details(southwest_route, mode)
     print(route_detail)
@@ -73,8 +73,8 @@ async def searchByRecommend(content: str = Query(None, description="search conte
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
         # 找到相关的places
-        restaurants = place_service.search_places_mixed(latitude, longitude, distance="1km", placeType="food_place", size=5)
-        views = place_service.search_places_mixed(latitude, longitude, distance="10km", placeType="view", size=5)
+        restaurants = place_service.search_places_mixed(latitude, longitude, distance="3km", placeType="food_place", size=10)
+        views = place_service.search_places_mixed(latitude, longitude, distance="10km", placeType="view", size=10)
         places = []
         if restaurants["total"] > 0:
             places.extend(restaurants["results"])
