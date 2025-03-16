@@ -47,10 +47,19 @@ async def searchByRecommend(content: str = Query(None, description="search conte
             latitude = geocode_result["geometry"]["location"]["lat"]
             longitude = geocode_result["geometry"]["location"]["lng"]
             if latitude and longitude:
-                location_info = {
-                    'latitude': latitude,
-                    'longitude': longitude,
-                }
+                if latitude and longitude:
+                    location_info = {
+                        'name': geocode_result.get("name", ""),
+                        'latitude': latitude,
+                        'longitude': longitude,
+                        'formatted_address': geocode_result.get("formatted_address", ""),
+                        'formatted_phone_number': geocode_result.get("formatted_phone_number", ""),
+                        'rating': geocode_result.get("rating", 0),
+                        'url': geocode_result.get("url", ""),
+                        'website': geocode_result.get("website", ""),
+                        'weekday_text': geocode_result.get("weekday_text", []),
+                        'photos': geocode_result.get("photos", [])
+                    }
         location_coordinates.append(location_info)
     planner = RoutePlanner(location_coordinates)
     southwest_route = planner.plan_route('southwest')
