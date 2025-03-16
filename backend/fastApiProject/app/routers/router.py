@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Query, Path
 from models.PlacePost import Base, engine
-from models.UserNote import UserNote
 from external.DeepSeek import deepseekapi
 from external.GoogleMap import geocode_finder
 from core.RoutePlanner import RoutePlanner
@@ -61,8 +60,8 @@ async def searchByAiRecommend(content: str = Query(None, description="search con
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
         #找到相关的places
-        restaurants = place_service.search_places_mixed(latitude, longitude,source_keyword="美食",size = 10)
-        views = place_service.search_places_mixed(latitude, longitude, distance= "10km", source_keyword="景点", size = 10)
+        restaurants = place_service.search_places_mixed(latitude, longitude,distance= "100km", placeType ="food_place",size = 10)
+        views = place_service.search_places_mixed(latitude, longitude, distance= "100km", placeType="view", size = 10)
         places = []
         if restaurants["total"] > 0:
             places.extend(restaurants["results"])
@@ -109,11 +108,11 @@ async def searchByKeyword(keyword: str = Query(None, description="search content
 @router.get("/data/process", tags=["data clean"])
 async def dataClean():
     # 创建所有定义的表
-    Base.metadata.drop_all(engine)
+    #Base.metadata.drop_all(engine)
     Base.metadata.create_all(bind=engine)
     print("数据库表已创建")
     try:
-        with open('data/post.json', 'r', encoding='utf-8') as f:
+        with open('data/merged_posts.json', 'r', encoding='utf-8') as f:
             posts_data = json.load(f)
     except Exception as e:
         print(f"加载数据失败: {str(e)}")
@@ -186,36 +185,3 @@ async def import_place_post(
     res = place_post_service.import_mappings_from_json(path, clear)
     return {"result": res}
 
-# User Note endpoints
-@router.get("/user/{user_id}/notes/count", response_model=int, tags=["user notes"])
-async def get_user_note_count(user_id: str = Path(..., description="User ID")):
-    """
-    Get the count of posts collected by a user
-    """
-    return user_note_service.get_user_note_count(user_id)
-
-@router.post("/user/{user_id}/notes/add", response_model=UserNoteSchema, tags=["user notes"])
-async def add_user_note(
-    user_id: str = Path(..., description="User ID"),
-    count: int = Query(1, description="Number to increment the count by")
-):
-    """
-    Add or update a user's post count
-    """
-    return user_note_service.add_or_update_user_note_count(user_id, count)
-
-@router.get("/users/notes", response_model=list[UserNoteSchema], tags=["user notes"])
-async def get_all_user_notes():
-    """
-    Get all user note records
-    """
-    return user_note_service.get_all_user_notes()
-
-@router.get("/user/notes/init", tags=["user notes"])
-async def init_user_notes_table():
-    """
-    Initialize the user_notes table (clear and recreate)
-    """
-    Base.metadata.create_all(bind=engine)
-    user_note_service.clear_database()
-    return {"message": "User notes table initialized"}
