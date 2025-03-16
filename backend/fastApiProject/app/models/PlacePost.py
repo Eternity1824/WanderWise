@@ -29,13 +29,5 @@ def get_db():
 class PlacePost(Base):
     __tablename__ = "place_notes"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    place_id = Column(String(200), ForeignKey("places.place_id"), index=True)
-    note_id = Column(String(50), ForeignKey("posts.note_id"), index=True)
-    
-    # Relationships
-    place = relationship("Place", back_populates="posts")
-    post = relationship("Post", back_populates="places")
-    
-    __table_args__ = (
-        UniqueConstraint('place_id', 'note_id', name='uix_place_note'),
-    )
+    place_id = Column(String(200), index=True)
+    note_id = Column(String(50), index=True)

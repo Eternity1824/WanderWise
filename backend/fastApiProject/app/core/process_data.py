@@ -1,7 +1,7 @@
 from external.DeepSeek import deepseekapi
 from external.GoogleMap import geocode_finder
 from external.WikipediaFinder import wikipedia_finder
-from services import post_service
+from services.PostService import post_service
 from services.PlacePostService import place_post_service
 from services.PlaceService import place_service
 import json

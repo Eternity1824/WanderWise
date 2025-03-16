@@ -1,33 +1,30 @@
-from fastapi import APIRouter, Query, Path, Depends, HTTPException, status
-from sqlalchemy.orm import Session
-from typing import List
-from models.PlacePost import Base, engine, get_db
-from models.UserNote import UserNote  # Import the UserNote model so it's registered with Base
-from models.UserPlaceFavorites import UserPlaceFavorites  # Import the new model
+from fastapi import APIRouter, Query, Path
+from models.PlacePost import Base, engine
 from external.DeepSeek import deepseekapi
 from external.GoogleMap import geocode_finder
 from core.RoutePlanner import RoutePlanner
 import json
-from datetime import datetime
 from core import process_data
 from services.PlaceService import place_service
 from services.PostService import post_service
 from services.PlacePostService import place_post_service
-from services.UserNoteService import user_note_service
-from services.UserPlaceFavoritesService import user_place_favorites_service
-from schemas.UserNoteSchema import UserNote as UserNoteSchema, UserNoteCreate
-from schemas.UserPlaceFavoritesSchema import UserPlaceFavoriteCreate, UserPlaceFavoriteResponse, UserPlaceFavoriteCount
-
-# Create all tables at import time
-Base.metadata.create_all(bind=engine)
+from ai.clustering.Recommend import findKClosestPlaces, findKClosestPosts
 
 router = APIRouter()
+@router.get("/search/recommend", tags=["search ai"])
+async def searchByRecommend(content: str = Query(None, description="search content"),
+                 mode: str = Query("driving", description="交通方式", enum=["driving", "walking", "bicycling", "transit"]),
+                            user: str = Query("0001", description="user id")):
+    #根据userId拿到userfector
+
+
+
+    return [{"message":"hi"}]
+
 
 @router.get("/search/ai-recommend", tags=["search ai"])
 async def searchByAiRecommend(content: str = Query(None, description="search content"),
                  mode: str = Query("driving", description="交通方式", enum=["driving", "walking", "bicycling", "transit"])):
-    # 传递内容到LLM获取地理点列表
-    print("正在请求deepseek接口")
     locations, keywords = deepseekapi.process_user_query(content)
     # 存储所有地点的经纬度信息
     location_coordinates = []
@@ -66,8 +63,8 @@ async def searchByAiRecommend(content: str = Query(None, description="search con
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
         #找到相关的places
-        restaurants = place_service.search_places_mixed(latitude, longitude,source_keyword="美食",size = 10)
-        views = place_service.search_places_mixed(latitude, longitude, distance= "10km", source_keyword="景点", size = 10)
+        restaurants = place_service.search_places_mixed(latitude, longitude,distance= "100km", placeType ="food_place",size = 10)
+        views = place_service.search_places_mixed(latitude, longitude, distance= "100km", placeType="view", size = 10)
         places = []
         if restaurants["total"] > 0:
             places.extend(restaurants["results"])
@@ -114,11 +111,11 @@ async def searchByKeyword(keyword: str = Query(None, description="search content
 @router.get("/data/process", tags=["data clean"])
 async def dataClean():
     # 创建所有定义的表
-    Base.metadata.drop_all(engine)
+    #Base.metadata.drop_all(engine)
     Base.metadata.create_all(bind=engine)
     print("数据库表已创建")
     try:
-        with open('data/post.json', 'r', encoding='utf-8') as f:
+        with open('data/merged_posts.json', 'r', encoding='utf-8') as f:
             posts_data = json.load(f)
     except Exception as e:
         print(f"加载数据失败: {str(e)}")
@@ -177,8 +174,6 @@ async def export_place_post(path: str = Query("data/place_post_mysql_data.json",
     res = place_post_service.export_mappings_to_json(path)
     return {"result": res}
 
-
-
 @router.get("/import/place_post", tags=["import place_post"])
 async def import_place_post(
     path: str = Query("data/place_post_mysql_data.json", description="导入文件路径"),
@@ -193,96 +188,3 @@ async def import_place_post(
     res = place_post_service.import_mappings_from_json(path, clear)
     return {"result": res}
 
-# User Note endpoints
-@router.get("/user/{user_id}/notes/count", response_model=int, tags=["user notes"])
-async def get_user_note_count(user_id: str = Path(..., description="User ID")):
-    """
-    Get the count of posts collected by a user
-    """
-    return user_note_service.get_user_note_count(user_id)
-
-@router.post("/user/{user_id}/notes/add", response_model=UserNoteSchema, tags=["user notes"])
-async def add_user_note(
-    user_id: str = Path(..., description="User ID"),
-    count: int = Query(1, description="Number to increment the count by")
-):
-    """
-    Add or update a user's post count
-    """
-    return user_note_service.add_or_update_user_note_count(user_id, count)
-
-@router.get("/users/notes", response_model=list[UserNoteSchema], tags=["user notes"])
-async def get_all_user_notes():
-    """
-    Get all user note records
-    """
-    return user_note_service.get_all_user_notes()
-
-@router.get("/user/notes/init", tags=["user notes"])
-async def init_user_notes_table():
-    """
-    Initialize the user_notes table (clear and recreate)
-    """
-    Base.metadata.create_all(bind=engine)
-    user_note_service.clear_database()
-    return {"message": "User notes table initialized"}
-
-# User Place Favorites endpoints
-@router.post("/user/{user_id}/place/{place_id}/favorite", response_model=UserPlaceFavoriteResponse, tags=["user place favorites"])
-async def add_place_favorite(
-    user_id: str = Path(..., description="User ID"),
-    place_id: str = Path(..., description="Place ID")
-):
-    """
-    Add a place to a user's favorites (can be favorited multiple times)
-    """
-    favorite = user_place_favorites_service.add_favorite(user_id, place_id)
-    if not favorite:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Failed to add favorite"
-        )
-    return favorite
-
-@router.get("/user/{user_id}/favorites", response_model=List[UserPlaceFavoriteResponse], tags=["user place favorites"])
-async def get_user_favorites(
-    user_id: str = Path(..., description="User ID")
-):
-    """
-    Get all places a user has favorited
-    """
-    return user_place_favorites_service.get_user_favorites(user_id)
-
-@router.get("/user/{user_id}/favorites/counts", response_model=List[UserPlaceFavoriteCount], tags=["user place favorites"])
-async def get_user_favorite_counts(
-    user_id: str = Path(..., description="User ID")
-):
-    """
-    Get count of how many times a user favorited each place
-    """
-    return user_place_favorites_service.get_user_favorite_counts(user_id)
-
-@router.get("/user/{user_id}/favorites/recent", response_model=List[UserPlaceFavoriteResponse], tags=["user place favorites"])
-async def get_user_recent_favorites(
-    user_id: str = Path(..., description="User ID"),
-    limit: int = Query(10, description="Maximum number of records to return")
-):
-    """
-    Get most recently favorited places by a user
-    """
-    return user_place_favorites_service.get_most_recently_favorited(user_id, limit)
-
-@router.delete("/user/favorites/{favorite_id}", tags=["user place favorites"])
-async def remove_favorite(
-    favorite_id: int = Path(..., description="Favorite ID to remove")
-):
-    """
-    Remove a specific favorite by ID
-    """
-    success = user_place_favorites_service.remove_favorite(favorite_id)
-    if not success:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Favorite not found or failed to remove"
-        )
-    return {"message": "Favorite removed successfully"}
