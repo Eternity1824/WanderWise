@@ -91,7 +91,7 @@ async def searchByRecommend(content: str = Query(None, description="search conte
                 note_ids = place_post_service.get_notes_by_place_id(place_id)
                 for note_id in note_ids:
                     note = post_service.get_post_by_id(note_id)
-                    if note:  # Make sure we got a valid note
+                    if note:
                         notes.append(note)
                 place_result["notes"] = notes
                 search_results.append(place_result)
