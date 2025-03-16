@@ -68,20 +68,27 @@ class PostFeatureCalculator:
             image_paths = post['image_list'].split(',')
             all_image_paths.extend(image_paths)
             post_image_indices.extend([idx] * len(image_paths))
-        images = batch_load_images(all_image_paths)
 
         # 2. batch inference
         # TODO: batchify
-        # def batchify(iterable, batch_size):
-        #     for i in range(0, len(iterable), batch_size):
-        #         yield iterable[i:i + batch_size]
+        def batchify(iterable, batch_size=200):
+            for i in range(0, len(iterable), batch_size):
+                yield iterable[i:i + batch_size]
         clip_image_encoder = CLIPImageEncoder()
         image_embeddings = []
-        for image in tqdm(images):
-            image_embeddings.append(clip_image_encoder.inference(image))
+        for image_batch in tqdm(batchify(all_image_paths)):
+            images = batch_load_images(image_batch)
+            for image in images:
+                image_embeddings.append(clip_image_encoder.inference(image))
 
         image_embeddings = np.array(image_embeddings)  # Shape: (num_images, feature_dim)
         post_image_indices = np.array(post_image_indices)  # Convert to NumPy array
+
+        # TODO: dump debug data
+        # import json
+        # np.save("/mnt/c/Users/qc_de/Documents/raw_image_embeddings.npy", image_embeddings)
+        # np.save("/mnt/c/Users/qc_de/Documents/image_indices.npy", post_image_indices)
+        # open("/mnt/c/Users/qc_de/Documents/note_ids.json", "w").write(json.dumps([post['note_id'] for post in posts]))
 
         # 3. max pooling over all images from the same post
         post_image_features = []
