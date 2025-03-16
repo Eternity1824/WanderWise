@@ -146,7 +146,7 @@ class PostService:
         base_query = {
             "multi_match": {
                 "query": keyword,
-                "fields": ["title^3", "desc^2", "tag_list", "source_keyword"]
+                "fields": ["title", "desc", "tag_list", "source_keyword"]
             }
         }
 

@@ -6,14 +6,12 @@ import { routeService } from '../../services/api';
 
 const NavigationPanel: React.FC = () => {
   const {
-    locations,
     selectedLocations,
     setSelectedLocations,
     sortDirection,
     setSortDirection,
     currentRoute,
     setCurrentRoute,
-    mapSettings,
     isLoading,
     setIsLoading,
     error,

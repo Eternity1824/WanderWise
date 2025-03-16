@@ -122,6 +122,8 @@ export interface PostInfo {
   desc?: string;
   score?: number;
   _score?: number;
+  coverImage?: string; // 封面图片URL
+  isCollected?: boolean; // 是否已收藏
 }
 
 // API Place 类型
@@ -179,4 +181,10 @@ export interface ApiPlaceNote {
   xsec_token: string;
   locations?: ApiPostLocation[];
   score: number;
+}
+
+// LocationMarker 组件的属性接口
+export interface LocationMarkerProps {
+  location: Location;
+  isSelected: boolean;
 } 

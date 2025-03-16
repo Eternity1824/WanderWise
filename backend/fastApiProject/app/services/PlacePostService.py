@@ -54,6 +54,9 @@ class PlacePostService:
         """
         mappings = self.mysql_core.get_by_filter(place_id=place_id)
         return [mapping.note_id for mapping in mappings]
+    def get_places_by_note_id(self, note_id: str) -> List[str]:
+        mappings = self.mysql_core.get_by_filter(note_id=note_id)
+        return [mapping.place_id for mapping in mappings]
 
     def get_mapping_by_id(self, mapping_id: int) -> Optional[PlacePost]:
         """

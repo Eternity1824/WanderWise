@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Location } from '../../types';
+import NoteCard from './NoteCard';
 import './LocationCard.css';
 
 interface LocationCardProps {
@@ -10,6 +11,15 @@ interface LocationCardProps {
 
 const LocationCard: React.FC<LocationCardProps> = ({ location, isCompact = false, onClose }) => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  
+  // 添加调试日志
+  useEffect(() => {
+    console.log('LocationCard rendered with:', {
+      location,
+      isCompact,
+      postInfos: location.postInfos
+    });
+  }, [location, isCompact]);
   
   // 获取当前星期几，用于显示今天的营业时间
   const today = new Date().getDay();
@@ -44,6 +54,10 @@ const LocationCard: React.FC<LocationCardProps> = ({ location, isCompact = false
   
   return (
     <div className={cardClassName} onClick={(e) => e.stopPropagation()}>
+      {onClose && (
+        <button className="close-button" onClick={onClose}>×</button>
+      )}
+      
       <div className="card-image-container">
         <img 
           src={currentPhotoUrl} 
@@ -93,22 +107,41 @@ const LocationCard: React.FC<LocationCardProps> = ({ location, isCompact = false
               
               {location.openingHours && (
                 <div className="card-hours">
-                  <strong>今日营业时间:</strong> {todayHours}
+                  <strong>opening hours:</strong> {todayHours}
                 </div>
               )}
               
               {location.phone && (
                 <div className="card-phone">
-                  <strong>电话:</strong> <a href={`tel:${location.phone}`}>{location.phone}</a>
+                  <strong>phone:</strong> <a href={`tel:${location.phone}`}>{location.phone}</a>
                 </div>
               )}
               
               {location.website && (
                 <div className="card-website">
-                  <strong>网站:</strong> <a href={location.website} target="_blank" rel="noopener noreferrer">访问网站</a>
+                  <strong>website:</strong> <a href={location.website} target="_blank" rel="noopener noreferrer">visit website</a>
                 </div>
               )}
             </div>
+            
+            {/* Related notes list */}
+            {location.postInfos && location.postInfos.length > 0 && (
+              <div className="location-notes">
+                <h4 className="notes-title">Related notes</h4>
+                <div className="notes-container">
+                  {location.postInfos.map(post => {
+                    console.log('Rendering note:', post);
+                    return (
+                      <NoteCard 
+                        key={post.note_id} 
+                        post={post} 
+                        onClick={() => console.log(`点击了笔记: ${post.note_id}`)}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>

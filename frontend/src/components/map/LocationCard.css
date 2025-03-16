@@ -195,7 +195,7 @@
 
 /* 详细模式卡片 */
 .location-card-detailed {
-  width: 300px;
+  width: 320px;
 }
 
 .location-card-detailed .card-image {
@@ -261,4 +261,86 @@
   .location-card-detailed .card-image {
     height: 160px;
   }
+}
+
+/* 相关笔记部分 */
+.location-notes {
+  margin-top: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.notes-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.notes-container {
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* 自定义滚动条 */
+.notes-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notes-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.notes-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.notes-container::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+/* 调整详细模式下的内容区域，确保有足够空间显示笔记列表 */
+.card-content:not(.mini) {
+  padding: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* 确保详细模式下的卡片高度不会过大 */
+.location-card-detailed .card-details {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* 调整详细模式下的图片容器高度 */
+.location-card-detailed .card-image-container {
+  height: 180px;
+}
+
+/* 调整详细模式下的图片高度 */
+.location-card-detailed .card-image {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* 确保笔记列表中的滚动条样式与 NoteCard.css 中的一致 */
+.location-card-detailed .card-details::-webkit-scrollbar {
+  width: 6px;
+}
+
+.location-card-detailed .card-details::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.location-card-detailed .card-details::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.location-card-detailed .card-details::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 } 

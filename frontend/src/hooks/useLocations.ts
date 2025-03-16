@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocationContext } from '../context/LocationContext';
 import { locationService } from '../services/api';
-import { Location, MapSettings, ApiResponse, ApiRouteItem, ApiPost, ApiPostLocation, PostInfo, PathPoint, ApiPhoto, ApiPlace } from '../types';
+import { Location, ApiResponse, ApiRouteItem, ApiPost, ApiPostLocation, PostInfo, ApiPhoto, ApiPlace } from '../types';
 
 export const useLocations = () => {
   const { 
@@ -88,14 +88,9 @@ export const useLocations = () => {
 
   // Search locations by query
   const searchLocations = async (query: string) => {
-    if (!query.trim()) {
-      fetchLocations();
-      return;
-    }
-
     setIsLoading(true);
     setError(null);
-
+    
     try {
       console.log('Searching for:', query);
       const response = await locationService.searchLocations(query);
@@ -119,7 +114,7 @@ export const useLocations = () => {
       // 处理route数组（主要景点）
       if (apiResponse.route && Array.isArray(apiResponse.route)) {
         console.log('Processing route data:', apiResponse.route);
-        apiResponse.route.forEach((item: ApiRouteItem, index: number) => {
+        apiResponse.route.forEach((item: ApiRouteItem) => {
           // 使用name和坐标生成唯一ID
           const locationId = item.place_id || `route-${item.name}-${item.latitude}-${item.longitude}`;
           
@@ -229,6 +224,18 @@ export const useLocations = () => {
             console.log(`${place.name} has no recognized type in source_keywords, defaulting to ATTRACTION`);
           }
           
+          // 将 ApiPlaceNote 转换为 PostInfo
+          const postInfos = placeItem.notes ? placeItem.notes.map(note => ({
+            note_id: note.note_id,
+            title: note.title,
+            nickname: note.nickname,
+            likedCount: note.liked_count,
+            time: note.time,
+            desc: note.desc,
+            score: note.score,
+            coverImage: `/images/${note.note_id}/0.jpg`
+          })) : [];
+          
           // 创建新的地点
           locationMap.set(locationId, {
             id: locationId,
@@ -239,7 +246,7 @@ export const useLocations = () => {
             category: 'place', // 使用'place'类别来区分
             placeType: placeType, // 设置地点类型
             rating: place.rating || 0,
-            postInfos: [], // 初始化空数组
+            postInfos: postInfos, // 直接将转换后的笔记数据存储在 postInfos 字段中
             // 添加新字段
             photos: photoUrls,
             phone: place.formatted_phone_number,
@@ -250,7 +257,8 @@ export const useLocations = () => {
           // 打印最终创建的地点信息
           console.log(`Created location for ${place.name}:`, {
             category: 'place',
-            placeType: placeType
+            placeType: placeType,
+            postInfos: postInfos.length > 0 ? `${postInfos.length} notes` : 'No notes'
           });
         });
       }
@@ -283,6 +291,7 @@ export const useLocations = () => {
                 score: post.score,
                 _score: post._score
               };
+              console.log('postInfo created:', postInfo);
               
               // 如果这个地点已经存在，添加帖子信息
               if (locationMap.has(locationId)) {
@@ -348,5 +357,8 @@ export const useLocations = () => {
     // fetchLocations();
   }, []);
 
-  return { fetchLocations, searchLocations };
+  return {
+    searchLocations,
+    fetchLocations,
+  };
 }; 
