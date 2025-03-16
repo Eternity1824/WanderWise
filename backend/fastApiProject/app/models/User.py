@@ -1,6 +1,5 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, Text, ForeignKey, UniqueConstraint, Index
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, Text, UniqueConstraint, Index
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 from models.PlacePost import Base, get_db
@@ -24,12 +23,6 @@ class User(Base):
     last_login = Column(DateTime, nullable=True)
     created_at = Column(DateTime, default=func.now(), nullable=False)
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
-    
-    # Relationships
-    notes = relationship("UserNote", back_populates="user")
-    favorites = relationship("UserFavorites", back_populates="user")
-    place_favorites = relationship("UserPlaceFavorites", back_populates="user")
-    posts = relationship("Post", primaryjoin="User.user_id == Post.user_id", foreign_keys="Post.user_id", viewonly=True)
     
     __table_args__ = (
         Index('idx_user_active', is_active),

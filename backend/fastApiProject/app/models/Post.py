@@ -1,6 +1,5 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, ForeignKey, UniqueConstraint, Index, JSON
+from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, UniqueConstraint, Index, JSON
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 from models.PlacePost import Base, get_db
@@ -25,9 +24,6 @@ class Post(Base):
     is_published = Column(Boolean, default=True, nullable=False)
     created_at = Column(DateTime, default=func.now(), nullable=False)
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
-    
-    # Relationships
-    places = relationship("PlacePost", back_populates="post")
     
     __table_args__ = (
         Index('idx_post_user', user_id),

@@ -1,6 +1,5 @@
-from sqlalchemy import Column, Integer, String, Float, Text, DateTime, Boolean, ForeignKey, UniqueConstraint, Index
+from sqlalchemy import Column, Integer, String, Float, Text, DateTime, Boolean, UniqueConstraint, Index
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 from models.PlacePost import Base, get_db
@@ -24,10 +23,6 @@ class Place(Base):
     types = Column(String(255), nullable=True, comment="Comma-separated list of place types")
     created_at = Column(DateTime, default=func.now(), nullable=False)
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
-    
-    # Relationships
-    posts = relationship("PlacePost", back_populates="place")
-    user_favorites = relationship("UserPlaceFavorites", back_populates="place")
     
     __table_args__ = (
         Index('idx_place_location', latitude, longitude),
