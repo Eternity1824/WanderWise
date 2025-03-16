@@ -42,7 +42,6 @@ class VectorDatabase:
         start_index = self.index.ntotal
         self.index.add(vectors.astype(np.float32))
         end_index = self.index.ntotal
-        print(end_index, start_index, len(ids))
         assert len(ids) == end_index - start_index
         # TODO: if same id, keep the latest added vector
         self.meta["ids"].extend(ids)
@@ -63,8 +62,6 @@ class VectorDatabase:
         """
         assert query_vector.shape[1] == self.dim, "Query vector dimension mismatch."
         distances, indices = self.index.search(query_vector.astype(np.float32), k)
-        import pdb
-        pdb.set_trace()
         return distances, [[self.meta["ids"][idx] for idx in index] for index in indices]
     
     def save(self):

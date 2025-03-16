@@ -4,6 +4,7 @@ from app.models.text_2_vec import Text2Vec
 from app.models.clip_image_encoder import CLIPImageEncoder
 import numpy as np
 from app.ai.clustering.utils import load_image_from_file, load_image_from_url
+from tqdm import tqdm
 
 def batch_load_images(image_list: List[str]):
     # TODO: load with file path or url
@@ -76,7 +77,7 @@ class PostFeatureCalculator:
         #         yield iterable[i:i + batch_size]
         clip_image_encoder = CLIPImageEncoder()
         image_embeddings = []
-        for image in images:
+        for image in tqdm(images):
             image_embeddings.append(clip_image_encoder.inference(image))
 
         image_embeddings = np.array(image_embeddings)  # Shape: (num_images, feature_dim)

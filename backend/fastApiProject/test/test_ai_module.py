@@ -9,38 +9,40 @@ import time
 
 import json
 
-posts = json.loads(open("../../../search_contents_2025-03-11.json", "r").read())
+posts = json.loads(open("/mnt/c/Users/qc_de/Downloads/merged_posts.json", "r").read())
 
-image_base_dir = "../../../images/images"
+image_base_dir = "/mnt/c/Users/qc_de/Downloads/images"
 
 for post in posts:
     note_id = post['note_id']
     post['image_list'] = ','.join(list(glob.glob(image_base_dir + "/" + note_id + "/*.jpg")))
 
+print("start inferencing")
 timestamp = time.time()
 content_features = PostFeatureCalculator.get_post_content_embedding(posts)
 print("content embedding: ", time.time() - timestamp)
-image_features = PostFeatureCalculator.get_post_image_embedding(posts)
-print("image embedding: ", time.time() - timestamp)
+# timestamp = time.time()
+# image_features = PostFeatureCalculator.get_post_image_embedding(posts)
+# print("image embedding: ", time.time() - timestamp)
 
 post_ids = [post['note_id'] for post in posts]
 contentDB = VectorDatabase(content_features.shape[1], "content.db")
 contentDB.add(post_ids, content_features)
 contentDB.save()
-imageDB = VectorDatabase(content_features.shape[1], "image.db")
-imageDB.add(post_ids, image_features)
-imageDB.save()
+# imageDB = VectorDatabase(image_features.shape[1], "image.db")
+# imageDB.add(post_ids, image_features)
+# imageDB.save()
 
-search_idx = 20
-print(posts[20]['desc'])
+# search_idx = 20
+# print(posts[20]['desc'])
 
-print(contentDB.search(content_features[search_idx:search_idx+1]))
-print(imageDB.search(image_features[search_idx:search_idx+1]))
+# print(contentDB.search(content_features[search_idx:search_idx+1]))
+# print(imageDB.search(image_features[search_idx:search_idx+1]))
 
 # test loading
 
-contentDB = VectorDatabase(database_path="content.db")
-imageDB = VectorDatabase(database_path="image.db")
+# contentDB = VectorDatabase(database_path="content.db")
+# imageDB = VectorDatabase(database_path="image.db")
 
 
 # from app.models.clip_image_encoder import CLIPImageEncoder
