@@ -8,9 +8,6 @@ from core import process_data
 from services.PlaceService import place_service
 from services.PostService import post_service
 from services.PlacePostService import place_post_service
-from services.UserNoteService import user_note_service
-from schemas.UserNoteSchema import UserNote as UserNoteSchema, UserNoteCreate
-from external.WikipediaFinder import wikipedia_finder
 
 # Create all tables at import time
 Base.metadata.create_all(bind=engine)
