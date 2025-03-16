@@ -10,6 +10,8 @@ def preprocess_image(img, target_size=(224, 224), normalize=True):
     # Step 2: Resize the image to the target size (height, width)
     img = img.resize(target_size)
 
+    img = img.convert("RGB")
+
     # Step 3: Convert the image to a NumPy array
     img_array = np.array(img)
 

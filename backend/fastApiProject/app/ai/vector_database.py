@@ -46,7 +46,7 @@ class VectorDatabase:
         # TODO: if same id, keep the latest added vector
         self.meta["ids"].extend(ids)
         for i in range(start_index, end_index):
-            self.meta["id2index"][ids[i - start_index]] = start_index
+            self.meta["id2index"][ids[i - start_index]] = i
 
     
     def search(self, query_vector, k=5):
@@ -64,6 +64,14 @@ class VectorDatabase:
         distances, indices = self.index.search(query_vector.astype(np.float32), k)
         return distances, [[self.meta["ids"][idx] for idx in index] for index in indices]
     
+    def get(self, id):
+        if id not in self.meta["id2index"]:
+            return np.zeros(self.dim, dtype='float32')
+        index_to_retrieve = self.meta["id2index"][id]
+        vector_at_index = np.zeros(self.dim, dtype='float32')
+        self.index.reconstruct(index_to_retrieve, vector_at_index)
+        return vector_at_index
+
     def save(self):
         """
         Save the index to disk.

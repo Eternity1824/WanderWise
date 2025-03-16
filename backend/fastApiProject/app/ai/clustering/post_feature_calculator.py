@@ -5,13 +5,20 @@ from app.models.clip_image_encoder import CLIPImageEncoder
 import numpy as np
 from app.ai.clustering.utils import load_image_from_file, load_image_from_url
 from tqdm import tqdm
+from multiprocessing import Pool
 
-def batch_load_images(image_list: List[str]):
+def batch_load_images(image_list: List[str], load_func):
     # TODO: load with file path or url
     # TODO: multiprocessing
+    async_res = []
+    with Pool() as pool:
+        for image_path in image_list:
+            async_res.append(pool.apply_async(func=load_func, args=(image_path,)))
+        pool.close()
+        pool.join()
     images = []
-    for image_path in image_list:
-        images.append(load_image_from_file(image_path))
+    for res in async_res:
+        images.append(res.get())
     return images
 
 def remove_emojis(text):
@@ -46,7 +53,7 @@ class PostFeatureCalculator:
     def get_post_content_embedding(posts):
         # 1. prepare data
         # TODO: clean data, remove location and emojis
-        contents = list(map(lambda x:remove_post_tags(remove_newline(remove_emojis((x['desc'])))), posts))
+        contents = list(map(lambda x:x['description'], posts))
 
         # 2. batch inference
         text_2_vec = Text2Vec()
@@ -63,9 +70,11 @@ class PostFeatureCalculator:
         post_image_indices = []  # To keep track of which image belongs to which post
         # Collect all image paths and map them to their posts
         for idx, post in enumerate(posts):
-            if not post['image_list']:
-                continue
-            image_paths = post['image_list'].split(',')
+            # if not post['image_list']:
+            #     continue
+            image_paths = []
+            for photo in post.get('photos', []):
+                image_paths.append(photo['photo_url'])
             all_image_paths.extend(image_paths)
             post_image_indices.extend([idx] * len(image_paths))
 
@@ -74,21 +83,22 @@ class PostFeatureCalculator:
         def batchify(iterable, batch_size=200):
             for i in range(0, len(iterable), batch_size):
                 yield iterable[i:i + batch_size]
+        print("total image count", len(all_image_paths))
         clip_image_encoder = CLIPImageEncoder()
         image_embeddings = []
         for image_batch in tqdm(batchify(all_image_paths)):
-            images = batch_load_images(image_batch)
+            images = batch_load_images(image_batch, load_image_from_url)
             for image in images:
                 image_embeddings.append(clip_image_encoder.inference(image))
 
-        image_embeddings = np.array(image_embeddings)  # Shape: (num_images, feature_dim)
+        image_embeddings = np.vstack(image_embeddings)  # Shape: (num_images, feature_dim)
         post_image_indices = np.array(post_image_indices)  # Convert to NumPy array
 
         # TODO: dump debug data
         # import json
-        # np.save("/mnt/c/Users/qc_de/Documents/raw_image_embeddings.npy", image_embeddings)
-        # np.save("/mnt/c/Users/qc_de/Documents/image_indices.npy", post_image_indices)
-        # open("/mnt/c/Users/qc_de/Documents/note_ids.json", "w").write(json.dumps([post['note_id'] for post in posts]))
+        # np.save("/mnt/c/Users/qc_de/Documents/raw_post_image_embeddings.npy", image_embeddings)
+        # np.save("/mnt/c/Users/qc_de/Documents/post_image_indices.npy", post_image_indices)
+        # open("/mnt/c/Users/qc_de/Documents/post_note_ids.json", "w").write(json.dumps([post['place_id'] for post in posts]))
 
         # 3. max pooling over all images from the same post
         post_image_features = []
