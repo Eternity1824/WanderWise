@@ -8,7 +8,8 @@ export interface Location {
   };
   description?: string;
   address?: string;
-  category?: string;
+  category: 'route' | 'post' | 'place'; // 添加 'place' 类别
+  placeType?: 'food' | 'attraction'; // 添加 placeType 字段，用于区分美食和景点
   rating?: number;
   postInfos?: PostInfo[];
   photos?: string[];  // 图片URL数组
@@ -62,8 +63,9 @@ export interface MapSettings {
 // API Response types
 export interface ApiResponse {
   route?: ApiRouteItem[];
-  points?: PathPoint[];
   posts?: ApiPost[];
+  points?: PathPoint[];
+  places?: ApiPlace[];
   posts_length?: number;
   mode?: string;
 }
@@ -120,4 +122,69 @@ export interface PostInfo {
   desc?: string;
   score?: number;
   _score?: number;
+  coverImage?: string; // 封面图片URL
+  isCollected?: boolean; // 是否已收藏
+}
+
+// API Place 类型
+export interface ApiPlace {
+  place: {
+    status: string;
+    query: string;
+    place_id: string;
+    name: string;
+    formatted_address: string;
+    formatted_phone_number?: string;
+    rating?: number;
+    url?: string;
+    website?: string;
+    weekday_text?: string[];
+    geometry: {
+      location: {
+        lat: number;
+        lng: number;
+      }
+    };
+    photos?: ApiPhoto[];
+    location?: {
+      lat: number;
+      lon: number;
+    };
+    source_keyword?: string;
+    description?: string;
+    _score?: number | null;
+  };
+  notes?: ApiPlaceNote[];
+}
+
+// API Place Note 类型
+export interface ApiPlaceNote {
+  note_id: string;
+  type: string;
+  title: string;
+  desc: string;
+  video_url: string;
+  time: number;
+  last_update_time: number;
+  user_id: string;
+  nickname: string;
+  avatar: string;
+  liked_count: string;
+  collected_count: string;
+  comment_count: string;
+  share_count: string;
+  ip_location: string;
+  tag_list: string;
+  last_modify_ts: number;
+  note_url: string;
+  source_keyword: string;
+  xsec_token: string;
+  locations?: ApiPostLocation[];
+  score: number;
+}
+
+// LocationMarker 组件的属性接口
+export interface LocationMarkerProps {
+  location: Location;
+  isSelected: boolean;
 } 

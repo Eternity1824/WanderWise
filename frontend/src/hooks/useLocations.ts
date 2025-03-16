@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocationContext } from '../context/LocationContext';
 import { locationService } from '../services/api';
-import { Location, MapSettings, ApiResponse, ApiRouteItem, ApiPost, ApiPostLocation, PostInfo, PathPoint, ApiPhoto } from '../types';
+import { Location, ApiResponse, ApiRouteItem, ApiPost, ApiPostLocation, PostInfo, ApiPhoto, ApiPlace } from '../types';
 
 export const useLocations = () => {
   const { 
@@ -88,14 +88,9 @@ export const useLocations = () => {
 
   // Search locations by query
   const searchLocations = async (query: string) => {
-    if (!query.trim()) {
-      fetchLocations();
-      return;
-    }
-
     setIsLoading(true);
     setError(null);
-
+    
     try {
       console.log('Searching for:', query);
       const response = await locationService.searchLocations(query);
@@ -119,7 +114,7 @@ export const useLocations = () => {
       // 处理route数组（主要景点）
       if (apiResponse.route && Array.isArray(apiResponse.route)) {
         console.log('Processing route data:', apiResponse.route);
-        apiResponse.route.forEach((item: ApiRouteItem, index: number) => {
+        apiResponse.route.forEach((item: ApiRouteItem) => {
           // 使用name和坐标生成唯一ID
           const locationId = item.place_id || `route-${item.name}-${item.latitude}-${item.longitude}`;
           
@@ -156,6 +151,118 @@ export const useLocations = () => {
         });
       }
       
+      // 处理places数组（周边推荐的地点）
+      if (apiResponse.places && Array.isArray(apiResponse.places)) {
+        console.log('Processing places data:', apiResponse.places);
+        apiResponse.places.forEach((placeItem: ApiPlace) => {
+          const place = placeItem.place;
+          if (!place || !place.place_id) return;
+          
+          const locationId = place.place_id;
+          
+          // 如果这个地点已经存在，不重复添加
+          if (locationMap.has(locationId)) {
+            return;
+          }
+          
+          // 提取照片URL
+          const photoUrls = extractPhotoUrls(place.photos);
+          
+          // 解析营业时间
+          const openingHours = parseWeekdayText(place.weekday_text);
+          
+          // 获取位置坐标
+          const position = {
+            lat: place.geometry?.location?.lat || place.location?.lat || 0,
+            lng: place.geometry?.location?.lng || place.location?.lon || 0,
+          };
+          
+          // 确定地点类型（美食或景点）
+          let placeType: 'food' | 'attraction' | undefined;
+          
+          // 首先检查 place 对象中的 source_keyword 字段
+          if (place.source_keyword) {
+            const placeKeyword = place.source_keyword;
+            console.log(`Place ${place.name} has source_keyword in place object:`, placeKeyword);
+            
+            if (placeKeyword.includes('美食')) {
+              placeType = 'food';
+              console.log(`${place.name} is set as FOOD type from place.source_keyword: ${placeKeyword}`);
+            } else if (placeKeyword.includes('景点')) {
+              placeType = 'attraction';
+              console.log(`${place.name} is set as ATTRACTION type from place.source_keyword: ${placeKeyword}`);
+            }
+          }
+          
+          // 如果 place 对象中没有找到匹配的 source_keyword，则检查 notes 数组
+          if (!placeType && placeItem.notes && placeItem.notes.length > 0) {
+            // 打印每个地点的 notes 和 source_keyword 信息
+            console.log(`Place ${place.name} has ${placeItem.notes.length} notes`);
+            
+            // 检查每个 note 的 source_keyword
+            for (const note of placeItem.notes) {
+              const keyword = note.source_keyword || '';
+              console.log(`Note source_keyword for ${place.name}:`, keyword);
+              
+              // 更精确地检查关键词
+              if (keyword.includes('美食')) {
+                placeType = 'food';
+                console.log(`${place.name} is set as FOOD type from note.source_keyword: ${keyword}`);
+                break; // 一旦找到匹配项就停止循环
+              } else if (keyword.includes('景点')) {
+                placeType = 'attraction';
+                console.log(`${place.name} is set as ATTRACTION type from note.source_keyword: ${keyword}`);
+                break; // 一旦找到匹配项就停止循环
+              }
+            }
+          }
+          
+          // 如果没有找到匹配的关键词，设置默认值
+          if (!placeType) {
+            // 默认设置为景点
+            placeType = 'attraction';
+            console.log(`${place.name} has no recognized type in source_keywords, defaulting to ATTRACTION`);
+          }
+          
+          // 将 ApiPlaceNote 转换为 PostInfo
+          const postInfos = placeItem.notes ? placeItem.notes.map(note => ({
+            note_id: note.note_id,
+            title: note.title,
+            nickname: note.nickname,
+            likedCount: note.liked_count,
+            time: note.time,
+            desc: note.desc,
+            score: note.score,
+            coverImage: `/images/${note.note_id}/0.jpg`
+          })) : [];
+          
+          // 创建新的地点
+          locationMap.set(locationId, {
+            id: locationId,
+            name: place.name || '未命名地点',
+            position: position,
+            description: '',
+            address: place.formatted_address || '',
+            category: 'place', // 使用'place'类别来区分
+            placeType: placeType, // 设置地点类型
+            rating: place.rating || 0,
+            postInfos: postInfos, // 直接将转换后的笔记数据存储在 postInfos 字段中
+            // 添加新字段
+            photos: photoUrls,
+            phone: place.formatted_phone_number,
+            website: place.website,
+            openingHours: openingHours
+          });
+          
+          // 打印最终创建的地点信息
+          console.log(`Created location for ${place.name}:`, {
+            category: 'place',
+            placeType: placeType,
+            postInfos: postInfos.length > 0 ? `${postInfos.length} notes` : 'No notes'
+          });
+        });
+      }
+      
       // 处理posts数组（用户分享的地点）
       if (apiResponse.posts && Array.isArray(apiResponse.posts)) {
         console.log('Processing posts data:', apiResponse.posts);
@@ -184,6 +291,7 @@ export const useLocations = () => {
                 score: post.score,
                 _score: post._score
               };
+              console.log('postInfo created:', postInfo);
               
               // 如果这个地点已经存在，添加帖子信息
               if (locationMap.has(locationId)) {
@@ -249,5 +357,8 @@ export const useLocations = () => {
     // fetchLocations();
   }, []);
 
-  return { fetchLocations, searchLocations };
+  return {
+    searchLocations,
+    fetchLocations,
+  };
 }; 

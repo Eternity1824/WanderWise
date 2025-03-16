@@ -146,7 +146,7 @@ class PostService:
         base_query = {
             "multi_match": {
                 "query": keyword,
-                "fields": ["title^3", "desc^2", "tag_list", "source_keyword"]
+                "fields": ["title", "desc", "tag_list", "source_keyword"]
             }
         }
 
@@ -366,6 +366,119 @@ class PostService:
         """
         return es_core.delete_all(self.post_index_name)
 
+    def export_posts_to_json(self, json_file_path: str, query: Dict[str, Any] = None) -> Dict[str, Any]:
+        """
+        将地点数据导出到JSON文件，确保与原始Google Places API格式完全一致
 
+        Args:
+            json_file_path: 导出的JSON文件路径
+            query: 可选的查询参数，用于筛选导出的数据
+
+        Returns:
+            包含导出状态信息的字典
+        """
+        import json
+        import time
+
+        # 默认查询所有文档
+        if query is None:
+            query = {"query": {"match_all": {}}}
+
+        scroll = '2m'
+        size = 1000
+
+        # 初始化scroll
+        scroll_id = None
+        total_docs = 0
+        start_time = time.time()
+
+        try:
+            # 获取初始结果和scroll_id
+            result = es_core.es.search(
+                index=self.post_index_name,
+                body=query,
+                scroll=scroll,
+                size=size
+            )
+
+            scroll_id = result.get('_scroll_id')
+            hits = result.get('hits', {}).get('hits', [])
+
+            # 准备要导出的文档
+            export_list = []
+
+            # 处理所有结果
+            all_hits = hits.copy()
+
+            # 如果还有更多文档，继续获取
+            while len(hits) > 0:
+                result = es_core.es.scroll(
+                    scroll_id=scroll_id,
+                    scroll=scroll
+                )
+
+                scroll_id = result.get('_scroll_id')
+                hits = result.get('hits', {}).get('hits', [])
+                all_hits.extend(hits)
+
+            # 处理所有文档
+            for hit in all_hits:
+                # 获取原始文档
+                post = hit.get('_source', {})
+
+                # 创建一个新的字典，包含所有原始字段
+                export_data = {}
+
+                # 添加query字段（如果有）
+                if "query" in post:
+                    export_data["query"] = post["query"]
+
+                # ES自己添加的字段，需要排除
+                exclude_fields = ["_id", "_index", "_score", "_type"]
+
+                # 复制所有其他字段
+                for field, value in post.items():
+                    if field not in exclude_fields:  # 排除location字段，因为我们已经处理了geometry
+                        export_data[field] = value
+
+
+                export_list.append(export_data)
+                total_docs += 1
+
+            # 写入JSON文件
+            with open(json_file_path, 'w', encoding='utf-8') as f:
+                # 如果只有一个文档且需要单独导出
+                if len(export_list) == 1 and query.get("query", {}).get("term", {}).get("place_id"):
+                    # 单文档模式 - 直接导出为对象
+                    json_str = json.dumps(export_list[0], ensure_ascii=False, indent=4)
+                    f.write(json_str)
+                else:
+                    # 多文档模式 - 导出为数组
+                    json_str = json.dumps(export_list, ensure_ascii=False, indent=4)
+                    f.write(json_str)
+
+            elapsed_time = time.time() - start_time
+
+            return {
+                "status": "success",
+                "message": f"成功导出 {total_docs} 个文档到 {json_file_path}",
+                "total_docs": total_docs,
+                "elapsed_time": elapsed_time,
+                "file_path": json_file_path
+            }
+
+        except Exception as e:
+            return {
+                "status": "error",
+                "message": f"导出数据失败: {str(e)}",
+                "error": str(e)
+            }
+        finally:
+            # 清理scroll上下文
+            if scroll_id:
+                try:
+                    es_core.es.clear_scroll(scroll_id=scroll_id)
+                except:
+                    pass
 # 创建单例实例
 post_service = PostService()

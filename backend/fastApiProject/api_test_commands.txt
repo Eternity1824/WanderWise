@@ -1,0 +1,21 @@
+# These are curl commands to test the user_notes API
+
+# 1. Initialize the user_notes table
+curl -X GET "http://localhost:8000/user/notes/init" -H "accept: application/json"
+
+# 2. Add some test users
+curl -X POST "http://localhost:8000/user/user123/notes/add?count=5" -H "accept: application/json"
+curl -X POST "http://localhost:8000/user/alice/notes/add?count=10" -H "accept: application/json"
+curl -X POST "http://localhost:8000/user/bob/notes/add?count=3" -H "accept: application/json"
+
+# 3. Get count for a specific user
+curl -X GET "http://localhost:8000/user/alice/notes/count" -H "accept: application/json"
+
+# 4. Update a user's count
+curl -X POST "http://localhost:8000/user/bob/notes/add?count=2" -H "accept: application/json"
+
+# 5. Get all users
+curl -X GET "http://localhost:8000/users/notes" -H "accept: application/json" | python -m json.tool
+
+# 6. Try to get count for a non-existent user
+curl -X GET "http://localhost:8000/user/nonexistent_user/notes/count" -H "accept: application/json"

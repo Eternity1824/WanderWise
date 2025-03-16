@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useRef, useEffect } from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Libraries } from '@react-google-maps/api';
 import { useLocationContext } from '../../context/LocationContext';
 import LocationMarker from './LocationMarker';
 import RouteDisplay from './RouteDisplay';
@@ -20,7 +20,7 @@ const defaultOptions = {
 };
 
 // 定义libraries为常量，避免重新加载
-const libraries = ['places'];
+const libraries: Libraries = ['places'];
 
 const MapContainer: React.FC = () => {
   const { 
@@ -39,8 +39,8 @@ const MapContainer: React.FC = () => {
   const lastZoomRef = useRef(mapSettings.zoom);
   
   // 使用ref来防止过于频繁的更新
-  const centerChangedTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const zoomChangedTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const centerChangedTimeoutRef = useRef<number | null>(null);
+  const zoomChangedTimeoutRef = useRef<number | null>(null);
 
   // Load Google Maps API
   const { isLoaded, loadError } = useJsApiLoader({
@@ -92,7 +92,7 @@ const MapContainer: React.FC = () => {
           }));
         }
       }
-    }, 300); // 300ms的防抖延迟
+    }, 300) as unknown as number; // 300ms的防抖延迟
   }, [map, setMapSettings]);
 
   // Handle map zoom change with debounce
@@ -115,7 +115,7 @@ const MapContainer: React.FC = () => {
           zoom: newZoom,
         }));
       }
-    }, 300); // 300ms的防抖延迟
+    }, 300) as unknown as number; // 300ms的防抖延迟
   }, [map, setMapSettings]);
   
   // 清理timeout

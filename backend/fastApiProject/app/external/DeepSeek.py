@@ -187,5 +187,53 @@ class DeepSeekAPI:
         except Exception as e:
             print(f"处理用户查询失败: {str(e)}")
             return [], []
+    def associate(self, query: str)-> List[str]:
+        prompt = f"""
+            请根据以下用户查询，从中联想出一些关键词，并将这些关键词与查询进行关联。
 
+            ### **规则**:
+            1. 从用户的查询中，提取出最相关的关键词并进行联想。
+            2. 你可以进行关键词合并,如西雅图景点，请尽量输出合并关键词，如西雅图景点。
+            3. 这些关键词应该是与查询主题、内容或意图最相关的单词或短语。
+            4. 返回的关键词列表必须是**简洁**和**相关的**，按优先级排序。
+            5. 请避免返回与查询无关的词汇。
+            6. 如果输入为英文，请你先翻译为中文
+
+            ### **例子**:
+            1. 输入“去西雅图玩”
+            2. 输出["“西雅图景点”，", "旅行", “西雅图旅游”， “地点” ...]
+
+            ### **输出格式**:
+            ["关键词1", "关键词2", ...]
+
+            用户输入:{query}
+        """
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": "你是一个专业的分析助手，只输出JSON格式结果"},
+                    {"role": "user", "content": prompt},
+                ],
+                stream=False
+            )
+
+            result_text = response.choices[0].message.content
+
+            # 解析JSON结果
+            try:
+                json_match = re.search(r'\[([^\[\]]|\[(?:[^\[\]]|\[.*?\])*?\])*\]', result_text, re.DOTALL)
+                if json_match:
+                    result_json = json.loads(json_match.group(0))
+                    return result_json
+                else:
+                    print(f"无法在结果中找到JSON: {result_text}")
+                    return []
+            except json.JSONDecodeError:
+                print(f"JSON解析失败: {result_text}")
+                return []
+
+        except Exception as e:
+            print(f"处理用户查询失败: {str(e)}")
+            return []
 deepseekapi = DeepSeekAPI(settings.DEEP_SEEK_API_KEY)
