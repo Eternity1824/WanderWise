@@ -8,15 +8,23 @@ from core import process_data
 from services.PlaceService import place_service
 from services.PostService import post_service
 from services.PlacePostService import place_post_service
-
+from ai.clustering.Recommend import findKClosestPlaces, findKClosestPosts
 
 router = APIRouter()
+@router.get("/search/recommend", tags=["search ai"])
+async def searchByRecommend(content: str = Query(None, description="search content"),
+                 mode: str = Query("driving", description="交通方式", enum=["driving", "walking", "bicycling", "transit"]),
+                            user: str = Query("0001", description="user id")):
+    #根据userId拿到userfector
+
+
+
+    return [{"message":"hi"}]
+
 
 @router.get("/search/ai-recommend", tags=["search ai"])
 async def searchByAiRecommend(content: str = Query(None, description="search content"),
                  mode: str = Query("driving", description="交通方式", enum=["driving", "walking", "bicycling", "transit"])):
-    # 传递内容到LLM获取地理点列表
-    print("正在请求deepseek接口")
     locations, keywords = deepseekapi.process_user_query(content)
     # 存储所有地点的经纬度信息
     location_coordinates = []

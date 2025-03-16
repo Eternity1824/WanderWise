@@ -2,19 +2,21 @@ import json
 import re
 from typing import List, Dict, Any, Optional, Tuple
 from openai import OpenAI
-from config import get_settings
-settings = get_settings()
+
+api_key = "lm-studio"
+base_url = "http://10.242.195.117:1234/v1"
+model = "llama-3.2-3b-instruct"
 class DeepSeekAPI:
     """DeepSeek API 服务封装"""
 
-    def __init__(self, api_key: str):
+    def __init__(self):
         """初始化 DeepSeek 客户端
 
         Args:
             api_key: DeepSeek API密钥
         """
-        self.client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
-        self.model = "deepseek-chat"
+        self.client = OpenAI(api_key=api_key, base_url=base_url)
+        self.model = model
 
     def extract_locations(self, post: Dict[str, Any]) -> List[str]:
         """从帖子中提取可能的地理位置
@@ -52,7 +54,7 @@ class DeepSeekAPI:
             # 尝试解析返回的JSON
             try:
                 # 查找方括号内的JSON数组
-                json_match = re.search(r'\[.*\]', locations_text, re.DOTALL)
+                json_match = re.search(r'\[([^\[\]]|\[(?:[^\[\]]|\[.*?\])*?\])*\]', locations_text, re.DOTALL)
                 if json_match:
                     locations_json = json.loads(json_match.group(0))
                     return locations_json
@@ -67,6 +69,56 @@ class DeepSeekAPI:
             print(f"DeepSeek API调用失败: {str(e)}")
             return []
 
+    def verify_locations(self, locations: List[str]) -> List[str]:
+        """从帖子中提取可能的地理位置
+
+        Args:
+            locations: 提取的地点列表，格式为 ["地点名, 城市", ...]
+
+        Returns:
+            验证的地点列表，格式为 ["地点名, 城市", ...]
+        """
+        print("需要验证:", locations)
+        prompt = f"""
+        Delete all locations not in format ["地点名, 城市", ...], only return the list without extra text.
+
+        ### Locations to Validate:
+        {locations}
+        """
+
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": "you are a formatting expert, return with specific format"},
+                    {"role": "user", "content": prompt},
+                ],
+                stream=False
+            )
+
+            locations_text = response.choices[0].message.content
+            print(locations_text)
+            import ast
+
+            list_data = ast.literal_eval(locations_text)
+            return list_data
+            # 尝试解析返回的JSON
+            try:
+                # 查找方括号内的JSON数组
+                json_match = re.search(r'\[.*\]', locations_text, re.DOTALL)
+                if json_match:
+                    locations_json = json.loads(json_match.group(0))
+                    return locations_json
+                else:
+                    print(f"无法在结果中找到JSON: {locations_text}")
+                    return []
+            except json.JSONDecodeError:
+                print(f"JSON解析失败: {locations_text}")
+                return []
+
+        except Exception as e:
+            print(f"DeepSeek API调用失败: {str(e)}")
+            return []
     def rate_post(self, post: Dict[str, Any]) -> Dict[str, int]:
         """对帖子进行打分
 
@@ -123,6 +175,56 @@ class DeepSeekAPI:
         except Exception as e:
             print(f"评分API调用失败: {str(e)}")
             return {"score": 60}
+    
+    def associate(self, query: str)-> List[str]:
+        prompt = f"""
+            请根据以下用户查询，从中联想出一些关键词，并将这些关键词与查询进行关联。
+
+            ### **规则**:
+            1. 从用户的查询中，提取出最相关的关键词并进行联想。
+            2. 你可以进行关键词合并,如西雅图景点，请尽量输出合并关键词，如西雅图景点。
+            3. 这些关键词应该是与查询主题、内容或意图最相关的单词或短语。
+            4. 返回的关键词列表必须是**简洁**和**相关的**，按优先级排序。
+            5. 请避免返回与查询无关的词汇。
+
+            ### **例子**:
+            1. 输入“去西雅图玩”
+            2. 输出["“西雅图景点”，", "旅行", “西雅图旅游”， “地点” ...]
+
+            ### **输出格式**:
+            ["关键词1", "关键词2", ...]
+
+            用户输入:{query}
+        """
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": "你是一个专业的分析助手，只输出JSON格式结果"},
+                    {"role": "user", "content": prompt},
+                ],
+                stream=False
+            )
+
+            result_text = response.choices[0].message.content
+
+            # 解析JSON结果
+            try:
+                json_match = re.search(r'\[([^\[\]]|\[(?:[^\[\]]|\[.*?\])*?\])*\]', result_text, re.DOTALL)
+                if json_match:
+                    result_json = json.loads(json_match.group(0))
+                    return result_json
+                else:
+                    print(f"无法在结果中找到JSON: {result_text}")
+                    return []
+            except json.JSONDecodeError:
+                print(f"JSON解析失败: {result_text}")
+                return []
+
+        except Exception as e:
+            print(f"处理用户查询失败: {str(e)}")
+            return []
+
 
     def process_user_query(self, query: str) -> Tuple[List[str], List[str]]:
         """
@@ -187,52 +289,5 @@ class DeepSeekAPI:
         except Exception as e:
             print(f"处理用户查询失败: {str(e)}")
             return [], []
-    def associate(self, query: str)-> List[str]:
-        prompt = f"""
-            请根据以下用户查询，从中联想出一些关键词，并将这些关键词与查询进行关联。
 
-            ### **规则**:
-            1. 从用户的查询中，提取出最相关的关键词并进行联想。
-            2. 你可以进行关键词合并,如西雅图景点，请尽量输出合并关键词，如西雅图景点。
-            3. 这些关键词应该是与查询主题、内容或意图最相关的单词或短语。
-            4. 返回的关键词列表必须是**简洁**和**相关的**，按优先级排序。
-            5. 请避免返回与查询无关的词汇。
-
-            ### **例子**:
-            1. 输入“去西雅图玩”
-            2. 输出["“西雅图景点”，", "旅行", “西雅图旅游”， “地点” ...]
-
-            ### **输出格式**:
-            ["关键词1", "关键词2", ...]
-
-            用户输入:{query}
-        """
-        try:
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[
-                    {"role": "system", "content": "你是一个专业的分析助手，只输出JSON格式结果"},
-                    {"role": "user", "content": prompt},
-                ],
-                stream=False
-            )
-
-            result_text = response.choices[0].message.content
-
-            # 解析JSON结果
-            try:
-                json_match = re.search(r'\[([^\[\]]|\[(?:[^\[\]]|\[.*?\])*?\])*\]', result_text, re.DOTALL)
-                if json_match:
-                    result_json = json.loads(json_match.group(0))
-                    return result_json
-                else:
-                    print(f"无法在结果中找到JSON: {result_text}")
-                    return []
-            except json.JSONDecodeError:
-                print(f"JSON解析失败: {result_text}")
-                return []
-
-        except Exception as e:
-            print(f"处理用户查询失败: {str(e)}")
-            return []
-deepseekapi = DeepSeekAPI(settings.DEEP_SEEK_API_KEY)
+deepseekapi = DeepSeekAPI()

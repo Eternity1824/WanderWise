@@ -14,4 +14,4 @@ for route in app.routes:
 
 # 启动应用
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="localhost", port=8081, reload=True)
+    uvicorn.run("main:app", host="localhost", port=8083, reload=False)
