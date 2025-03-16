@@ -4,5 +4,5 @@ def findKClosestPlaces(k: int, placeIds: list, userId: str) -> list:
 
 
 def findKClosestPosts(k: int, postIds: list, userId: str) -> list:
-    closest_posts = []
+    closest_posts = ["666677f6000000000d00ca27","674c12d30000000002029b74","6698f97500000000250045db","66f8beda000000002a031121","61e39d0d000000002103bc8a"]
     return closest_posts
