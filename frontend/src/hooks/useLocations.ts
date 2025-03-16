@@ -182,6 +182,53 @@ export const useLocations = () => {
             lng: place.geometry?.location?.lng || place.location?.lon || 0,
           };
           
+          // 确定地点类型（美食或景点）
+          let placeType: 'food' | 'attraction' | undefined;
+          
+          // 首先检查 place 对象中的 source_keyword 字段
+          if (place.source_keyword) {
+            const placeKeyword = place.source_keyword;
+            console.log(`Place ${place.name} has source_keyword in place object:`, placeKeyword);
+            
+            if (placeKeyword.includes('美食')) {
+              placeType = 'food';
+              console.log(`${place.name} is set as FOOD type from place.source_keyword: ${placeKeyword}`);
+            } else if (placeKeyword.includes('景点')) {
+              placeType = 'attraction';
+              console.log(`${place.name} is set as ATTRACTION type from place.source_keyword: ${placeKeyword}`);
+            }
+          }
+          
+          // 如果 place 对象中没有找到匹配的 source_keyword，则检查 notes 数组
+          if (!placeType && placeItem.notes && placeItem.notes.length > 0) {
+            // 打印每个地点的 notes 和 source_keyword 信息
+            console.log(`Place ${place.name} has ${placeItem.notes.length} notes`);
+            
+            // 检查每个 note 的 source_keyword
+            for (const note of placeItem.notes) {
+              const keyword = note.source_keyword || '';
+              console.log(`Note source_keyword for ${place.name}:`, keyword);
+              
+              // 更精确地检查关键词
+              if (keyword.includes('美食')) {
+                placeType = 'food';
+                console.log(`${place.name} is set as FOOD type from note.source_keyword: ${keyword}`);
+                break; // 一旦找到匹配项就停止循环
+              } else if (keyword.includes('景点')) {
+                placeType = 'attraction';
+                console.log(`${place.name} is set as ATTRACTION type from note.source_keyword: ${keyword}`);
+                break; // 一旦找到匹配项就停止循环
+              }
+            }
+          }
+          
+          // 如果没有找到匹配的关键词，设置默认值
+          if (!placeType) {
+            // 默认设置为景点
+            placeType = 'attraction';
+            console.log(`${place.name} has no recognized type in source_keywords, defaulting to ATTRACTION`);
+          }
+          
           // 创建新的地点
           locationMap.set(locationId, {
             id: locationId,
@@ -189,7 +236,8 @@ export const useLocations = () => {
             position: position,
             description: '',
             address: place.formatted_address || '',
-            category: 'place', // 使用'place'类别区分周边推荐地点
+            category: 'place', // 使用'place'类别来区分
+            placeType: placeType, // 设置地点类型
             rating: place.rating || 0,
             postInfos: [], // 初始化空数组
             // 添加新字段
@@ -197,6 +245,12 @@ export const useLocations = () => {
             phone: place.formatted_phone_number,
             website: place.website,
             openingHours: openingHours
+          });
+          
+          // 打印最终创建的地点信息
+          console.log(`Created location for ${place.name}:`, {
+            category: 'place',
+            placeType: placeType
           });
         });
       }

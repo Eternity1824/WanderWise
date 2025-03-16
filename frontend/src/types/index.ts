@@ -6,9 +6,10 @@ export interface Location {
     lat: number;
     lng: number;
   };
-  description: string;
-  address: string;
+  description?: string;
+  address?: string;
   category: 'route' | 'post' | 'place'; // 添加 'place' 类别
+  placeType?: 'food' | 'attraction'; // 添加 placeType 字段，用于区分美食和景点
   rating?: number;
   postInfos?: PostInfo[];
   photos?: string[];  // 图片URL数组
@@ -147,7 +148,35 @@ export interface ApiPlace {
       lat: number;
       lon: number;
     };
+    source_keyword?: string;
+    description?: string;
     _score?: number | null;
   };
-  notes?: ApiPost[]; // 注意可能包含相关的笔记
+  notes?: ApiPlaceNote[];
+}
+
+// API Place Note 类型
+export interface ApiPlaceNote {
+  note_id: string;
+  type: string;
+  title: string;
+  desc: string;
+  video_url: string;
+  time: number;
+  last_update_time: number;
+  user_id: string;
+  nickname: string;
+  avatar: string;
+  liked_count: string;
+  collected_count: string;
+  comment_count: string;
+  share_count: string;
+  ip_location: string;
+  tag_list: string;
+  last_modify_ts: number;
+  note_url: string;
+  source_keyword: string;
+  xsec_token: string;
+  locations?: ApiPostLocation[];
+  score: number;
 } 

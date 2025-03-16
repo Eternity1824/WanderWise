@@ -29,5 +29,5 @@ def get_db():
 class PlacePost(Base):
     __tablename__ = "place_notes"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    place_id = Column(String(50), index=True)
-    note_id = Column(String(32), index=True)
+    place_id = Column(String(200), index=True)
+    note_id = Column(String(50), index=True)

@@ -10,7 +10,7 @@ interface LocationMarkerProps {
 }
 
 // 定义缩放级别阈值，大于等于此值时显示详细卡片
-const ZOOM_THRESHOLD = 14;
+const ZOOM_THRESHOLD = 15;
 
 const LocationMarker: React.FC<LocationMarkerProps> = ({ location, isSelected }) => {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
@@ -48,6 +48,13 @@ const LocationMarker: React.FC<LocationMarkerProps> = ({ location, isSelected })
 
   // 根据类别选择不同的图标
   const getMarkerIcon = () => {
+    // 添加日志输出
+    console.log(`Getting marker icon for ${location.name}:`, {
+      category: location.category,
+      placeType: location.placeType,
+      isSelected: isSelected
+    });
+
     if (isSelected) {
       return {
         url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
@@ -62,15 +69,30 @@ const LocationMarker: React.FC<LocationMarkerProps> = ({ location, isSelected })
         scaledSize: new window.google.maps.Size(40, 40),
       };
     } else if (location.category === 'place') {
-      // 为place类别使用绿色圆点
-      return {
-        path: window.google.maps.SymbolPath.CIRCLE,
-        scale: 10,
-        fillColor: '#00b300', // 深绿色
-        fillOpacity: 1,
-        strokeColor: '#ffffff', // 白色边框
-        strokeWeight: 2,
-      };
+      // 根据 placeType 选择不同颜色
+      if (location.placeType === 'food') {
+        // 美食用蓝色圆点
+        console.log(`${location.name} using BLUE icon for food`);
+        return {
+          path: window.google.maps.SymbolPath.CIRCLE,
+          scale: 10,
+          fillColor: '#1E88E5', // 蓝色
+          fillOpacity: 1,
+          strokeColor: '#ffffff', // 白色边框
+          strokeWeight: 2,
+        };
+      } else {
+        // 景点用绿色圆点（默认）
+        console.log(`${location.name} using GREEN icon for attraction or default`);
+        return {
+          path: window.google.maps.SymbolPath.CIRCLE,
+          scale: 10,
+          fillColor: '#00b300', // 深绿色
+          fillOpacity: 1,
+          strokeColor: '#ffffff', // 白色边框
+          strokeWeight: 2,
+        };
+      }
     } else if (location.category === 'post') {
       // 为post类别使用更小的绿色圆点
       return {
@@ -146,13 +168,22 @@ const LocationMarker: React.FC<LocationMarkerProps> = ({ location, isSelected })
       );
     }
     
+    // 获取类别显示文本
+    const getCategoryText = () => {
+      if (location.category === 'route') return '主要景点';
+      if (location.category === 'place') {
+        return location.placeType === 'food' ? '美食' : '景点';
+      }
+      return '用户分享';
+    };
+    
     // 如果是post类别的地点，显示帖子信息
     return (
       <div className="info-window">
         <h3>{location.name}</h3>
         {location.description && <p>{location.description}</p>}
         {location.address && <p><strong>地址:</strong> {location.address}</p>}
-        {location.category && <p><strong>类别:</strong> {location.category === 'route' ? '主要景点' : '用户分享'}</p>}
+        <p><strong>类别:</strong> {getCategoryText()}</p>
         {location.rating && location.rating > 0 && (
           <p>
             <strong>评分:</strong> {location.rating} / 5
@@ -230,6 +261,11 @@ const LocationMarker: React.FC<LocationMarkerProps> = ({ location, isSelected })
         <InfoWindow
           position={location.position}
           onCloseClick={closeInfoWindow}
+          options={{
+            pixelOffset: new window.google.maps.Size(0, -5),
+            maxWidth: isDetailedView ? 320 : 180,
+            disableAutoPan: false
+          }}
         >
           {renderInfoContent()}
         </InfoWindow>
