@@ -23,7 +23,6 @@ Base.metadata.create_all(bind=engine)
 
 router = APIRouter()
 
-
 @router.get("/search/ai-recommend", tags=["search ai"])
 async def searchByAiRecommend(content: str = Query(None, description="search content"),
                  mode: str = Query("driving", description="交通方式", enum=["driving", "walking", "bicycling", "transit"])):
@@ -61,38 +60,43 @@ async def searchByAiRecommend(content: str = Query(None, description="search con
     route_detail = geocode_finder.get_route_details(southwest_route, mode)
 
     search_results = []
-    places_set = set()  # Set to track unique place_ids
+    places_set = set()
 
     for coordinates in route_detail['sampled_points']:
         latitude = coordinates['latitude']
         longitude = coordinates['longitude']
-        places = place_service.search_places_by_location(latitude, longitude)
-        if places["total"] > 0:
-            for place in places["results"]:
-                if place["status"] == 'OK':
-                    place_id = place["place_id"]
+        #找到相关的places
+        restaurants = place_service.search_places_mixed(latitude, longitude,source_keyword="美食",size = 10)
+        views = place_service.search_places_mixed(latitude, longitude, distance= "10km", source_keyword="景点", size = 10)
+        places = []
+        if restaurants["total"] > 0:
+            places.extend(restaurants["results"])
+        if views["total"] > 0:
+            places.extend(views["results"])
+        for place in places:
+            if place["status"] == 'OK':
+                place_id = place["place_id"]
 
-                    # Skip if we've already processed this place
-                    if place_id in places_set:
-                        continue
+                # Skip if we've already processed this place
+                if place_id in places_set:
+                    continue
 
-                    # Add to our set of processed places
-                    places_set.add(place_id)
+                # Add to our set of processed places
+                places_set.add(place_id)
 
-                    # Create a new dictionary for each place
-                    place_result = {}  # Create new dict inside loop
-                    place_result["place"] = place
+                # Create a new dictionary for each place
+                place_result = {}
+                place_result["place"] = place
 
-                    # Get notes for this place
-                    notes = []
-                    note_ids = place_post_service.get_notes_by_place_id(place_id)
-                    for note_id in note_ids:
-                        note = post_service.get_post_by_id(note_id)
-                        if note:  # Make sure we got a valid note
-                            notes.append(note)
-
-                    place_result["notes"] = notes
-                    search_results.append(place_result)
+                # Get notes for this place
+                notes = []
+                note_ids = place_post_service.get_notes_by_place_id(place_id)
+                for note_id in note_ids:
+                    note = post_service.get_post_by_id(note_id)
+                    if note:  # Make sure we got a valid note
+                        notes.append(note)
+                place_result["notes"] = notes
+                search_results.append(place_result)
 
     # 返回包含经纬度和搜索结果的数据
     return {
@@ -109,14 +113,12 @@ async def searchByKeyword(keyword: str = Query(None, description="search content
 
 @router.get("/data/process", tags=["data clean"])
 async def dataClean():
-
-
     # 创建所有定义的表
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(bind=engine)
     print("数据库表已创建")
     try:
-        with open('data/search_contents_2025-03-11.json', 'r', encoding='utf-8') as f:
+        with open('data/post.json', 'r', encoding='utf-8') as f:
             posts_data = json.load(f)
     except Exception as e:
         print(f"加载数据失败: {str(e)}")
@@ -132,6 +134,13 @@ async def dataClean():
         print(f"保存最终数据失败: {str(e)}")
     return [{"message": "success"}]
 
+@router.get("/data/clear", tags=["data clear"])
+async def dataClear():
+    Base.metadata.drop_all(engine)
+    place_service.delete_all_places()
+    post_service.delete_all_posts()
+    return [{"message": "success"}]
+
 @router.get("/data/init/es", tags=["es init"])
 async def esInit(post_path: str = Query("data/processed_search_contents.json", description="search content"),
                  place_path: str = Query("data/place_es_data.json", description="search content"),):
@@ -144,11 +153,22 @@ async def esInit(post_path: str = Query("data/processed_search_contents.json", d
     place_service.import_places_from_json(place_path)
     return [{"message": "ok"}]
 
-@router.get("/export/place", tags=["export place"])
-async def exportPlace(path: str = Query("data/place_es_data.json", description="search content")):
-    res = place_service.export_places_to_json(path)
-    return [{"result":res}]
+@router.get("/export/es/data", tags=["export data"])
+async def export_es_data(
+        place_path: str = Query("data/place_es_data.json", description="Path to save place data"),
+        post_path: str = Query("data/post_es_data.json", description="Path to save post data")
+):
+    # 导出地点数据
+    place_result = place_service.export_places_to_json(place_path)
 
+    # 导出帖子数据
+    post_result = post_service.export_posts_to_json(post_path)
+
+    # 返回两个操作的结果
+    return {
+        "place_export": place_result,
+        "post_export": post_result
+    }
 @router.get("/export/place_post", tags=["export place_post"])
 async def export_place_post(path: str = Query("data/place_post_mysql_data.json", description="导出文件路径")):
     """

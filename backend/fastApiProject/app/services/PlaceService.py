@@ -21,7 +21,7 @@ class PlaceService:
                     "place_id": {"type": "keyword", "index": "true"},
                     "name": {"type": "text", "analyzer": "ik_max_word", "search_analyzer": "ik_smart"},
                     "location": {"type": "geo_point"},
-                    "source_keyword":{"type": "keyword", "index": "true"},
+                    "place_type":{"type": "keyword"},
                 }
             },
             "settings": {
@@ -273,7 +273,7 @@ class PlaceService:
                 # 获取原始文档
                 place = hit.get('_source', {})
 
-                # 创建一个新的字典，仅包含需要的字段，保持原始结构
+                # 创建一个新的字典，包含所有原始字段
                 export_data = {}
 
                 # 添加基本字段
@@ -286,14 +286,13 @@ class PlaceService:
                 if "query" in place:
                     export_data["query"] = place["query"]
 
-                # 确保包含place_id
-                export_data["place_id"] = place["place_id"]
+                # ES自己添加的字段，需要排除
+                exclude_fields = ["_id", "_index", "_score", "_type"]
 
-                # 添加其他基本字段
-                for field in ["name", "formatted_address", "formatted_phone_number",
-                              "rating", "url", "website", "weekday_text"]:
-                    if field in place:
-                        export_data[field] = place[field]
+                # 复制所有其他字段
+                for field, value in place.items():
+                    if field not in exclude_fields and field != "location":  # 排除location字段，因为我们已经处理了geometry
+                        export_data[field] = value
 
                 # 处理嵌套字段 - geometry
                 if "geometry" in place:
@@ -306,10 +305,6 @@ class PlaceService:
                             "lng": place["location"]["lon"]
                         }
                     }
-
-                # 处理photos
-                if "photos" in place:
-                    export_data["photos"] = place["photos"]
 
                 export_list.append(export_data)
                 total_docs += 1
@@ -349,5 +344,95 @@ class PlaceService:
                     es_core.es.clear_scroll(scroll_id=scroll_id)
                 except:
                     pass
+
+    def search_places_mixed(self, lat: float = None, lng: float = None, distance: str = "1km",
+                            placeType: str = None, name: str = None,
+                            size: int = 10, from_: int = 0) -> Dict[str, Any]:
+        """
+        混合查询地点，支持可选组合条件
+
+        Args:
+            lat: 可选，纬度
+            lng: 可选，经度
+            distance: 搜索半径，默认1km
+            placeType: 可选，来源关键词
+            name: 可选，地点名称关键词
+            size: 返回结果数量
+            from_: 分页起始位置
+
+        Returns:
+            搜索结果
+        """
+        # 创建bool查询
+        bool_query = {
+            "bool": {
+                "must": []
+            }
+        }
+
+        # 添加地理位置条件（如果提供）
+        if lat is not None and lng is not None:
+            geo_query = {
+                "geo_distance": {
+                    "distance": distance,
+                    "location": {
+                        "lat": lat,
+                        "lon": lng
+                    }
+                }
+            }
+            bool_query["bool"]["must"].append(geo_query)
+
+        if placeType is not None:
+            keyword_query = {
+                "term": {
+                    "place_type": placeType                }
+            }
+            bool_query["bool"]["must"].append(keyword_query)
+
+        # 添加名称搜索条件（如果提供）
+        if name is not None:
+            name_query = {
+                "multi_match": {
+                    "query": name,
+                    "fields": ["name^3", "formatted_address"]
+                }
+            }
+            bool_query["bool"]["must"].append(name_query)
+
+        # 如果没有任何条件，则搜索所有
+        if not bool_query["bool"]["must"]:
+            query = {
+                "query": {
+                    "match_all": {}
+                },
+                "size": size,
+                "from": from_
+            }
+        else:
+            query = {
+                "query": bool_query,
+                "size": size,
+                "from": from_
+            }
+
+        # 如果有地理位置条件，添加距离排序
+        if lat is not None and lng is not None:
+            query["sort"] = [
+                {
+                    "_geo_distance": {
+                        "location": {
+                            "lat": lat,
+                            "lon": lng
+                        },
+                        "order": "asc",
+                        "unit": "km"
+                    }
+                }
+            ]
+
+        result = es_core.search(self.place_index_name, query)
+
+        return result
 # 创建单例实例
 place_service = PlaceService()

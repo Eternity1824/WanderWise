@@ -1,6 +1,7 @@
 from external.DeepSeek import deepseekapi
 from external.GoogleMap import geocode_finder
 from external.WikipediaFinder import wikipedia_finder
+from services import post_service
 from services.PlacePostService import place_post_service
 from services.PlaceService import place_service
 import json
@@ -27,9 +28,11 @@ def process_data(posts_data, save_interval=50):
                 place_id = place_detail['place_id']
                 note_id = post['note_id']
                 description = ""
-                if "景点" in post["source_keyword"] or "风景" in post["source_keyword"]:
+                print(place_detail)
+                if place_detail["place_type"] == "view":
                     description = wikipedia_finder.get_place_description(place_detail["name"])["description"]
                 place_detail['description'] = description
+
                 # 将映射添加到MySQL
                 place_post_service.add_mapping(place_id, note_id)
                 # 将地点添加到Elasticsearch
@@ -56,7 +59,7 @@ def process_data(posts_data, save_interval=50):
             enriched_post["score"] = score_info.get("score", 0)
 
             valid_posts.append(enriched_post)
-
+            post_service.add_post(enriched_post)
         i += 1
 
         # 每处理save_interval条帖子保存一次

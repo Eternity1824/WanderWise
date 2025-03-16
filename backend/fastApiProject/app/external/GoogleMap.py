@@ -25,7 +25,6 @@ class GeocodeFinder:
         self.place_search_url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json"
         self.place_details_url = "https://maps.googleapis.com/maps/api/place/details/json"
 
-
     def get_place_detail(self, place_name: str, region: Optional[str] = None, language: str = "en") -> Dict:
         """
         根据地点名称获取详细信息（包括地址、电话、评分、网址、营业时间和照片等）
@@ -78,7 +77,7 @@ class GeocodeFinder:
                 "place_id": place_id,
                 "key": self.api_key,
                 "language": language,
-                "fields": "name,formatted_address,formatted_phone_number,geometry,rating,url,website,opening_hours,place_id,photos"
+                "fields": "name,formatted_address,formatted_phone_number,geometry,rating,url,website,opening_hours,place_id,photos,types"
             }
 
             details_response = requests.get(self.place_details_url, params=details_params, timeout=30)
@@ -115,6 +114,57 @@ class GeocodeFinder:
                 "url": place_info.get("url", ""),
                 "website": place_info.get("website", "")
             }
+
+            # 添加场所类型信息
+            if "types" in place_info:
+                formatted_details["types"] = place_info["types"]
+
+                # 定义食物相关的场所类型列表
+                food_related_types = [
+                    # 主要食物场所类型
+                    "restaurant", "cafe", "bakery", "bar", "food",
+                    "meal_takeaway", "meal_delivery", "ice_cream",
+
+                    # 甜品和饮料相关
+                    "dessert", "coffee_shop", "tea", "juice_bar",
+                    "bubble_tea", "smoothie_shop", "frozen_yogurt",
+
+                    # 快餐和特定食物类型
+                    "fast_food", "pizza_restaurant", "sandwich_shop",
+                    "donut_shop", "pastry_shop", "confectionery",
+                    "patisserie", "chocolate_shop",
+
+                    # 各种餐饮场所
+                    "diner", "bistro", "gastropub", "steakhouse",
+                    "seafood_restaurant", "sushi_restaurant",
+                    "bbq_restaurant", "noodle_shop", "ramen_restaurant",
+
+                    # 酒类场所（通常也提供食物）
+                    "wine_bar", "brewery", "pub", "night_club",
+
+                    # 区域性/特色餐厅
+                    "chinese_restaurant", "japanese_restaurant",
+                    "italian_restaurant", "korean_restaurant",
+                    "thai_restaurant", "vietnamese_restaurant",
+                    "indian_restaurant", "mexican_restaurant",
+                    "middle_eastern_restaurant", "french_restaurant",
+
+                    # 超市和市场（通常有熟食区）
+                    "supermarket", "grocery_store", "food_market",
+                    "deli", "convenience_store", "market",
+
+                    # 其他可能相关类型
+                    "street_food", "hawker_centre", "food_court",
+                    "canteen", "buffet", "dim_sum_restaurant",
+                    "tapas_restaurant", "cafeteria", "snack_bar",
+                    "hotpot_restaurant"
+                ]
+
+                # 检查是否为食物相关场所
+                if any(food_type in place_info["types"] for food_type in food_related_types):
+                    formatted_details["place_type"] = "food_place"
+                else:
+                    formatted_details["place_type"] = "view"
 
             # 添加营业时间（如果存在）
             if "opening_hours" in place_info and "weekday_text" in place_info["opening_hours"]:
@@ -501,7 +551,7 @@ def main():
     import json
 
     # 测试通过地点名称获取详细信息
-    place_name = "桂, 西雅图"
+    place_name = "pike market"
     print(f"\n通过地点名称获取详细信息 ({place_name}):")
     place_details = geocode_finder.get_place_detail(place_name)
 
