@@ -436,3 +436,5 @@ class PlaceService:
         return result
 # 创建单例实例
 place_service = PlaceService()
+if __name__ == "__main__":
+    print(place_service.get_place_by_id("ChIJVTtr1kUVkFQRh-YAfijbQXs"))
