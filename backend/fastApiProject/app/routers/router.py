@@ -15,7 +15,7 @@ router = APIRouter()
 @router.get("/search/recommend", tags=["search ai"])
 async def searchByRecommend(content: str = Query(None, description="search content"),
                  mode: str = Query("driving", description="交通方式", enum=["driving", "walking", "bicycling", "transit"]),
-                            user: str = Query("0001", description="user id")):
+                            userId: str = Query("0001", description="user id")):
     #根据userId拿到userfector
     keywords = []
     place_ids = set()
@@ -26,7 +26,82 @@ async def searchByRecommend(content: str = Query(None, description="search conte
         if search_results["total"] > 0:
             for post in search_results["results"]:
                 ids = place_post_service.get_places_by_note_id(post["note_id"])
-                place_ids.update(ids)
+                for id in ids:
+                    place_result = place_service.get_place_by_id(id)
+                    if place_result["place_type"] == "view":
+                        place_ids.add(id)
+    place_ids = list(place_ids)
+    print(len(place_ids))
+    recommend_place_ids = findKClosestPlaces(10, place_ids, userId)
+    # 存储所有地点的经纬度信息
+    location_coordinates = []
+    print(recommend_place_ids)
+    # 遍历locations列表，获取每个地点的地理编码信息
+    for id in recommend_place_ids:
+        geocode_result = place_service.get_place_by_id(id)
+        print(geocode_result.keys())
+        # 检查结果是否有效
+        if geocode_result["status"] == 'OK':
+            latitude = geocode_result["geometry"]["location"]["lat"]
+            longitude = geocode_result["geometry"]["location"]["lng"]
+            if latitude and longitude:
+                location_info = {
+                    'latitude': latitude,
+                    'longitude': longitude,
+                }
+        location_coordinates.append(location_info)
+        planner = RoutePlanner(location_coordinates)
+        southwest_route = planner.plan_route('southwest')
+        route_detail = geocode_finder.get_route_details(southwest_route, mode)
+
+        search_results = []
+        places_set = set()
+
+        for coordinates in route_detail['sampled_points']:
+            latitude = coordinates['latitude']
+            longitude = coordinates['longitude']
+            # 找到相关的places
+            restaurants = place_service.search_places_mixed(latitude, longitude, distance="km",
+                                                            placeType="food_place", size=5)
+            views = place_service.search_places_mixed(latitude, longitude, distance="10km", placeType="view", size=5)
+            places = []
+            if restaurants["total"] > 0:
+                places.extend(restaurants["results"])
+            if views["total"] > 0:
+                places.extend(views["results"])
+            for place in places:
+                if place["status"] == 'OK':
+                    place_id = place["place_id"]
+
+                    # Skip if we've already processed this place
+                    if place_id in places_set:
+                        continue
+
+                    # Add to our set of processed places
+                    places_set.add(place_id)
+
+                    # Create a new dictionary for each place
+                    place_result = {}
+                    place_result["place"] = place
+
+                    # Get notes for this place
+                    notes = []
+                    note_ids = place_post_service.get_notes_by_place_id(place_id)
+                    for note_id in note_ids:
+                        note = post_service.get_post_by_id(note_id)
+                        if note:  # Make sure we got a valid note
+                            notes.append(note)
+                    place_result["notes"] = notes
+                    search_results.append(place_result)
+
+        # 返回包含经纬度和搜索结果的数据
+        return {
+            "route": southwest_route,
+            "points": route_detail["all_points"],
+            "places": search_results,
+            "places_length": len(search_results),
+            "mode": mode
+        }
     return [{"message":len(place_ids)}]
 
 
@@ -117,7 +192,7 @@ async def searchByKeyword(keyword: str = Query(None, description="search content
     return [{"message":"ok"}]
 
 @router.get("/data/process", tags=["data clean"])
-async def dataClean():
+async def dataProcess():
     # 创建所有定义的表
     #Base.metadata.drop_all(engine)
     Base.metadata.create_all(bind=engine)
@@ -147,7 +222,7 @@ async def dataClear():
     return [{"message": "success"}]
 
 @router.get("/data/init/es", tags=["es init"])
-async def esInit(post_path: str = Query("data/processed_search_contents.json", description="search content"),
+async def esInit(post_path: str = Query("data/post_es_data.json", description="search content"),
                  place_path: str = Query("data/place_es_data.json", description="search content"),):
     post_result = post_service.delete_all_posts()
     print(f"删除了 {post_result['deleted']} 条数据")
