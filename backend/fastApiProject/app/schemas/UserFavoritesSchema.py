@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, List
 
 class UserFavoriteBase(BaseModel):
@@ -11,9 +11,7 @@ class UserFavoriteCreate(UserFavoriteBase):
 class UserFavorite(UserFavoriteBase):
     id: int
 
-    class Config:
-        orm_mode = True
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class UserFavoritesList(BaseModel):
     favorites: List[UserFavorite]
