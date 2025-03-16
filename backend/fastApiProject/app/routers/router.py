@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Query, Path
+from sipbuild.generator.parser.tokens import keywords
+
 from models.PlacePost import Base, engine
 from external.DeepSeek import deepseekapi
 from external.GoogleMap import geocode_finder
@@ -9,17 +11,23 @@ from services.PlaceService import place_service
 from services.PostService import post_service
 from services.PlacePostService import place_post_service
 from ai.clustering.Recommend import findKClosestPlaces, findKClosestPosts
-
 router = APIRouter()
 @router.get("/search/recommend", tags=["search ai"])
 async def searchByRecommend(content: str = Query(None, description="search content"),
                  mode: str = Query("driving", description="交通方式", enum=["driving", "walking", "bicycling", "transit"]),
                             user: str = Query("0001", description="user id")):
     #根据userId拿到userfector
-
-
-
-    return [{"message":"hi"}]
+    keywords = []
+    place_ids = set()
+    while keywords == []:
+        keywords = deepseekapi.associate(content)
+    for keyword in keywords:
+        search_results = post_service.search_by_keyword(keyword=keyword, size=100, score_weight=0.2)
+        if search_results["total"] > 0:
+            for post in search_results["results"]:
+                ids = place_post_service.get_places_by_note_id(post["note_id"])
+                place_ids.update(ids)
+    return [{"message":len(place_ids)}]
 
 
 @router.get("/search/ai-recommend", tags=["search ai"])
