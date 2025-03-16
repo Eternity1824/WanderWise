@@ -9,8 +9,6 @@ from services.PlaceService import place_service
 from services.PostService import post_service
 from services.PlacePostService import place_post_service
 
-# Create all tables at import time
-Base.metadata.create_all(bind=engine)
 
 router = APIRouter()
 
